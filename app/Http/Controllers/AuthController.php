@@ -27,12 +27,13 @@ class AuthController extends Controller
         ]);
         if (auth()->attempt($vadidate)) {
             request()->session()->regenerate();
-            return redirect()->route("home");
+            return view('home');
         }
         return redirect()->route('showFormLogin')->withErrors([
-            'error' => 'Tài khoản hoặc mật khẩu không đúng!'
+            'error' => 'tai khoan mat khau khong dung'
         ]);
     }
+
 
     public function showFormForget()
     {
