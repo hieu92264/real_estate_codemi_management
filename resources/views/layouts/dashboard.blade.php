@@ -1,4 +1,4 @@
-@extends('admin.index')
+{{-- @extends('admin.index')
 @section('content')
 
-@endsection
+@endsection --}}
