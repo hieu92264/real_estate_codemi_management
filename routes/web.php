@@ -20,13 +20,14 @@ use App\Http\Controllers\Controller;
 // Route::get("/", function () {
 //     return view("welcome");
 // });
-
-Route::get("/", [AuthController::class, 'showFormLogin'])->name("showFormLogin");
-Route::post("/", [AuthController::class, 'doLogin'])->name("doLogin");
-Route::get("/quen-mat-khau", [AuthController::class, 'showFormForget'])->name("showFormForget");
-Route::post("/quen-mat-khau", [AuthController::class, 'doForget'])->name("doForget");
-Route::get("/reset-mat-khau", [AuthController::class, "showFormReset"])->name("showFormReset");
-Route::post("/reset-mat-khau", [AuthController::class, "doReset"])->name("doReset");
+Route::middleware('guest')->group(function () {
+    Route::get("/", [AuthController::class, 'showFormLogin'])->name("showFormLogin");
+    Route::post("/", [AuthController::class, 'doLogin'])->name("doLogin");
+    Route::get("/quen-mat-khau", [AuthController::class, 'showFormForget'])->name("showFormForget");
+    Route::post("/quen-mat-khau", [AuthController::class, 'doForget'])->name("doForget");
+    Route::get("/reset-mat-khau", [AuthController::class, "showFormReset"])->name("showFormReset");
+    Route::post("/reset-mat-khau", [AuthController::class, "doReset"])->name("doReset");
+});
 Route::get("/logout", [AuthController::class, "logout"])->name("logout");
 Route::get("/trang-chu", function () {
     return view("home");
