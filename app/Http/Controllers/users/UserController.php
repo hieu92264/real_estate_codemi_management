@@ -46,7 +46,9 @@ class UserController extends Controller
     }
     public function destroy(User $user)
     {
-        $user->delete();
+        if (auth()->id() !== $user->id) {
+            $user->delete();
+        }
         return redirect()->route('users.index');
     }
     public function edit(User $user, Request $request)
@@ -69,7 +71,7 @@ class UserController extends Controller
 
         $user->update($validatedData);
 
-        if ($request->has('roles')) {
+        if (auth()->id() !== $user->id && $request->has('roles')) {
             $user->roles()->sync($request->roles);
         }
 
