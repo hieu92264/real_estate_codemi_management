@@ -12,9 +12,9 @@ class RoleController extends Controller
 {
     public function __construct()
     {
-        $this->middleware('permission:them chuc vu', ['only' => ['create', 'store']]);
-        $this->middleware('permission:sua chuc vu', ['only' => ['update', 'show']]);
-        $this->middleware('permission:xoa chuc vu', ['only' => ['destroy']]);
+        $this->middleware('permission:Thêm chức vụ', ['only' => ['create', 'store']]);
+        $this->middleware('permission:Sửa chức vụ', ['only' => ['update', 'show']]);
+        $this->middleware('permission:Xóa chức vụ', ['only' => ['destroy']]);
     }
     //
     public function index()
@@ -36,6 +36,9 @@ class RoleController extends Controller
     {
         $vadidate = $request->validate([
             'name' => 'required|unique:roles,name'
+        ], [
+            'name.required' => 'tên chức vụ không được để trống',
+            'name.unique' => 'tên chức vụ không được trùng'
         ]);
         $role = Role::create($vadidate);
         $role->permission()->sync($request->permissions);
@@ -52,10 +55,13 @@ class RoleController extends Controller
     {
         $vadidate = $request->validate([
             'name' => 'required'
+        ], [
+            'name.required' => 'tên chức vụ không được trống'
         ]);
         $role->update($vadidate);
         $role->permission()->sync($request->permissions);
         Cache::forget('datarole');
         return redirect()->route('roles.index');
     }
+
 }

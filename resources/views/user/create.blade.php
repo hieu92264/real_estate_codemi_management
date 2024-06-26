@@ -7,7 +7,7 @@
             <div class="row justify-content-center">
                 <div class="col-sm-12 col-xl-6">
                     <div class="bg-light rounded h-100 p-4">
-                        <h6 class="mb-4">Thêm mới người dùng</h6>
+                        <h6 class="mb-4">Thêm mới tài khoản</h6>
                         <div class="form-group mb-3">
                             <label for="name">Họ và tên</label>
                             <input type="text" class="form-control" id="name" name="name">

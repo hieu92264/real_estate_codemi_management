@@ -33,10 +33,10 @@
                     <form method="POST" action="{{ route('doLogin') }}">
                         @csrf
                         <p>
-                            <input type="text" name="email" placeholder="Email" required>
+                            <input type="text" name="email" placeholder="Email">
                         </p>
                         <p>
-                            <input type="password" name="password" placeholder="Password" required>
+                            <input type="text" name="password" placeholder="Password">
                         </p>
                         <p>
                             <input class="btn btn-custom" type="submit" value="Sign In" />
