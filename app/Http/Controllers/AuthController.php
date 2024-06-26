@@ -3,17 +3,20 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Mail;
 
 class AuthController extends Controller
 {
-    public function showFormLogin() {
+    public function showFormLogin()
+    {
         return view("auth.login");
     }
 
-    public function doLogin(Request $request) {
+    public function doLogin(Request $request)
+    {
         $vadidate = $request->validate([
             'email' => 'required|string|email|max:255',
             'password' => 'min:6|max:255',
@@ -31,11 +34,13 @@ class AuthController extends Controller
         ]);
     }
 
-    public function showFormForget() {
+    public function showFormForget()
+    {
         return view('auth.forgot');
     }
 
-    public function doForget(Request $request) {
+    public function doForget(Request $request)
+    {
         $validate = $request->validate([
             'email' => 'required|email'
         ]);
@@ -55,9 +60,11 @@ class AuthController extends Controller
         } else {
             return redirect()->back()->with('error', 'Email not found');
         }
+
     }
 
-    public function showFormReset(Request $request) {
+    public function showFormReset(Request $request)
+    {
         $email = $request->query('email');
         $token = $request->query('token');
         $reset = DB::select("SELECT * FROM password_reset_tokens WHERE email = ? AND token = ?", [$email, $token]);
@@ -68,7 +75,8 @@ class AuthController extends Controller
         }
     }
 
-    public function doReset(Request $request) {
+    public function doReset(Request $request)
+    {
         $validate = $request->validate([
             'email' => 'required|email',
             'password' => 'required|min:6',
@@ -83,5 +91,12 @@ class AuthController extends Controller
         } else {
             return redirect()->back()->with('error', 'Email not found');
         }
+    }
+    public function logout(Request $request)
+    {
+        Auth::logout();
+        $request->session()->invalidate();
+        $request->session()->regenerateToken();
+        return redirect()->route('showFormLogin');
     }
 }
