@@ -5,6 +5,8 @@ use App\Http\Controllers\users\UserController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\Controller;
+use App\Http\Controllers\entity_management\BuyersController;
+use App\Http\Controllers\entity_management\SellerController;
 
 /*
 |--------------------------------------------------------------------------
@@ -37,4 +39,6 @@ Route::middleware('auth')->group(function () {
     Route::get('/dashboard', [Controller::class, 'showFormHome'])->name('showFormDashboard');
     Route::resource('/roles', RoleController::class);
     Route::resource('/users', UserController::class);
+    Route::resource('/danh-sach-nguoi-mua', BuyersController::class);
+    Route::resource('/danh-sach-nguoi-ban', SellerController::class);
 });

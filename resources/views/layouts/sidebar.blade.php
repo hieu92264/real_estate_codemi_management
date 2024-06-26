@@ -17,7 +17,7 @@
             </div>
         </div>
         <div class="navbar-nav w-100">
-            <a href="index.html" class="nav-item nav-link active"><i class="fa fa-tachometer-alt me-2"></i>Trang chủ</a>
+            <a href="{{ route('home') }}" class="nav-item nav-link active"><i class="fa fa-tachometer-alt me-2"></i>Trang chủ</a>
             <div class="nav-item dropdown">
                 <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown"><i
                         class="fa fa-laptop me-2"></i>Phân quyền</a>
@@ -26,7 +26,14 @@
                     <a href="{{ route('roles.index') }}" class="dropdown-item">Chức vụ</a>
                 </div>
             </div>
-
+            <div class="nav-item dropdown">
+                <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown"><i
+                        class="fa fa-laptop me-2"></i>Quản lý thực thể</a>
+                <div class="dropdown-menu bg-transparent border-0">
+                    <a href="{{ route('danh-sach-nguoi-mua.index') }}" class="dropdown-item">Danh mục người mua</a>
+                    <a href="{{ route('danh-sach-nguoi-ban.index') }}" class="dropdown-item">Danh mục người bán</a>
+                </div>
+            </div>
 
         </div>
     </nav>
