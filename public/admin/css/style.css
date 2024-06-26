@@ -1,6 +1,6 @@
 /********** Template CSS **********/
 :root {
-    --primary: #009CFF;
+    --primary: #db5151;
     --light: #F3F6F9;
     --dark: #191C24;
 }
@@ -78,6 +78,13 @@
     transition: 0.5s;
     z-index: 999;
 }
+
+    img{
+        height: 60px;
+        width: 240px;
+        border: #db5151 solid 1px;
+        border-radius: 5px
+    }
 
 .content {
     margin-left: 250px;

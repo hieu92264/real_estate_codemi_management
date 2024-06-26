@@ -65,21 +65,23 @@
         type: "bar",
         data: {
             labels: ["2016", "2017", "2018", "2019", "2020", "2021", "2022"],
-            datasets: [{
+            datasets: [
+                {
                     label: "USA",
                     data: [15, 30, 55, 65, 60, 80, 95],
-                    backgroundColor: "rgba(0, 156, 255, .7)"
+                    backgroundColor: 'rgba(139, 0, 0, 0.5)', // Dark red
                 },
                 {
                     label: "UK",
                     data: [8, 35, 40, 60, 70, 55, 75],
-                    backgroundColor: "rgba(0, 156, 255, .5)"
+                    backgroundColor: 'rgba(255, 0, 0, 0.5)', // Regular red
                 },
                 {
                     label: "AU",
                     data: [12, 25, 45, 55, 65, 70, 60],
-                    backgroundColor: "rgba(0, 156, 255, .3)"
+                    backgroundColor: 'rgba(255, 99, 71, 0.5)', // Light red
                 }
+
             ]
             },
         options: {
@@ -97,13 +99,13 @@
             datasets: [{
                     label: "Salse",
                     data: [15, 30, 55, 45, 70, 65, 85],
-                    backgroundColor: "rgba(0, 156, 255, .5)",
+                    backgroundColor: 'rgba(139, 0, 0, 0.5)',
                     fill: true
                 },
                 {
                     label: "Revenue",
                     data: [99, 135, 170, 130, 190, 180, 270],
-                    backgroundColor: "rgba(0, 156, 255, .3)",
+                    backgroundColor: 'rgba(255, 99, 71, 0.5)',
                     fill: true
                 }
             ]
