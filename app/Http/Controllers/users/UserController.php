@@ -14,9 +14,9 @@ class UserController extends Controller
     //
     public function __construct()
     {
-        $this->middleware('permission:them tai khoan', ['only' => ['create', 'store']]);
-        $this->middleware('permission:sua tai khoan', ['only' => ['update', 'show']]);
-        $this->middleware('permission:xoa tai khoan', ['only' => ['destroy']]);
+        $this->middleware('permission:Thêm tài khoản', ['only' => ['create', 'store']]);
+        $this->middleware('permission:Sửa tài khoản', ['only' => ['update', 'show']]);
+        $this->middleware('permission:Xóa tài khoản', ['only' => ['destroy']]);
     }
     public function index()
     {
@@ -44,5 +44,37 @@ class UserController extends Controller
         $user->roles()->sync($request->roles);
         return redirect()->route('users.index');
     }
+    public function destroy(User $user)
+    {
+        $user->delete();
+        return redirect()->route('users.index');
+    }
+    public function edit(User $user, Request $request)
+    {
+        $role = Role::all();
+        $user_roles = $user->roles()->pluck('id')->toArray();
+        return view('user.update', compact('user', 'role', 'user_roles'));
+    }
+
+
+    public function update(User $user, Request $request)
+    {
+        $validatedData = $request->validate([
+            'name' => 'required|max:50',
+            'email' => 'required|email',
+            'phone' => 'required',
+            'address' => 'required',
+            'roles' => 'required'
+        ]);
+
+        $user->update($validatedData);
+
+        if ($request->has('roles')) {
+            $user->roles()->sync($request->roles);
+        }
+
+        return redirect()->route('users.index');
+    }
+
 
 }
