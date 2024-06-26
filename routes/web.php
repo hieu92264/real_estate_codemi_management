@@ -1,7 +1,10 @@
 <?php
 
+use App\Http\Controllers\roles\RoleController;
+use App\Http\Controllers\users\UserController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\Controller;
 
 /*
 |--------------------------------------------------------------------------
@@ -22,10 +25,15 @@ Route::get("/", [AuthController::class, 'showFormLogin'])->name("showFormLogin")
 Route::post("/", [AuthController::class, 'doLogin'])->name("doLogin");
 Route::get("/quen-mat-khau", [AuthController::class, 'showFormForget'])->name("showFormForget");
 Route::post("/quen-mat-khau", [AuthController::class, 'doForget'])->name("doForget");
-Route::get("/reset-mat-khau", [AuthController::class,"showFormReset"])->name("showFormReset");
-Route::post("/reset-mat-khau", [AuthController::class,"doReset"])->name("doReset");
+Route::get("/reset-mat-khau", [AuthController::class, "showFormReset"])->name("showFormReset");
+Route::post("/reset-mat-khau", [AuthController::class, "doReset"])->name("doReset");
 
-Route::get("/trang-chu", function() {
+Route::get("/trang-chu", function () {
     return view("home");
 })->name("home");
-
+//trang quan li 
+Route::middleware('auth')->group(function () {
+    Route::get('/dashboard', [Controller::class, 'showFormHome'])->name('showFormDashboard');
+    Route::resource('/roles', RoleController::class);
+    Route::resource('/users', UserController::class);
+});
