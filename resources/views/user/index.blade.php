@@ -12,7 +12,9 @@
                 <th scope="col">Tên</th>
                 <th scope="col">Email</th>
                 <th scope="col">Chức vụ</th>
-                <th scope="col">Hành động</th>
+                @if (Auth::user()->hasPermission('Sửa tài khoản') || Auth::user()->hasPermission('Xóa tài khoản'))
+                    <th scope="col">Hành động</th>
+                @endif
             </tr>
         </thead>
         <tbody>
@@ -29,10 +31,10 @@
                         @endforeach
                     </td>
                     <td class="d-flex justify-content-center align-items-center ">
-                        @if (Auth::user()->hasPermission('sua tai khoan') || $user->id === Auth::user()->id)
+                        @if (Auth::user()->hasPermission('Sửa tài khoản'))
                             <a href="{{ route('users.edit', $user->id) }}" class="btn btn-success btn-sm  ">Sửa</a>
                         @endif
-                        @if (Auth::user()->hasPermission('xoa tai khoan') && $user->id !== Auth::user()->id)
+                        @if (Auth::user()->hasPermission('Xóa tài khoản') && $user->id !== Auth::user()->id)
                             <form style="margin-left: 5px" action="{{ route('users.destroy', $user->id) }}" method="POST"
                                 onsubmit="return confirm('Bạn có muốn xóa chức vụ này không');">
                                 @csrf

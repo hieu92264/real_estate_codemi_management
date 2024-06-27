@@ -19,7 +19,7 @@
                     <td>{{ $role->id }}</td>
                     <td>{{ $role->name }}</td>
                     <td class="d-flex justify-content-center align-items-center">
-                        @if (Auth::user()->hasPermission('xoa chuc vu'))
+                        @if (Auth::user()->hasPermission('Xóa chức vụ'))
                             <form action="{{ route('roles.destroy', $role->id) }}" method="POST" style="margin-right: 5px;"
                                 onsubmit="return confirm('Bạn có muốn xóa chức vụ này không');">
                                 @csrf
@@ -27,7 +27,7 @@
                                 <button type="submit" class="btn btn-danger">Delete</button>
                             </form>
                         @endif
-                        @if (Auth::user()->hasPermission('sua chuc vu'))
+                        @if (Auth::user()->hasPermission('Sửa chức vụ'))
                             <a href="{{ route('roles.show', $role->id) }}" class="btn btn-success btnOpenEditModal"
                                 data-role-id="{{ $role->id }}">Edit</a>
                         @endif

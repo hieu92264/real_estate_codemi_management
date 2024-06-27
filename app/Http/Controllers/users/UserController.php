@@ -14,6 +14,7 @@ class UserController extends Controller
     //
     public function __construct()
     {
+        $this->middleware('permission:Xem thông tin tài khoản', ['only' => ['index']]);
         $this->middleware('permission:Thêm tài khoản', ['only' => ['create', 'store']]);
         $this->middleware('permission:Sửa tài khoản', ['only' => ['update', 'show']]);
         $this->middleware('permission:Xóa tài khoản', ['only' => ['destroy']]);
@@ -66,15 +67,17 @@ class UserController extends Controller
             'email' => 'required|email',
             'phone' => 'required',
             'address' => 'required',
-            'roles' => 'required'
+
         ]);
 
-        $user->update($validatedData);
 
         if (auth()->id() !== $user->id && $request->has('roles')) {
             $user->roles()->sync($request->roles);
+        } elseif (auth()->id() !== $user->id && !$request->has('roles')) {
+            $user->roles()->detach();
         }
 
+        $user->update($validatedData);
         return redirect()->route('users.index');
     }
 
