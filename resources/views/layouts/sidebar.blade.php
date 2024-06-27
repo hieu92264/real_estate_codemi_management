@@ -5,9 +5,9 @@
         </a>      
         <div class="d-flex align-items-center ms-4 mb-4">
             <div class="position-relative">
-                <img class="rounded-circle" src="{{ asset('admin/img/user.jpg') }}" alt=""
+                <img class="rounded-circle" src="{{ asset('admin/img/user3.jpg') }}" alt=""
                     style="width: 40px; height: 40px;">
-                <div    
+                <div
                     class="bg-success rounded-circle border border-2 border-white position-absolute end-0 bottom-0 p-1">
                 </div>
             </div>
@@ -17,15 +17,23 @@
             </div>
         </div>
         <div class="navbar-nav w-100">
-            <a href="{{ route('home') }}" class="nav-item nav-link active"><i class="fa fa-tachometer-alt me-2"></i>Trang chủ</a>
-            <div class="nav-item dropdown">
-                <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown"><i
-                        class="fa fa-laptop me-2"></i>Phân quyền</a>
-                <div class="dropdown-menu bg-transparent border-0">
-                    <a href="{{ route('users.index') }}" class="dropdown-item">Người dùng</a>
-                    <a href="{{ route('roles.index') }}" class="dropdown-item">Chức vụ</a>
+            <a href="{{ route('bat-dong-san.index') }}" class="nav-item nav-link active"><i
+                    class="fa fa-tachometer-alt me-2"></i>Bất
+                động sản</a>
+            @if (Auth::user()->hasPermission('Xem thông tin tài khoản') || Auth::user()->hasPermission('Xem thông tin chức vụ'))
+                <div class="nav-item dropdown">
+                    <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown"><i
+                            class="fa fa-laptop me-2"></i>Phân quyền</a>
+                    <div class="dropdown-menu bg-transparent border-0">
+                        @if (Auth::user()->hasPermission('Xem thông tin tài khoản'))
+                            <a href="{{ route('users.index') }}" class="dropdown-item">Người dùng</a>
+                        @endif
+                        @if (Auth::user()->hasPermission('Xem thông tin chức vụ'))
+                            <a href="{{ route('roles.index') }}" class="dropdown-item">Chức vụ</a>
+                        @endif
+                    </div>
                 </div>
-            </div>
+            @endif
             <div class="nav-item dropdown">
                 <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown"><i
                         class="fa fa-laptop me-2"></i>Quản lý thực thể</a>

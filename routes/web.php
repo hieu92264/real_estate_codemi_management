@@ -7,6 +7,7 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\Controller;
 use App\Http\Controllers\entity_management\BuyersController;
 use App\Http\Controllers\entity_management\SellerController;
+use App\Http\Controllers\properties\PropertiController;
 
 /*
 |--------------------------------------------------------------------------
@@ -41,4 +42,5 @@ Route::middleware('auth')->group(function () {
     Route::resource('/users', UserController::class);
     Route::resource('/danh-sach-nguoi-mua', BuyersController::class);
     Route::resource('/danh-sach-nguoi-ban', SellerController::class);
+    Route::resource('bat-dong-san', PropertiController::class);
 });
