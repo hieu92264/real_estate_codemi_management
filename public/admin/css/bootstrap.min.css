@@ -3081,14 +3081,14 @@ fieldset:disabled .btn {
 
 .btn-primary {
     color: #000;
-    background-color: #db5151;
-    border-color: #db5151
+    background-color: #26abff;
+    border-color: #26abff
 }
 
 .btn-primary:hover {
     color: #000;
-    background-color: #e86c6c;
-    border-color: #e86c6c;
+    background-color: #68c0f6;
+    border-color: #68c0f6;
 }
 
 .btn-check:focus+.btn-primary,
