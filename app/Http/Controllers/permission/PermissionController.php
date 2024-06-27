@@ -7,9 +7,6 @@ use Illuminate\Http\Request;
 
 class PermissionController extends Controller
 {
-    public function showPermissions()
-    {
-        return view("");
-    }
+
     //
 }
