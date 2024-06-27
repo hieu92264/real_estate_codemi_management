@@ -43,14 +43,14 @@ class UserController extends Controller
             'password' => Hash::make($vadidate['password'])
         ]);
         $user->roles()->sync($request->roles);
-        return redirect()->route('users.index');
+        return redirect()->route('users.index')->with('success', 'Bạn đã thêm mới 1 tài khoản thành công');
     }
     public function destroy(User $user)
     {
         if (auth()->id() !== $user->id) {
             $user->delete();
         }
-        return redirect()->route('users.index');
+        return redirect()->route('users.index')->with('success', 'Bạn đã xóa thành công 1 tài khoản');
     }
     public function edit(User $user, Request $request)
     {
@@ -78,8 +78,13 @@ class UserController extends Controller
         }
 
         $user->update($validatedData);
-        return redirect()->route('users.index');
+        return redirect()->route('users.index')->with('success', 'Bạn đã sửa thành công 1 tài khoản');
     }
-
-
+    public function search(Request $request)
+    {
+        $dataUser = User::where('name', 'like', '%' . $request->search . '%')
+            ->orWhere('email', 'like', '%' . $request->search . '%')
+            ->paginate(5);
+        return view('user.index', compact('dataUser'));
+    }
 }

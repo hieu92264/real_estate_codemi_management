@@ -131,7 +131,7 @@ class SellerController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
+    public function show($id)
     {
         //
     }
@@ -139,7 +139,7 @@ class SellerController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
+    public function edit($id)
     {
         $seller = BuyerSeller::where('id', $id)->first();
         if ($seller) {
@@ -156,7 +156,7 @@ class SellerController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(Request $request, $id)
     {
         $seller = BuyerSeller::where('id', $id)->first();
         if ($seller) {
