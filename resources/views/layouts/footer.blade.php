@@ -38,11 +38,11 @@
        <div class="bg-light rounded-top p-4">
            <div class="row">
                <div class="col-12 col-sm-6 text-center text-sm-start">
-                Copyright &copy; <a href="https://codemivietnam.com/">https://codemivietnam.com</a>.
+                Copyright &copy; 07/2024 <a href="https://codemivietnam.com/">Codemi Việt Nam</a>.
                </div>
-               <div class="col-12 col-sm-6 text-center text-sm-end">
+               {{-- <div class="col-12 col-sm-6 text-center text-sm-end">
                    Email: <a href="mailto:cdm@codemivietnam.com">cdm@codemivietnam.com</a>
-               </div>
+               </div> --}}
            </div>
        </div>
    </div>
