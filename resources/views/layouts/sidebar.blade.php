@@ -1,8 +1,8 @@
 <div class="sidebar pe-4 pb-3">
     <nav class="navbar bg-light navbar-light">
-        <a href="index.html" class="navbar-brand mx-1 mb-3 d-inline-block">
-            <h2 class="text-primary"><img src="{{ asset('admin/img/codemi-viet-nam.jpg') }}"></h2>
-        </a>
+        <a href="{{ route('home') }}" class="navbar-brand mx-1 mb-3 d-inline-block">
+            <h2 class="text-primary"><img src="{{asset('admin/img/codemi-viet-nam.jpg')}}"></h2>
+        </a>      
         <div class="d-flex align-items-center ms-4 mb-4">
             <div class="position-relative">
                 <img class="rounded-circle" src="{{ asset('admin/img/user3.jpg') }}" alt=""
@@ -17,7 +17,7 @@
             </div>
         </div>
         <div class="navbar-nav w-100">
-            <a href="{{ route('bat-dong-san.index') }}" class="nav-item nav-link active"><i
+            <a href="{{ route('bat-dong-san.index') }}" class="nav-item nav-link"><i
                     class="fa fa-tachometer-alt me-2"></i>Bất
                 động sản</a>
             @if (Auth::user()->hasPermission('Xem thông tin tài khoản') || Auth::user()->hasPermission('Xem thông tin chức vụ'))
