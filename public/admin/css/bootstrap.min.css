@@ -604,8 +604,11 @@ progress {
 
 .img-fluid {
     max-width: 100%;
-    height: auto
+    height: 200px;
+    width: 400px;
+    object-fit: cover; 
 }
+
 
 .img-thumbnail {
     padding: .25rem;
@@ -3126,14 +3129,14 @@ fieldset:disabled .btn {
 
 .btn-secondary {
     color: #fff;
-    background-color: #6c757d;
-    border-color: #6c757d
+    background-color: #db5151;
+    border-color: #db5151
 }
 
 .btn-secondary:hover {
     color: #fff;
-    background-color: #5c636a;
-    border-color: #565e64
+    background-color: #dc3545;
+    border-color: #dc3545
 }
 
 .btn-check:focus+.btn-secondary,
@@ -3846,6 +3849,7 @@ fieldset:disabled .btn {
 
 .dropdown-menu {
     position: absolute;
+    width: auto;
     z-index: 1000;
     display: none;
     min-width: 10rem;
@@ -4116,7 +4120,7 @@ fieldset:disabled .btn {
 
 .dropdown-item {
     display: block;
-    width: 100%;
+    width: 200px;
     padding: .25rem 1rem;
     clear: both;
     font-weight: 400;
@@ -4124,13 +4128,14 @@ fieldset:disabled .btn {
     text-align: inherit;
     white-space: nowrap;
     background-color: transparent;
-    border: 0
+    border: 0;
+    transition: background-color 0.3s ease, color 0.3s ease;
 }
 
 .dropdown-item:hover,
 .dropdown-item:focus {
-    color: #1e2125;
-    background-color: #e9ecef
+    color: #007bff;
+    background-color: #f8f9fa
 }
 
 .dropdown-item.active,
@@ -4164,6 +4169,15 @@ fieldset:disabled .btn {
     display: block;
     padding: .25rem 1rem;
     color: #212529
+}
+.dropdown-item i {
+    font-size: 1.2rem;
+    color: #6c757d;
+    transition: color 0.3s ease;
+}
+
+.dropdown-item:hover i {
+    color: #007bff;
 }
 
 .dropdown-menu-dark {
@@ -4200,6 +4214,7 @@ fieldset:disabled .btn {
 .dropdown-menu-dark .dropdown-item-text {
     color: #dee2e6
 }
+
 
 .dropdown-menu-dark .dropdown-header {
     color: #adb5bd
@@ -4819,9 +4834,13 @@ fieldset:disabled .btn {
     word-wrap: break-word;
     background-color: #fff;
     background-clip: border-box;
-    border: 1px solid rgba(0, 0, 0, 0.125);
-    border-radius: 5px
+    border: 2px solid rgba(0, 0, 0, 0.125);
+    border-radius: 5px;
+    height: 100%;
+    width: 100%;
+    margin-bottom: 20px;
 }
+
 
 .card>hr {
     margin-right: 0;
@@ -4856,7 +4875,8 @@ fieldset:disabled .btn {
 }
 
 .card-title {
-    margin-bottom: .5rem
+    margin-bottom: .5rem;
+    text-align: center;
 }
 
 .card-subtitle {
@@ -8344,7 +8364,7 @@ fieldset:disabled .btn {
 }
 
 .bg-primary {
-    background-color: #009CFF !important
+    background-color: #db5151 !important
 }
 
 .bg-secondary {
@@ -12535,4 +12555,6 @@ fieldset:disabled .btn {
     .d-print-none {
         display: none !important
     }
+
+    
 }
