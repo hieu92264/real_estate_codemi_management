@@ -137,10 +137,7 @@ class PropertiController extends Controller
 
     public function create()
     {
-        $districts = Location::distinct()->pluck('district');
-        $streets = Location::distinct()->pluck('street');
-        $wards = Location::distinct()->pluck('ward');
-        return view('properties.create', compact('districts', 'streets', 'wards'));
+        return view('properties.create');
     }
     //
     public function store(CreatePropertiesRequest $request)
