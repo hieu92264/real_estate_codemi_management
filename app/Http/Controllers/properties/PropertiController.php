@@ -206,9 +206,10 @@ class PropertiController extends Controller
         $bat_dong_san->delete();
         return redirect()->route('bat-dong-san.index')->with('success', 'Bạn đã xóa thành công 1 bất động sản');
     }
-    public function edit(Properties $bat_dong_san){
-        $bat_dong_san->with(['hasDescription','hasLocation','hasImages']);
-        return view()
+    public function edit(Properties $bat_dong_san)
+    {
+        $bat_dong_san->with(['hasDescription', 'hasLocation', 'hasImages']);
+        return view();
     }
 }
 
