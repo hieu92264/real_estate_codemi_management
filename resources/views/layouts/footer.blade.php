@@ -30,9 +30,9 @@
            }
        }
    </style>
-   <div class="content">
+   {{-- <div class="content">
        <!-- Nội dung trang web của bạn -->
-   </div>
+   </div> --}}
 
    <div class="footer">
        <div class="bg-light rounded-top p-4">
