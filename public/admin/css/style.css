@@ -13,6 +13,13 @@
     z-index: 99;
 }
 
+.container {
+    max-width: 100%;
+    margin: 5pt auto;
+}
+.form-control {
+    max-width: 100%;
+}
 
 /*** Spinner ***/
 #spinner {
@@ -89,8 +96,11 @@
 .content {
     margin-left: 250px;
     min-height: 100vh;
-    background: #FFFFFF;
+    background: #F3F6F9;
     transition: 0.5s;
+}
+i{
+     font-size: 1.25em;
 }
 
 @media (min-width: 992px) {
@@ -281,4 +291,51 @@
 .testimonial-carousel .owl-dot.active {
     background: var(--dark);
     border-color: var(--primary);
+}
+
+.profile-picture {
+    position: relative;
+    display: inline-block;
+}
+
+.profile-picture img {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    transition: transform 0.3s ease;
+}
+
+.profile-picture img:hover {
+    transform: scale(1.5); /* Adjust the scale value as needed */
+}
+
+.status-indicator {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    width: 12px; /* Adjust the size as needed */
+    height: 12px; /* Adjust the size as needed */
+    background-color: #28a745; /* Background color for the indicator */
+    border: 2px solid white; /* Border color and width */
+    border-radius: 50%;
+}
+
+.property-item {
+    box-shadow: 0 0 30px rgba(0, 0, 0, .08);
+}
+
+.property-item img {
+    transition: .5s;
+}
+
+.property-item:hover img {
+    transform: scale(1.1);
+}
+
+.property-item .border-top {
+    border-top: 1px dashed rgba(0, 185, 142, .3) !important;
+}
+
+.property-item .border-end {
+    border-right: 1px dashed rgba(0, 185, 142, .3) !important;
 }
