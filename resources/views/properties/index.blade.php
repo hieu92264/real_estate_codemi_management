@@ -5,7 +5,7 @@
     <div class="container">
         <div class="container-fluid bg-primary mb-5 wow fadeIn" data-wow-delay="0.1s" style="padding: 35px;">
             <div class="container">
-                <form class="row g-2" method="GET" action="{{ route('bat-dong-san.index') }}">
+                <form class="row g-2" method="GET" action="{{ route('searchProperties') }}">
                     <div class="col-md-10">
                         <div class="row g-2">
                             <div class="col-md-12">
