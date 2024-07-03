@@ -36,7 +36,7 @@
                             <input type="text" name="email" placeholder="Email">
                         </p>
                         <p>
-                            <input type="text" name="password" placeholder="Password">
+                            <input type="password" name="password" placeholder="Password">
                         </p>
                         <p>
                             <input class="btn btn-custom" type="submit" value="Sign In" />

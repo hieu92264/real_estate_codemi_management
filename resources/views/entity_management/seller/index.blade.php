@@ -9,8 +9,10 @@
                         <div class="col-md-8">
                             <form action="{{ route('danh-sach-nguoi-ban.index') }}" method="GET" class="mb-4">
                                 <div class="input-group">
-                                    <input type="text" class="form-control" name="search" placeholder="Tìm kiếm người bán..." value="{{ request('search') }}">
-                                    <button type="submit" class="btn btn-primary" style="margin-left: 10pt">Tìm Kiếm</button>
+                                    <input type="text" class="form-control" name="search"
+                                        placeholder="Tìm kiếm người bán..." value="{{ request('search') }}">
+                                    <button type="submit" class="btn btn-primary" style="margin-left: 10pt">Tìm
+                                        Kiếm</button>
                                 </div>
                             </form>
                         </div>
@@ -23,7 +25,7 @@
                         <button type="submit" class="btn btn-primary">Tìm Kiếm</button>
                     </div>
                 </form> --}}
-                
+
                 <table class="table">
                     <thead>
                         <tr>
@@ -44,11 +46,15 @@
                                 <td>{{ $seller->email }}</td>
                                 <td>{{ $seller->phone }}</td>
                                 <td>{{ $seller->address }}</td>
-                                <td>{{ $seller->transaction_history }}</td>
+                                <td>
+                                    <a href="{{ route('lich-su-giao-dich.historyTransaction', $seller->id) }}"
+                                        class="btn btn-primary btn-sm">Xem</a>
+                                </td>
                                 <td>
                                     <a href="{{ route('danh-sach-nguoi-ban.edit', $seller->id) }}"
                                         class="btn btn-primary btn-sm">Sửa</a>
-                                    <form class="mt-2" action="{{ route('danh-sach-nguoi-ban.destroy', $seller->id) }}", method="POST">
+                                    <form class="mt-2" action="{{ route('danh-sach-nguoi-ban.destroy', $seller->id) }}"
+                                        method="POST" onsubmit="return confirmDelete()">
                                         @csrf
                                         @method('DELETE')
                                         <input type="submit" class="btn btn-danger btn-sm" value="Xóa">
@@ -71,8 +77,16 @@
                         <p class="error-message">{{ session('error') }}</p>
                     @endif
                 </p>
-                
+
             </div>
         </div>
     </div>
+@endsection
+
+@section('script')
+    <script>
+        function confirmDelete() {
+            return confirm('Bạn có chắc chắn muốn xóa không?');
+        }
+    </script>
 @endsection
