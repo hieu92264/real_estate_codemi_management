@@ -40,69 +40,69 @@ class PropertiController extends Controller
                     ->orWhere("locations.district", "LIKE", "%$search%")
                     ->orWhere("locations.ward", "LIKE", "%$search%")
                     ->orWhere("locations.street", "LIKE", "%$search%")
-                    ->orWhere("Properties.id", "LIKE", "%$search%");
+                    ->orWhere("properties.id", "LIKE", "%$search%");
             });
         }
 
-        if ($type !== '1') {
+        if ($type != '1') {
             $query->where('properties.type', $type);
         }
-        if ($local !== '1') {
+        if ($local != '1') {
             $query->where('locations.district', $local);
         }
         switch ($price) {
             case "2":
-                $query->where('properties.price', '<', '500000000');
+                $query->where('properties_descriptions.price', '<', '500000000');
                 break;
             case "3":
-                $query->where('properties.price', '>', '500000000')->where('properties.price', '<', '800000000');
+                $query->where('properties_descriptions.price', '>', '500000000')->where('properties_descriptions.price', '<', '800000000');
                 break;
             case "4":
-                $query->where('properties.price', '>', '800000000')->where('properties.price', '<', '1000000000');
+                $query->where('properties_descriptions.price', '>', '800000000')->where('properties_descriptions.price', '<', '1000000000');
                 break;
             case "5":
-                $query->where('properties.price', '>', '1000000000')->where('properties.price', '<', '2000000000');
+                $query->where('properties_descriptions.price', '>', '1000000000')->where('properties_descriptions.price', '<', '2000000000');
                 break;
             case "6":
-                $query->where('properties.price', '>', '2000000000')->where('properties.price', '<', '3000000000');
+                $query->where('properties_descriptions.price', '>', '2000000000')->where('properties_descriptions.price', '<', '3000000000');
                 break;
             case "7":
-                $query->where('properties.price', '>', '3000000000')->where('properties.price', '<', '5000000000');
+                $query->where('properties_descriptions.price', '>', '3000000000')->where('properties_descriptions.price', '<', '5000000000');
                 break;
             case "8":
-                $query->where('properties.price', '>', '5000000000')->where('properties.price', '<', '7000000000');
+                $query->where('properties_descriptions.price', '>', '5000000000')->where('properties_descriptions.price', '<', '7000000000');
                 break;
             case "9":
-                $query->where('properties.price', '>', '7000000000');
+                $query->where('properties_descriptions.price', '>', '7000000000');
                 break;
         }
         switch ($area) {
             case "2":
-                $query->where('properties.area', '<', '30');
+                $query->where('properties_descriptions.acreage', '<', '30');
                 break;
             case "3":
-                $query->where('properties.area', '>', '30')->where('properties.area', '<', '50');
+                $query->where('properties_descriptions.acreage', '>', '30')->where('properties_descriptions.acreage', '<', '50');
                 break;
             case "4":
-                $query->where('properties.area', '>', '50')->where('properties.area', '<', '80');
+                $query->where('properties_descriptions.acreage', '>', '50')->where('properties_descriptions.acreage', '<', '80');
                 break;
             case "5":
-                $query->where('properties.area', '>', '80')->where('properties.area', '<', '100');
+                $query->where('properties_descriptions.acreage', '>', '80')->where('properties_descriptions.acreage', '<', '100');
                 break;
             case "6":
-                $query->where('properties.area', '>', '100')->where('properties.area', '<', '150');
+                $query->where('properties_descriptions.acreage', '>', '100')->where('properties_descriptions.acreage', '<', '150');
                 break;
             case "7":
-                $query->where('properties.area', '>', '150')->where('properties.area', '<', '200');
+                $query->where('properties_descriptions.acreage', '>', '150')->where('properties_descriptions.acreage', '<', '200');
                 break;
             case "8":
-                $query->where('properties.area', '>', '200')->where('properties.area', '<', '250');
+                $query->where('properties_descriptions.acreage', '>', '200')->where('properties_descriptions.acreage', '<', '250');
                 break;
             case "9":
-                $query->where('properties.area', '>', '250');
+                $query->where('properties_descriptions.acreage', '>', '250');
                 break;
         }
-        if ($status !== '1') {
+        if ($status != '1') {
             $query->where('properties.status', $status);
         }
         // // switch
@@ -126,14 +126,13 @@ class PropertiController extends Controller
         $properties = Properties::with(['hasImages', 'hasLocation'])
             ->latest()
             ->paginate(6);
+        $types = Properties::distinct()->pluck('type')->toArray();
+        $statuses = Properties::distinct()->pluck('status')->toArray();
         $locations = $properties->pluck('hasLocation.district')
             ->filter()
             ->unique()
             ->toArray();
-        $types = Properties::distinct()->pluck('type')->toArray();
-        $statuses = Properties::distinct()->pluck('status')->toArray();
-        // $properties = Properties::all();
-        $types = $properties->pluck('type')->toArray();
+
         // return compact('properties', 'types', 'statuses', 'locations');
         return view('properties.index', compact('properties', 'types', 'statuses', 'locations'));
     }
@@ -141,7 +140,10 @@ class PropertiController extends Controller
 
     public function create()
     {
-        return view('properties.create');
+        $districts = Location::distinct()->pluck('district');
+        $streets = Location::distinct()->pluck('street');
+        $wards = Location::distinct()->pluck('ward');
+        return view('properties.create', compact('districts', 'streets', 'wards'));
     }
     //
     public function store(CreatePropertiesRequest $request)
@@ -184,10 +186,14 @@ class PropertiController extends Controller
             'district' => $validatedData['district'],
             'ward' => $validatedData['ward'],
             'street' => $validatedData['street'],
-            'full_address' => $validatedData['full_address'],
+            'full_address' => $validatedData['full_address']
+                . ', ' . $validatedData['street']
+                . ', ' . $validatedData['ward']
+                . ', ' . $validatedData['district']
+                . ', ' . $validatedData['city']
         ]);
 
-        return redirect()->route('bat-dong-san.index');
+        return redirect()->route('bat-dong-san.index')->with('success', 'Bạn đã thêm thành công 1 bất động sản');
     }
     public function show($id)
     {
@@ -197,4 +203,13 @@ class PropertiController extends Controller
         return view('properties.view', compact('property'));
         // return $property;
     }
+
+    public function destroy(Properties $bat_dong_san)
+    {
+        $bat_dong_san->delete();
+        return redirect()->route('bat-dong-san.index')->with('success', 'Bạn đã xóa thành công 1 bất động sản');
+    }
 }
+
+
+

@@ -48,5 +48,6 @@ Route::middleware('auth')->group(function () {
     Route::get('/tim-kiem-bat-dong-san', [PropertiController::class, 'search'])->name('searchProperties');
     Route::get('/tim-kiem', [UserController::class, 'search'])->name('search');
     Route::get('/doi-mat-khau', [AuthController::class, 'changePassword'])->name('change.password');
+    Route::post('/doi-mat-khau', [AuthController::class, 'savePassword']);
     // Route::resource('/bat-dong-san', PropertiController::class);
 });
