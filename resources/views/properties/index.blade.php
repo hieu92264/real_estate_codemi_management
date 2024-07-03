@@ -1,7 +1,12 @@
 {{-- test --}}
 @extends('home')
 @section('content')
-
+    @if (session()->has('success'))
+        <div class="alert alert-success alert-dismissible fade show" role="alert">
+            {{ session('success') }}
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+    @endif
     <div class="container">
         <div class="container-fluid bg-primary mb-5 wow fadeIn" data-wow-delay="0.1s" style="padding: 35px;">
             <div class="container">
@@ -98,15 +103,25 @@
                     @endif
 
                     <div class="card-body">
-                        <h5 class="card-title">{{ $property->type }}</h5>
-                        <p class="card-text text-muted">{{ $property->status }}</p>
-                        <p class="card-text">{{ $property->hasLocation->full_address ?? 'No address available' }}</p>
+                        @if ($property->type)
+                            <h5 class="card-title">{{ $property->type }}</h5>
+                        @endif
+                        @if ($property->status)
+                            <p class="card-text text-muted">{{ $property->status }}</p>
+                        @endif
+
+                        <p class="card-text">
+                            {{ $property->hasLocation->full_address ?? 'Bất động sản chưa có địa chỉ' }}</p>
                         <a href="{{ route('bat-dong-san.show', $property->id) }}" class="btn btn-primary">Chi tiết</a>
+
                     </div>
                 </div>
             </div>
         @endforeach
 
     </div>
+</div>
+<div>
+    {{ $properties->links('pagination::bootstrap-4') }}
 </div>
 @endsection
