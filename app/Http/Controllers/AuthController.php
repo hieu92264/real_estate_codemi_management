@@ -103,4 +103,18 @@ class AuthController extends Controller
     public function changePassword(){
         return view('auth.change_password');
     }
+
+    public function savePassword(Request $request) {
+        $validate = $request->validate([
+            'old_password' => 'required',
+            'password' => 'required|min:6',
+            'password_confirmation' => 'required|same:password'
+        ]);
+        if (auth()->attempt(['email' => auth()->user()->email, 'password' => $validate['old_password']])) {
+            DB::update("UPDATE users SET password = ? WHERE email = ?", [bcrypt($validate['password']), auth()->user()->email]);
+            return redirect()->route('change.password')->with('success', 'Mật khẩu đã được thay đổi thành công!');
+        } else {
+            return redirect()->back()->with('error', 'Mật khẩu cũ không chính xác!');
+        }
+    }
 }
