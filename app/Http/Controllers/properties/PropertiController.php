@@ -10,10 +10,11 @@ use App\Models\PropertiesDescription;
 use App\Models\PropertyImages;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 
 class PropertiController extends Controller
 {
-    public function index(Request $request)
+    public function search(Request $request)
     {
         $types = Properties::distinct()->pluck('type');
         $locals = Location::distinct()->pluck('district');
@@ -75,7 +76,7 @@ class PropertiController extends Controller
                 $query->where('properties.price', '>', '7000000000');
                 break;
         }
-        switch($area) {
+        switch ($area) {
             case "2":
                 $query->where('properties.area', '<', '30');
                 break;
@@ -119,13 +120,19 @@ class PropertiController extends Controller
     {
 
     }
-//     public function index()
-//     {
-//         $properties = Properties::with(['hasImages', 'hasLocation'])
-//             ->latest()
-//             ->paginate(6);
-//         return view('properties.index', compact('properties'));
-//     }
+
+    public function index()
+    {
+        $properties = Properties::with(['hasImages', 'hasLocation'])
+            ->latest()
+            ->paginate(6);
+        $types = Properties::distinct()->pluck('type')->toArray();
+        $statuses = Properties::distinct()->pluck('status')->toArray();
+        $locations = $properties->pluck('hasLocation.district')->unique()->toArray();
+        // return compact('properties', 'types', 'statuses', 'locations');
+        return view('properties.index', compact('properties', 'types', 'statuses', 'locations'));
+    }
+
 
     public function create()
     {
