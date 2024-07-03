@@ -132,7 +132,7 @@ class PropertiController extends Controller
             ->toArray();
         $types = Properties::distinct()->pluck('type')->toArray();
         $statuses = Properties::distinct()->pluck('status')->toArray();
-        $properties = Properties::all();
+        // $properties = Properties::all();
         $types = $properties->pluck('type')->toArray();
         // return compact('properties', 'types', 'statuses', 'locations');
         return view('properties.index', compact('properties', 'types', 'statuses', 'locations'));
