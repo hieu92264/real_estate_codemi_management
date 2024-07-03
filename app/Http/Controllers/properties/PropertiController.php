@@ -22,7 +22,9 @@ class PropertiController extends Controller
         $properties = Properties::with(['hasImages', 'hasLocation'])
             ->latest()
             ->paginate(6);
-        return view('properties.index', compact('properties'));
+        $type = Properties::distinct()->pluck('type')->toArray();
+        return compact('properties', 'type');
+         // return view('properties.index', compact('properties'));
     }
 
     public function create()

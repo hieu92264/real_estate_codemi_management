@@ -4,15 +4,14 @@
     <div class="container">
         <div class="row">
             @foreach ($properties as $property)
-                <div class="col-md-4 mb-4">
+                <div class="col-md-4 mb-4"> 
                     <div class="card">
                         @if ($property->hasImages->isNotEmpty())
                             @foreach ($property->hasImages as $image)
                                 <img src="{{ asset('storage/' . $image->image_url) }}" class="card-img-top rounded-0"
                                     alt="Property Image" style="height: 300px; object-fit: cover;">
                             @break
-
-                            <!-- Chỉ hiển thị ảnh đầu tiên -->
+                      <!-- Chỉ hiển thị ảnh đầu tiên -->
                         @endforeach
                     @else
                         <img src="{{ asset('default-image.jpg') }}" class="card-img-top rounded-0" alt="Default Image"
