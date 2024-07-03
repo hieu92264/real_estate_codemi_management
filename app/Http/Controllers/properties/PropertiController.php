@@ -10,6 +10,7 @@ use App\Models\PropertiesDescription;
 use App\Models\PropertyImages;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 
 class PropertiController extends Controller
 {
@@ -43,10 +44,10 @@ class PropertiController extends Controller
             });
         }
 
-        if ($type !== 1) {
+        if ($type !== '1') {
             $query->where('properties.type', $type);
         }
-        if ($local !== 1) {
+        if ($local !== '1') {
             $query->where('locations.district', $local);
         }
         switch ($price) {
@@ -101,15 +102,15 @@ class PropertiController extends Controller
                 $query->where('properties.area', '>', '250');
                 break;
         }
-        if ($status !== 1) {
+        if ($status !== '1') {
             $query->where('properties.status', $status);
         }
         // // switch
         return view('properties.index', [
             'types' => $types,
-            'locals' => $locals,
+            'locations' => $locals,
             'statuses' => $statuses,
-            'properties' => $query,
+            'properties' => $query->paginate(10),
         ]);
         // return response()->json([
         //     "properties"=> $query->paginate(10),
@@ -202,9 +203,13 @@ class PropertiController extends Controller
         return view('properties.view', compact('property'));
         // return $property;
     }
+
     public function destroy(Properties $bat_dong_san)
     {
         $bat_dong_san->delete();
         return redirect()->route('bat-dong-san.index')->with('success', 'Bạn đã xóa thành công 1 bất động sản');
     }
 }
+
+}
+

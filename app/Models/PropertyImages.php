@@ -13,8 +13,6 @@ class PropertyImages extends Model
     protected $fillable = [
         'property_id',
         'image_url',
-
-
     ];
     public function hasProperty(): BelongsTo
     {
