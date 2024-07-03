@@ -211,5 +211,5 @@ class PropertiController extends Controller
     }
 }
 
-}
+
 
