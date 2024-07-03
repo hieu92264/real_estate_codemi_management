@@ -35,14 +35,11 @@
    </div>
 
    <div class="footer">
-       <div class="bg-light rounded-top p-4">
+       <div class="bg-light rounded-top p-2">
            <div class="row">
                <div class="col-12 col-sm-6 text-center text-sm-start">
-                Copyright &copy; 07/2024 <a href="https://codemivietnam.com/">Codemi Việt Nam</a>.
+                Copyright &copy; 07/2024 <a href="https://codemivietnam.com/">Codemi Việt Nam</a>. All rights reserved.
                </div>
-               {{-- <div class="col-12 col-sm-6 text-center text-sm-end">
-                   Email: <a href="mailto:cdm@codemivietnam.com">cdm@codemivietnam.com</a>
-               </div> --}}
            </div>
        </div>
    </div>

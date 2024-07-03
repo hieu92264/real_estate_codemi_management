@@ -13,6 +13,13 @@
     z-index: 99;
 }
 
+.container {
+    max-width: 600px;
+    margin: 5pt auto;
+}
+.form-control {
+    max-width: 100%;
+}
 
 /*** Spinner ***/
 #spinner {
@@ -89,7 +96,7 @@
 .content {
     margin-left: 250px;
     min-height: 100vh;
-    background: #FFFFFF;
+    background: #F3F6F9;
     transition: 0.5s;
 }
 i{
