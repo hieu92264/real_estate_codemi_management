@@ -126,9 +126,14 @@ class PropertiController extends Controller
         $properties = Properties::with(['hasImages', 'hasLocation'])
             ->latest()
             ->paginate(6);
+        $locations = $properties->pluck('hasLocation.district')
+            ->filter()
+            ->unique()
+            ->toArray();
         $types = Properties::distinct()->pluck('type')->toArray();
         $statuses = Properties::distinct()->pluck('status')->toArray();
-        $locations = $properties->pluck('hasLocation.district')->unique()->toArray();
+        $properties = Properties::all();
+        $types = $properties->pluck('type')->toArray();
         // return compact('properties', 'types', 'statuses', 'locations');
         return view('properties.index', compact('properties', 'types', 'statuses', 'locations'));
     }
