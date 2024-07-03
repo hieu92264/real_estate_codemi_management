@@ -1,7 +1,12 @@
 {{-- test --}}
 @extends('home')
 @section('content')
-
+    @if (session()->has('success'))
+        <div class="alert alert-success alert-dismissible fade show" role="alert">
+            {{ session('success') }}
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+    @endif
     <div class="container">
         <div class="container-fluid bg-primary mb-5 wow fadeIn" data-wow-delay="0.1s" style="padding: 35px;">
             <div class="container">
@@ -127,5 +132,8 @@
             </div>
         </div>
     </div>
-
+</div>
+<div>
+    {{ $properties->links('pagination::bootstrap-4') }}
+</div>
 @endsection

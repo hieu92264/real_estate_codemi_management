@@ -28,25 +28,33 @@
                     <li class="list-group-item"><strong>Trạng thái:</strong>
                         {{ $property->status == 'sold' ? 'dã bán' : 'đang bán' }}</li>
                 @endif
-                @if ($property->hasLocation->full_address)
+                @if ($property->hasLocation && $property->hasLocation->full_address)
                     <li class="list-group-item"><strong>Địa chỉ:</strong> {{ $property->hasLocation->full_address }}</li>
                 @endif
-                @if ($property->hasDescription->acreage)
+                @if ($property->hasDescription && $property->hasDescription->acreage)
                     <li class="list-group-item"><strong>Diện tích:</strong> {{ $property->hasDescription->acreage }}</li>
                 @endif
-                @if ($property->hasDescription->price)
+                @if ($property->hasDescription && $property->hasDescription->price)
                     <li class="list-group-item"><strong>Giá thành:</strong> {{ $property->hasDescription->price }}</li>
                 @endif
-                @if ($property->hasDescription->frontage)
+                @if ($property->hasDescription && $property->hasDescription->frontage)
                     <li class="list-group-item"><strong>Mặt tiền:</strong> {{ $property->hasDescription->frontage }}</li>
                 @endif
-                @if ($property->hasDescription->house_direction)
+                @if ($property->hasDescription && $property->hasDescription->house_direction)
                     <li class="list-group-item"><strong>Hướng:</strong> {{ $property->hasDescription->house_direction }}
                     </li>
                 @endif
-                @if ($property->hasDescription->floor)
+                @if ($property->hasDescription && $property->hasDescription->floor)
                     <li class="list-group-item"><strong>Tầng:</strong> {{ $property->hasDescription->floor }}</li>
                 @endif
+                <li class="list-group-item">
+                    <form style="margin-left: 5px" action="{{ route('bat-dong-san.destroy', $property->id) }}"
+                        method="POST" onsubmit="return confirm('Bạn có muốn xóa bất động sản không?');">
+                        @csrf
+                        @method('DELETE')
+                        <button type="submit" class="btn btn-danger">Xóa bất động sản</button>
+                    </form>
+                </li>
             </ul>
         </div>
     </div>
