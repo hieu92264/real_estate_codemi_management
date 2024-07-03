@@ -100,4 +100,7 @@ class AuthController extends Controller
         $request->session()->regenerateToken();
         return redirect()->route('showFormLogin');
     }
+    public function changePassword(){
+        return view('auth.change_password');
+    }
 }
