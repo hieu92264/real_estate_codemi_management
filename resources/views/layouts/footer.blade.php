@@ -33,7 +33,6 @@
    {{-- <div class="content">
        <!-- Nội dung trang web của bạn -->
    </div> --}}
-
    <div class="footer">
        <div class="bg-light rounded-top p-4">
            <div class="row">

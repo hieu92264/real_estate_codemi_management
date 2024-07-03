@@ -2,8 +2,6 @@
 @section('content')
     <h6 class="mb-4">Thêm mới bất động sản</h6>
     <div class="container">
-        <h1 class="mb-4">Tạo Bất Động Sản</h1>
-
         <form action="{{ route('bat-dong-san.store') }}" method="POST" enctype="multipart/form-data">
             @csrf
             <div class="form-group">
@@ -99,17 +97,32 @@
 
             <div class="form-group">
                 <label for="district">Quận/Huyện</label>
-                <input type="text" name="district" class="form-control" id="district">
+                <input type="text" name="district" class="form-control" id="district" list="districts">
+                <datalist id="districts">
+                    @foreach ($districts as $district)
+                        <option value="{{ $district }}">
+                    @endforeach
+                </datalist>
             </div>
 
             <div class="form-group">
                 <label for="ward">Phường/Xã</label>
-                <input type="text" name="ward" class="form-control" id="ward">
+                <input type="text" name="ward" class="form-control" id="ward" list="wards">
+                <datalist id="wards">
+                    @foreach ($wards as $ward)
+                        <option value="{{ $ward }}">
+                    @endforeach
+                </datalist>
             </div>
 
             <div class="form-group">
                 <label for="street">Đường</label>
-                <input type="text" name="street" class="form-control" id="street">
+                <input type="text" name="street" class="form-control" id="street" list="streets">
+                <datalist id="streets">
+                    @foreach ($streets as $street)
+                        <option value="{{ $street }}">
+                    @endforeach
+                </datalist>
             </div>
 
             <div class="form-group">

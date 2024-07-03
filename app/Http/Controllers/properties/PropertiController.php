@@ -126,14 +126,13 @@ class PropertiController extends Controller
         $properties = Properties::with(['hasImages', 'hasLocation'])
             ->latest()
             ->paginate(6);
+        $types = Properties::distinct()->pluck('type')->toArray();
+        $statuses = Properties::distinct()->pluck('status')->toArray();
         $locations = $properties->pluck('hasLocation.district')
             ->filter()
             ->unique()
             ->toArray();
-        $types = Properties::distinct()->pluck('type')->toArray();
-        $statuses = Properties::distinct()->pluck('status')->toArray();
-        $properties = Properties::all();
-        $types = $properties->pluck('type')->toArray();
+
         // return compact('properties', 'types', 'statuses', 'locations');
         return view('properties.index', compact('properties', 'types', 'statuses', 'locations'));
     }
@@ -141,7 +140,10 @@ class PropertiController extends Controller
 
     public function create()
     {
-        return view('properties.create');
+        $districts = Location::distinct()->pluck('district');
+        $streets = Location::distinct()->pluck('street');
+        $wards = Location::distinct()->pluck('ward');
+        return view('properties.create', compact('districts', 'streets', 'wards'));
     }
     //
     public function store(CreatePropertiesRequest $request)
@@ -184,10 +186,14 @@ class PropertiController extends Controller
             'district' => $validatedData['district'],
             'ward' => $validatedData['ward'],
             'street' => $validatedData['street'],
-            'full_address' => $validatedData['full_address'],
+            'full_address' => $validatedData['full_address']
+                . ', ' . $validatedData['street']
+                . ', ' . $validatedData['ward']
+                . ', ' . $validatedData['district']
+                . ', ' . $validatedData['city']
         ]);
 
-        return redirect()->route('bat-dong-san.index');
+        return redirect()->route('bat-dong-san.index')->with('success', 'Bạn đã thêm thành công 1 bất động sản');
     }
     public function show($id)
     {
@@ -197,4 +203,13 @@ class PropertiController extends Controller
         return view('properties.view', compact('property'));
         // return $property;
     }
+
+    public function destroy(Properties $bat_dong_san)
+    {
+        $bat_dong_san->delete();
+        return redirect()->route('bat-dong-san.index')->with('success', 'Bạn đã xóa thành công 1 bất động sản');
+    }
 }
+
+}
+
