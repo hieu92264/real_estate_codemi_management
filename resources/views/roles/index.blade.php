@@ -7,7 +7,7 @@
         <thead>
             <tr>
                 <th scope="col">STT</th>
-                <th scope="col">Id</th>
+                {{-- <th scope="col">Id</th> --}}
                 <th scope="col">Tên chức vụ</th>
                 <th scope="col">Hành động</th>
             </tr>
@@ -16,7 +16,7 @@
             @foreach ($dataRole as $index => $role)
                 <tr>
                     <td>{{ $index + 1 }}</td>
-                    <td>{{ $role->id }}</td>
+                    {{-- <td>{{ $role->id }}</td> --}}
                     <td>{{ $role->name }}</td>
                     <td class="d-flex justify-content-center align-items-center">
                         @if (Auth::user()->hasPermission('Xóa chức vụ'))
