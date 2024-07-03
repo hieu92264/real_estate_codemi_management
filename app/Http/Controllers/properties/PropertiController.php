@@ -44,10 +44,10 @@ class PropertiController extends Controller
             });
         }
 
-        if ($type !== '1') {
+        if ($type != '1') {
             $query->where('properties.type', $type);
         }
-        if ($local !== '1') {
+        if ($local != '1') {
             $query->where('locations.district', $local);
         }
         switch ($price) {
@@ -102,7 +102,7 @@ class PropertiController extends Controller
                 $query->where('properties_descriptions.acreage', '>', '250');
                 break;
         }
-        if ($status !== '1') {
+        if ($status != '1') {
             $query->where('properties.status', $status);
         }
         // // switch
