@@ -8,6 +8,9 @@
     <form class="d-none d-md-flex ms-4">
         <input class="form-control border-0" type="search" placeholder="Tìm kiếm">
     </form>
+    {{-- <form class="d-none d-md-flex ms-4">
+        <input class="form-control border-0" type="search" placeholder="Search">
+    </form> --}}
     <div class="navbar-nav align-items-center ms-auto">
         <div class="nav-item dropdown">
         </div>
@@ -19,8 +22,12 @@
                 <span class="d-none d-lg-inline-flex">{{ Auth::user()->name }}</span>
             </a>
             <div class="dropdown-menu dropdown-menu-end bg-light border-0 rounded-0 rounded-bottom m-0">
-
-                <a href="{{ route('logout') }}" class="dropdown-item">Log Out</a>
+                <a href="{{ route('logout') }}" class="dropdown-item d-flex align-items-center">
+                    <i class="fas fa-sign-out-alt me-2"></i> Log Out
+                </a>
+                <a href="{{ route('change.password') }}" class="dropdown-item d-flex align-items-center">
+                    <i class="fas fa-key me-2"></i> Change Password
+                </a>
             </div>
         </div>
     </div>

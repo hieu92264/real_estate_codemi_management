@@ -52,7 +52,7 @@ class RoleController extends Controller
         $role = Role::findOrFail($id);
         $userRoleIds = auth()->user()->roles->pluck('id')->toArray();
         if (!in_array($role->id, $userRoleIds)) {
-            Role::find($id)->delete();
+            $role->delete();
             Cache::forget('datarole');
         }
         return redirect()->route('roles.index');

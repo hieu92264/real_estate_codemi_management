@@ -9,8 +9,14 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 class PropertyImages extends Model
 {
     use HasFactory;
+    public $timestamps = false;
+    protected $fillable = [
+        'property_id',
+        'image_url',
+    ];
     public function hasProperty(): BelongsTo
     {
-        return $this->belongsTo(Properties::class);
+        return $this->belongsTo(Properties::class, 'property_id');
     }
+
 }

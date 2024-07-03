@@ -1,14 +1,30 @@
 @extends('home')
 @section('content')
+    @if (session()->has('success'))
+        <div class="alert alert-success alert-dismissible fade show" role="alert">
+            {{ session('success') }}
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+    @endif
     @if (Auth::user()->hasPermission('them tai khoan'))
         <a href="{{ route('users.create') }}" class="btn btn-success btn-sm my-2">
             Thêm tài khoản</a>
     @endif
+    <div class="row">
+        <div class="col-3">
+            <form action="{{ route('search') }} " method="GET" class="form-inline float-right">
+                <div class="form-group mb-2">
+                    <input type="text" name="search" class="form-control" placeholder="Tìm kiếm">
+                </div>
+                <button type="submit" class="btn btn-primary mb-2 ml-2">Tìm kiếm</button>
+            </form>
+        </div>
+    </div>
     <table class="table table-bordered text-center">
         <thead>
             <tr>
                 <th scope="col">STT</th>
-                <th scope="col">Id</th>
+                {{-- <th scope="col">Id</th> --}}
                 <th scope="col">Tên</th>
                 <th scope="col">Email</th>
                 <th scope="col">Chức vụ</th>
@@ -22,7 +38,7 @@
                 <tr>
 
                     <td>{{ $index + 1 }}</td>
-                    <td>{{ $user->id }}</td>
+                    {{-- <td>{{ $user->id }}</td> --}}
                     <td>{{ $user->name }}</td>
                     <td>{{ $user->email }}</td>
                     <td>
