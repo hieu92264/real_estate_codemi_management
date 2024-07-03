@@ -104,7 +104,9 @@
                         <a href="{{ route('bat-dong-san.show', $property->id) }}" class="btn btn-primary">Chi tiết</a>
                     </div>
                 </div>
+            </div>
         @endforeach
+
     </div>
 </div>
 @endsection
