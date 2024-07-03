@@ -30,7 +30,7 @@ class CreatePropertiesRequest extends FormRequest
             'gmail' => 'nullable|email',
             'acreage' => 'required|numeric',
             'price' => 'required|string|max:50',
-            'frontage' => 'nullable|numeric',//mặt tiền
+            'frontage' => 'nullable|numeric|min:0|max:4',//mặt tiền
             'house_direction' => 'nullable|string|max:20',//hướng nhà
             'floors' => 'nullable|integer',
             'bedrooms' => 'nullable|integer',

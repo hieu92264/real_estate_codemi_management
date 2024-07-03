@@ -45,6 +45,7 @@ Route::middleware('auth')->group(function () {
     Route::resource('/danh-sach-nguoi-ban', SellerController::class);
     Route::get('/lich-su-giao-dich/{id}', [TransactionController::class, 'showTransaction'])->name('lich-su-giao-dich.historyTransaction');
     Route::resource('bat-dong-san', PropertiController::class);
+    Route::get('/tim-kiem-bat-dong-san', [PropertiController::class, 'search'])->name('search');
     Route::get('/tim-kiem', [UserController::class, 'search'])->name('search');
-    Route::resource('/bat-dong-san', PropertiController::class);
+    // Route::resource('/bat-dong-san', PropertiController::class);
 });

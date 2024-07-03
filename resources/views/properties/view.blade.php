@@ -25,7 +25,8 @@
                     <li class="list-group-item"><strong>Loại:</strong> {{ $property->type }}</li>
                 @endif
                 @if ($property->status)
-                    <li class="list-group-item"><strong>Trạng thái:</strong> {{ $property->status }}</li>
+                    <li class="list-group-item"><strong>Trạng thái:</strong>
+                        {{ $property->status == 'sold' ? 'dã bán' : 'đang bán' }}</li>
                 @endif
                 @if ($property->hasLocation->full_address)
                     <li class="list-group-item"><strong>Địa chỉ:</strong> {{ $property->hasLocation->full_address }}</li>

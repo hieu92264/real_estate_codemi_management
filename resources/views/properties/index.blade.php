@@ -25,8 +25,8 @@
                             <div class="col-md-4">
                                 <select name="local" class="form-select border-0 py-3">
                                     <option value="1" selected>Khu vực nội thành Hải Phòng</option>
-                                    @if (isset($locals))
-                                        @foreach ($locals as $local)
+                                    @if (isset($locations))
+                                        @foreach ($locations as $local)
                                             <option value="{{ $local }}">{{ $local }}</option>
                                         @endforeach
                                     @endif
@@ -88,13 +88,14 @@
                             @foreach ($property->hasImages as $image)
                                 <img src="{{ asset('storage/' . $image->image_url) }}" class="card-img-top rounded-0"
                                     alt="Property Image" style="height: 300px; object-fit: cover;">
-                                @break
+                            @break
+
                             <!-- Chỉ hiển thị ảnh đầu tiên -->
-                            @endforeach
-                        @else
-                            <img src="{{ asset('default-image.jpg') }}" class="card-img-top rounded-0" alt="Default Image"
-                                style="height: 300px; object-fit: cover;">
-                        @endif
+                        @endforeach
+                    @else
+                        <img src="{{ asset('default-image.jpg') }}" class="card-img-top rounded-0" alt="Default Image"
+                            style="height: 300px; object-fit: cover;">
+                    @endif
 
                     <div class="card-body">
                         <h5 class="card-title">{{ $property->type }}</h5>
@@ -103,7 +104,9 @@
                         <a href="{{ route('bat-dong-san.show', $property->id) }}" class="btn btn-primary">Chi tiết</a>
                     </div>
                 </div>
-            @endforeach
-        </div>
+            </div>
+        @endforeach
+
     </div>
+</div>
 @endsection
