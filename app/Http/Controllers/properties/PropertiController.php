@@ -110,11 +110,8 @@ class PropertiController extends Controller
             'types' => $types,
             'locations' => $locals,
             'statuses' => $statuses,
-            'properties' => $query->paginate(10),
+            'properties' => $query->paginate(6),
         ]);
-        // return response()->json([
-        //     "properties"=> $query->paginate(10),
-        // ]);
     }
     public function __construct()
     {
@@ -140,10 +137,7 @@ class PropertiController extends Controller
 
     public function create()
     {
-        $districts = Location::distinct()->pluck('district');
-        $streets = Location::distinct()->pluck('street');
-        $wards = Location::distinct()->pluck('ward');
-        return view('properties.create', compact('districts', 'streets', 'wards'));
+        return view('properties.create');
     }
     //
     public function store(CreatePropertiesRequest $request)
@@ -208,6 +202,11 @@ class PropertiController extends Controller
     {
         $bat_dong_san->delete();
         return redirect()->route('bat-dong-san.index')->with('success', 'Bạn đã xóa thành công 1 bất động sản');
+    }
+    public function edit(Properties $bat_dong_san)
+    {
+        $bat_dong_san->with(['hasDescription', 'hasLocation', 'hasImages']);
+        return view();
     }
 }
 

@@ -127,6 +127,12 @@
                     <button type="submit" class="btn btn-primary">Tạo Mới</button>
                 </div>
             </form>
+<<<<<<< HEAD
         </div> 
     </div>
 @endsection
+=======
+        </div>
+    </div>
+    @endsection
+>>>>>>> ff1f5675864bbebffa286c1bd3f3de7e82afaa69
