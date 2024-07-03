@@ -75,5 +75,12 @@ class PropertiController extends Controller
 
         return redirect()->route('bat-dong-san.index');
     }
+    public function show($id)
+    {
+        $property = Properties::findOrFail($id);
+        $property->load(['hasImages', 'hasLocation', 'hasDescription']);
 
+        return view('properties.view', compact('property'));
+        // return $property;
+    }
 }

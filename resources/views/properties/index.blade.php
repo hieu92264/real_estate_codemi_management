@@ -23,7 +23,7 @@
                         <h5 class="card-title">{{ $property->type }}</h5>
                         <p class="card-text text-muted">{{ $property->status }}</p>
                         <p class="card-text">{{ $property->hasLocation->full_address ?? 'No address available' }}</p>
-                        <a href="#" class="btn btn-primary">Chi tiết</a>
+                        <a href="{{ route('bat-dong-san.show', $property->id) }}" class="btn btn-primary">Chi tiết</a>
                     </div>
                 </div>
             </div>
