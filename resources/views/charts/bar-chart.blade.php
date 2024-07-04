@@ -9,18 +9,24 @@
     </div>
     @if (isset($data))
         <script>
-            let chartData = @json($data);
-            console.log(chartData);
-             let ctx = document.getElementById('barchart').getContext('2d');
-                let myChart = new Chart(ctx, {
+            $(document).ready(function () {
+                var ctx = $('#barchart')[0].getContext('2d');
+                var chartData = @json($data);
+                var labels = chartData.map(function(item) {
+                    return 'Range ' + item.label;
+                });
+                var values = chartData.map(function(item) {
+                    return item.value;
+                });
+                var barChart = new Chart(ctx, {
                     type: 'bar',
                     data: {
-                        labels: chartData.labels,
+                        labels: labels,
                         datasets: [{
-                            label: chartData.,
-                            data: chartData.data,
-                            backgroundColor: chartData.colors,
-                            borderColor: chartData.colors,
+                            label: 'Số lượng bất động sản',
+                            data: values,
+                            backgroundColor: 'rgba(54, 162, 235, 0.2)',
+                            borderColor: 'rgba(54, 162, 235, 1)',
                             borderWidth: 1
                         }]
                     },
@@ -32,6 +38,7 @@
                         }
                     }
                 });
+            });
         </script>
     @endif
 
