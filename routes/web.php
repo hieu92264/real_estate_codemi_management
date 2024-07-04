@@ -5,6 +5,7 @@ use App\Http\Controllers\users\UserController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\Controller;
+use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\entity_management\BuyersController;
 use App\Http\Controllers\entity_management\SellerController;
 use App\Http\Controllers\properties\PropertiController;
@@ -33,9 +34,11 @@ Route::middleware('guest')->group(function () {
     Route::post("/reset-mat-khau", [AuthController::class, "doReset"])->name("doReset");
 });
 Route::get("/logout", [AuthController::class, "logout"])->name("logout");
-Route::get("/trang-chu", function () {
-    return view("home");
-})->name("home");
+// Route::get("/trang-chu", function () {
+//     return view("layouts.dashboard");
+// })->name("home");
+
+Route::get("/trang-chu", [DashboardController::class, 'getBarChartData'])->name('home');
 //trang quan li 
 Route::middleware('auth')->group(function () {
     Route::get('/dashboard', [Controller::class, 'showFormHome'])->name('showFormDashboard');

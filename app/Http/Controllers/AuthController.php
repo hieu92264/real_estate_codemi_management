@@ -27,7 +27,7 @@ class AuthController extends Controller
         ]);
         if (auth()->attempt($vadidate)) {
             request()->session()->regenerate();
-            return view('home');
+            return redirect()->route('home');
         }
         return redirect()->route('showFormLogin')->withErrors([
             'error' => 'tai khoan mat khau khong dung'
