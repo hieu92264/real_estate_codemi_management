@@ -76,29 +76,30 @@
                         </div>
                     </div>
                     <div class="col-md-2">
-                        <button type="submit" class="btn btn-primary" style="margin-left: 10pt">Tìm
+                        <button type="submit" class="btn btn-success" style="margin-left: 10pt">Tìm
                             Kiếm</button>
                     </div>
                 </form>
             </div>
         </div>
 
-        <a href="{{ route('bat-dong-san.create') }}" class="btn btn-success mb-3" style="margin: 15px;">Thêm mới bất động
-            sản</a>
+        <a href="{{ route('bat-dong-san.create') }}" class="btn btn-success mb-3" style="margin: 15px;">Thêm mới bất động sản</a>
+
 
         <div class="tab-content">
             <div id="tab-1" class="tab-pane fade show p-0 active">
                 <div class="row g-4">
                     @foreach ($properties as $property)
                         <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.1s">
+                            <a href="{{ route('bat-dong-san.show', $property->id) }}">
                             <div class="property-item rounded overflow-hidden">
                                 <div class="position-relative overflow-hidden">
                                     @if ($property->hasImages->isNotEmpty())
                                         @foreach ($property->hasImages->take(1) as $image)
-                                            <a href="{{ route('bat-dong-san.show', $property->id) }}">
+                                             
                                                 <img class="img-fluid" src="{{ asset('storage/' . $image->image_url) }}"
                                                     alt="">
-                                            </a>
+                                            
                                         @break
                                     @endforeach
                                 @else
@@ -111,22 +112,26 @@
                                     {{ $property->status }}
                                 </div>
                                 <div
-                                    class="bg-white rounded-top text-primary position-absolute start-0 bottom-0 mx-4 pt-1 px-3">
+                                    class="bg-white rounded-top text-primary position-absolute start-0 bottom-0 mx-4 pt-1 px-3" style="border: 3px solid #db5151">
                                     {{ $property->type }}
                                 </div>
                             </div>
 
                             <div class="p-4 pb-0">
-                                <h5 class="text-primary mb-3">
+
+                                <h5 class="text-primary mb-3"><i class="fas fa-dollar-sign"></i>
                                     @if ($property->hasDescription)
-                                        {{ number_format($property->hasDescription->price, 0, ',', '.') }}vnđ
+
+                                        {{ number_format($property->hasDescription->price, 0, ',', '.') }} vnđ 
+
+
                                     @endif
                                 </h5>
                                 {{-- <a class="d-block h5 mb-2" href="">Golden Urban House For Sell</a> --}}
-                                <p>
+                                <h6>
                                     <i class="fa fa-map-marker-alt text-primary me-2"></i>
                                     {{ $property->hasLocation->full_address ?? 'No address available' }}
-                                </p>
+                                </h6>
                             </div>
 
                             {{-- Thêm chi tiết --}}
@@ -134,27 +139,38 @@
                                 <small class="flex-fill text-center border-end py-2"><i
                                         class="fa fa-ruler-combined text-primary me-2"></i>
                                     @if ($property->hasDescription)
-                                        {{ $property->hasDescription->acreage }}vnđ
+
+                                        {{ $property->hasDescription->acreage }} m²
+
                                     @endif
                                 </small>
                                 <small class="flex-fill text-center border-end py-2"><i
                                         class="fa fa-bed text-primary me-2"></i>
                                     @if ($property->hasDescription)
-                                        {{ $property->hasDescription->bedrooms }}vnđ
+
+                                        {{ $property->hasDescription->bedrooms }} phòng ngủ
+
                                     @endif
                                 </small>
                                 <small class="flex-fill text-center py-2"><i class="fa fa-bath text-primary me-2"></i>
                                     @if ($property->hasDescription)
-                                        {{ $property->hasDescription->toilets }}vnđ
+
+                                        {{ $property->hasDescription->toilets }} toilets
+
                                     @endif
                                 </small>
                             </div>
                         </div>
+                    </a>
                     </div>
                 @endforeach
+                <div>
+                    {{ $properties->links('pagination::bootstrap-4') }}
+                </div>
             </div>
         </div>
     </div>
+    
 </div>
 <div>
     {{ $properties->links('pagination::bootstrap-4') }}
