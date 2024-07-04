@@ -111,7 +111,10 @@
                                         </div>
                                     @endif
                                     <div
-                                        class="bg-primary rounded text-white position-absolute start-0 top-0 m-4 py-1 px-3">
+                                        class="rounded text-white position-absolute start-0 top-0 m-4 py-1 px-3 
+                                        @if ($property->status == 'available') bg-success
+                                        @elseif($property->status == 'sold') bg-danger
+                                        @elseif($property->status == 'pending') bg-info @endif">
                                         {{ $property->status }}
                                     </div>
                                     <div class="bg-white rounded-top text-primary position-absolute start-0 bottom-0 mx-4 pt-1 px-3"
