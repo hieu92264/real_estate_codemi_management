@@ -118,9 +118,11 @@
                             </div>
 
                             <div class="p-4 pb-0">
+
                                 <h5 class="text-primary mb-3"><i class="fas fa-dollar-sign"></i>
                                     @if ($property->hasDescription)
                                         {{ number_format($property->hasDescription->price, 0, ',', '.') }} vnđ 
+
                                     @endif
                                 </h5>
                                 {{-- <a class="d-block h5 mb-2" href="">Golden Urban House For Sell</a> --}}
@@ -135,18 +137,24 @@
                                 <small class="flex-fill text-center border-end py-2"><i
                                         class="fa fa-ruler-combined text-primary me-2"></i>
                                     @if ($property->hasDescription)
+
                                         {{ $property->hasDescription->acreage }} m²
+
                                     @endif
                                 </small>
                                 <small class="flex-fill text-center border-end py-2"><i
                                         class="fa fa-bed text-primary me-2"></i>
                                     @if ($property->hasDescription)
+
                                         {{ $property->hasDescription->bedrooms }} phòng ngủ
+
                                     @endif
                                 </small>
                                 <small class="flex-fill text-center py-2"><i class="fa fa-bath text-primary me-2"></i>
                                     @if ($property->hasDescription)
+
                                         {{ $property->hasDescription->toilets }} toilets
+
                                     @endif
                                 </small>
                             </div>
