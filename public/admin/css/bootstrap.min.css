@@ -235,9 +235,6 @@ a {
     text-decoration: none
 }
 
-a:hover {
-    color: #ee8c8c
-}
 
 a:not([href]):not([class]),
 a:not([href]):not([class]):hover {
