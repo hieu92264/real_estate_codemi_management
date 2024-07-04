@@ -28,8 +28,10 @@
                     <li class="list-group-item"><strong>Trạng thái:</strong>
                         {{ $property->status == 'sold' ? 'dã bán' : 'đang bán' }}</li>
                 @endif
-                @if ($property->hasLocation && $property->hasLocation->full_address)
-                    <li class="list-group-item"><strong>Địa chỉ:</strong> {{ $property->hasLocation->full_address }}</li>
+                @if ($property->hasLocation)
+                    <li class="list-group-item"><strong>Địa chỉ:</strong>
+                        {{ $property->hasLocation->full_address ?? '' }},{{ $property->hasLocation->street ?? '' }},{{ $property->hasLocation->ward ?? '' }},{{ $property->hasLocation->district ?? '' }},{{ $property->hasLocation->city ?? '' }}
+                    </li>
                 @endif
                 @if ($property->hasDescription && $property->hasDescription->acreage)
                     <li class="list-group-item"><strong>Diện tích:</strong> {{ $property->hasDescription->acreage }}</li>

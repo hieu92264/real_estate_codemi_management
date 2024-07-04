@@ -1,4 +1,8 @@
-{{-- @extends('admin.index')
+@extends('home')
 @section('content')
-
-@endsection --}}
+    <div class="row">
+        <div class="col-md-6 chart-container">
+            @include('charts.bar-chart')
+        </div>
+    </div>
+@endsection
