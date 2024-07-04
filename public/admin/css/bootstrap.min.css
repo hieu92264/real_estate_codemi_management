@@ -2493,7 +2493,7 @@ textarea.form-control-lg {
     background-size: contain;
     border: 1px solid rgba(0, 0, 0, 0.25);
     appearance: none;
-    color-adjust: exact
+    color-adjust: exact;
 }
 
 .form-check-input[type="checkbox"] {
@@ -2515,8 +2515,8 @@ textarea.form-control-lg {
 }
 
 .form-check-input:checked {
-    background-color: #db5151;
-    border-color: #db5151
+    background-color: #198754;
+    border-color: #198754
 }
 
 .form-check-input:checked[type="checkbox"] {
@@ -5169,7 +5169,7 @@ fieldset:disabled .btn {
 .page-link {
     position: relative;
     display: block;
-    color: #009CFF;
+    color: #db5151;
     background-color: #fff;
     border: 1px solid #dee2e6;
     transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out
@@ -5183,14 +5183,14 @@ fieldset:disabled .btn {
 
 .page-link:hover {
     z-index: 2;
-    color: #007dcc;
+    color: #e88080;
     background-color: #e9ecef;
     border-color: #dee2e6
 }
 
 .page-link:focus {
     z-index: 3;
-    color: #007dcc;
+    color: #db5151;
     background-color: #e9ecef;
     outline: 0;
     box-shadow: 0 0 0 .25rem rgba(0, 156, 255, 0.25)
@@ -5203,12 +5203,12 @@ fieldset:disabled .btn {
 .page-item.active .page-link {
     z-index: 3;
     color: #fff;
-    background-color: #009CFF;
-    border-color: #009CFF
+    background-color: #db5151;
+    border-color: #e88080
 }
 
 .page-item.disabled .page-link {
-    color: #6c757d;
+    color: #db5151;
     pointer-events: none;
     background-color: #fff;
     border-color: #dee2e6
@@ -5260,8 +5260,8 @@ fieldset:disabled .btn {
 
 .badge {
     display: inline-block;
-    padding: .35em .65em;
-    font-size: .75em;
+    padding: .5em  .75em;
+    font-size: .875em;
     font-weight: 700;
     line-height: 1;
     color: #fff;

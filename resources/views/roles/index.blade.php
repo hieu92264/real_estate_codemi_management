@@ -28,7 +28,7 @@
                             </form>
                         @endif
                         @if (Auth::user()->hasPermission('Sửa chức vụ'))
-                            <a href="{{ route('roles.show', $role->id) }}" class="btn btn-success btnOpenEditModal"
+                            <a href="{{ route('roles.show', $role->id) }}" class="btn btn-primary btnOpenEditModal"
                                 data-role-id="{{ $role->id }}">Edit</a>
                         @endif
 
