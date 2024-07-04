@@ -22,12 +22,14 @@
                 <span class="d-none d-lg-inline-flex">{{ Auth::user()->name }}</span>
             </a>
             <div class="dropdown-menu dropdown-menu-end bg-light border-0 rounded-0 rounded-bottom m-0">
-                <a href="{{ route('logout') }}" class="dropdown-item d-flex align-items-center">
-                    <i class="fas fa-sign-out-alt me-2"></i> Log Out
-                </a>
                 <a href="{{ route('change.password') }}" class="dropdown-item d-flex align-items-center">
-                    <i class="fas fa-key me-2"></i> Change Password
+                    <i class="fas fa-key me-2"></i> Quên mật khẩu
                 </a>
+
+                <a href="{{ route('logout') }}" class="dropdown-item d-flex align-items-center">
+                    <i class="fas fa-sign-out-alt me-2"></i> Đăng xuất
+                </a>
+                
             </div>
         </div>
     </div>
