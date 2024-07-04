@@ -4,18 +4,12 @@ namespace App\Http\Controllers;
 
 use App\Models\Properties;
 use Illuminate\Http\Request;
+use Carbon\Carbon;
 
 class DashboardController extends Controller
 {
     public function getBarChartData(Request $request)
     {
-        $request->validate([
-            'from' => 'date',
-            'to' => 'date',
-        ]);
-        $startDate = $request->input('from');
-        $endDate = $request->input('to');
-        // if(isset($startDate) )
         $priceRanges = [
             '2' => [0, 500000000],
             '3' => [500000001, 800000000],
@@ -28,14 +22,28 @@ class DashboardController extends Controller
         ];
 
         $data = [];
-        foreach ($priceRanges as $key => $values) {
-            $count = Properties::join('properties_descriptions', 'properties.id', '=', 'properties_descriptions.property_id')
-                ->whereBetween('properties_descriptions.price', $values)
-                ->count();
-            $data[] = [
-                'label' => $values,
-                'value' => $count
-            ];
+        if ($request->input('from') == '' || $request->input('to') == '') {
+            foreach ($priceRanges as $key => $values) {
+                $count = Properties::join('properties_descriptions', 'properties.id', '=', 'properties_descriptions.property_id')
+                    ->whereBetween('properties_descriptions.price', $values)
+                    ->count();
+                $data[] = [
+                    'label' => $values,
+                    'value' => $count
+                ];
+            }
+        } else {
+            $toEndOfDay = $request->input('to') . ' 23:59:59';
+            foreach ($priceRanges as $key => $values) {
+                $count = Properties::join('properties_descriptions', 'properties.id', '=', 'properties_descriptions.property_id')
+                    ->whereBetween('properties_descriptions.created_at', [$request->input('from'), $toEndOfDay])
+                    ->whereBetween('properties_descriptions.price', $values)
+                    ->count();
+                $data[] = [
+                    'label' => $values,
+                    'value' => $count
+                ];
+            }
         }
 
         return view('layouts.dashboard', [
