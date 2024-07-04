@@ -53,6 +53,8 @@
                         @csrf
                         @method('DELETE')
                         <button type="submit" class="btn btn-danger">Xóa bất động sản</button>
+                        <a href="{{ route('bat-dong-san.edit', $property->id) }}" class="btn btn-success">Sửa bất động
+                            sản</a>
                     </form>
                 </li>
             </ul>

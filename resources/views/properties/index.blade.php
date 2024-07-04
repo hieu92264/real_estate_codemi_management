@@ -121,7 +121,9 @@
 
                                 <h5 class="text-primary mb-3"><i class="fas fa-dollar-sign"></i>
                                     @if ($property->hasDescription)
+
                                         {{ number_format($property->hasDescription->price, 0, ',', '.') }} vnđ 
+
 
                                     @endif
                                 </h5>

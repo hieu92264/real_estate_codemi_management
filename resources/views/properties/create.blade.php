@@ -1,6 +1,5 @@
 @extends('home')
 @section('content')
-    <h6 class="mb-4 text-center">Thêm mới bất động sản</h6>
     <div class="container d-flex justify-content-center">
         <div class="col-md-8">
             <h1 class="mb-4 text-center">Tạo Bất Động Sản</h1>
