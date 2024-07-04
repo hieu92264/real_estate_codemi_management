@@ -119,7 +119,7 @@
                             <div class="p-4 pb-0">
                                 <h5 class="text-primary mb-3">
                                     @if ($property->hasDescription)
-                                        {{ $property->hasDescription->price }}vnđ
+                                        {{ number_format($property->hasDescription->price, 0, ',', '.') }}vnđ
                                     @endif
                                 </h5>
                                 {{-- <a class="d-block h5 mb-2" href="">Golden Urban House For Sell</a> --}}

@@ -205,9 +205,92 @@ class PropertiController extends Controller
     }
     public function edit(Properties $bat_dong_san)
     {
-        $bat_dong_san->with(['hasDescription', 'hasLocation', 'hasImages']);
-        return view();
+        $properties = $bat_dong_san->load(['hasDescription', 'hasLocation', 'hasImages']);
+        return view('properties.update', compact('properties'));
     }
+    public function update(CreatePropertiesRequest $request, $id)
+    {
+        $validatedData = $request->validated();
+
+        $property = Properties::findOrFail($id);
+
+        $property->update([
+            'type' => $validatedData['type'],
+            'status' => $validatedData['status'],
+            'updated_by_id' => Auth::id(),
+        ]);
+
+
+        if ($property->hasDescription) {
+            $property->hasDescription()->update([
+                'owner' => $validatedData['owner'],
+                'phone_number' => $validatedData['phone_number'],
+                'gmail' => $validatedData['gmail'],
+                'acreage' => $validatedData['acreage'],
+                'price' => $validatedData['price'],
+                'frontage' => $validatedData['frontage'],
+                'house_direction' => $validatedData['house_direction'],
+                'floors' => $validatedData['floors'],
+                'bedrooms' => $validatedData['bedrooms'],
+                'toilets' => $validatedData['toilets'],
+                'legality' => $validatedData['legality'],
+                'furniture' => $validatedData['furniture'],
+                'other_description' => $validatedData['other_description'],
+            ]);
+        } else {
+            $property->hasDescription()->create([
+                'owner' => $validatedData['owner'],
+                'phone_number' => $validatedData['phone_number'],
+                'gmail' => $validatedData['gmail'],
+                'acreage' => $validatedData['acreage'],
+                'price' => $validatedData['price'],
+                'frontage' => $validatedData['frontage'],
+                'house_direction' => $validatedData['house_direction'],
+                'floors' => $validatedData['floors'],
+                'bedrooms' => $validatedData['bedrooms'],
+                'toilets' => $validatedData['toilets'],
+                'legality' => $validatedData['legality'],
+                'furniture' => $validatedData['furniture'],
+                'other_description' => $validatedData['other_description'],
+            ]);
+        }
+
+        if ($request->hasFile('images')) {
+            $property->hasImages()->delete();
+
+            foreach ($request->file('images') as $image) {
+                $imagePath = $image->store('property_images', 'public'); // Lưu vào thư mục public/property_images
+                $propertyImage = new PropertyImages([
+                    'image_url' => 'property_images/' . basename($imagePath), // Lưu đường dẫn tương đối trong cơ sở dữ liệu
+                ]);
+                $property->hasImages()->save($propertyImage);
+            }
+        }
+
+
+        if ($property->hasLocation) {
+            $property->hasLocation()->update([
+                'city' => $validatedData['city'],
+                'district' => $validatedData['district'],
+                'ward' => $validatedData['ward'],
+                'street' => $validatedData['street'],
+                'full_address' => $validatedData['full_address']
+
+            ]);
+        } else {
+            $property->hasLocation()->create([
+                'city' => $validatedData['city'],
+                'district' => $validatedData['district'],
+                'ward' => $validatedData['ward'],
+                'street' => $validatedData['street'],
+                'full_address' => $validatedData['full_address']
+
+            ]);
+        }
+
+        return redirect()->route('bat-dong-san.index')->with('success', 'Bạn đã cập nhật thành công bất động sản');
+    }
+
 }
 
 
