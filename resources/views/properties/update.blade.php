@@ -112,22 +112,28 @@
 
                 <div class="form-group">
                     <label for="city">Thành Phố</label>
-                    <input value="{{ $properties->hasLocation->city }}" type="text" name="city"
-                        class="form-control" id="city">
+                    <select class="form-control" id="city" name="city_id" title="Chọn Tỉnh Thành">
+                        <option value="0">{{ $properties->hasLocation->city }}</option>
+                    </select>
+                    <input type="hidden" name="city" id="city_name" value="{{ $properties->hasLocation->city }}">
                 </div>
 
                 <div class="form-group">
                     <label for="district">Quận/Huyện</label>
-                    <input value="{{ $properties->hasLocation->district }}" type="text" name="district"
-                        class="form-control" id="district">
+                    <select class="form-control" id="district" name="district_id" title="Chọn Quận Huyện">
+                        <option value="0">{{ $properties->hasLocation->district }}</option>
+                    </select>
+                    <input type="hidden" name="district" id="district_name"
+                        value="{{ $properties->hasLocation->district }}">
                 </div>
 
                 <div class="form-group">
                     <label for="ward">Phường/Xã</label>
-                    <input type="text" value="{{ $properties->hasLocation->ward }}" name="ward"
-                        class="form-control" id="ward">
+                    <select class="form-control" id="ward" name="ward_id" title="Chọn Phường Xã">
+                        <option value="0">{{ $properties->hasLocation->ward }}</option>
+                    </select>
+                    <input type="hidden" name="ward" id="ward_name" value="{{ $properties->hasLocation->ward }}">
                 </div>
-
                 <div class="form-group">
                     <label for="street">Đường</label>
                     <input type="text" value="{{ $properties->hasLocation->street }}" name="street"
@@ -151,4 +157,5 @@
             </form>
         </div>
     </div>
+    <script src="{{ asset('admin/js/api_viet_nam.js') }}"></script>
 @endsection

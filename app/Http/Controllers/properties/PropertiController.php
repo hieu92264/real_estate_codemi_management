@@ -10,15 +10,14 @@ use App\Models\PropertiesDescription;
 use App\Models\PropertyImages;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\DB;
 
 class PropertiController extends Controller
 {
     public function search(Request $request)
     {
-        $types = Properties::distinct()->pluck('type');
-        $locals = Location::distinct()->pluck('district');
-        $statuses = Properties::distinct()->pluck('status');
+
 
         $search = $request->input('search');
         $type = $request->input('type');
@@ -108,9 +107,6 @@ class PropertiController extends Controller
         }
         // // switch
         return view('properties.index', [
-            'types' => $types,
-            'locations' => $locals,
-            'statuses' => $statuses,
             'properties' => $query->paginate(6),
         ]);
     }
@@ -120,9 +116,11 @@ class PropertiController extends Controller
 
     public function index()
     {
-        $properties = Properties::with(['hasImages', 'hasLocation'])
-            ->latest()
-            ->paginate(9);
+        $properties = Cache::remember('properties_cache', now()->addHours(1), function () {
+            return Properties::with(['hasImages', 'hasLocation'])
+                ->latest()
+                ->paginate(9);
+        });
         $types = Properties::distinct()->pluck('type')->toArray();
         $statuses = Properties::distinct()->pluck('status')->toArray();
         $locations = $properties->pluck('hasLocation.district')
@@ -181,12 +179,8 @@ class PropertiController extends Controller
             'ward' => $validatedData['ward'],
             'street' => $validatedData['street'],
             'full_address' => $validatedData['full_address']
-                . ', ' . $validatedData['street']
-                . ', ' . $validatedData['ward']
-                . ', ' . $validatedData['district']
-                . ', ' . $validatedData['city']
         ]);
-
+        Cache::forget('properties_cache');
         return redirect()->route('bat-dong-san.index')->with('success', 'Bạn đã thêm thành công 1 bất động sản');
     }
     public function show($id)
@@ -201,6 +195,7 @@ class PropertiController extends Controller
     public function destroy(Properties $bat_dong_san)
     {
         $bat_dong_san->delete();
+        Cache::forget('properties_cache');
         return redirect()->route('bat-dong-san.index')->with('success', 'Bạn đã xóa thành công 1 bất động sản');
     }
     public function edit(Properties $bat_dong_san)
@@ -287,7 +282,7 @@ class PropertiController extends Controller
 
             ]);
         }
-
+        Cache::forget('properties_cache');
         return redirect()->route('bat-dong-san.index')->with('success', 'Bạn đã cập nhật thành công bất động sản');
     }
 
