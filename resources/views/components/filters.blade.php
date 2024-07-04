@@ -6,13 +6,13 @@
         <div class="col-md-3">
             <div class="form-group">
                 <label for="from">Từ ngày:</label>
-                <input type="date" class="form-control" id="from" name="from" aria-label="From date">
+                <input type="date" class="form-control" id="from" name="from" aria-label="From date" value="{{ request()->get('from') ?? ''}}">
             </div>
         </div>
         <div class="col-md-3">
             <div class="form-group">
                 <label for="to">Đến ngày:</label>
-                <input type="date" class="form-control" id="to" name="to" aria-label="To date">
+                <input type="date" class="form-control" id="to" name="to" aria-label="To date" value="{{ request()->get('to') ?? 'today' }}">
             </div>
         </div>
         <div class="col-md-2 d-flex align-items-end">

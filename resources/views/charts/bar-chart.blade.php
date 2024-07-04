@@ -1,36 +1,36 @@
-<div class="container">
-    <div class="card">
-        <div class="card-body">
+<div class="container mt-5">
+    <div class="col-sm-12 col-xl-6">
+        <h6 class="mb-4">Thống kê bất động sản theo giá</h6>
             <x-filters />
-        </div>
-        <div class="card-body">
-            <canvas id="barchart" width="800" height="400"></canvas>
+        <div class="bg-light rounded h-100 p-4">
+            <canvas id="barchart" width="1652" height="826"
+                style="display: block; box-sizing: border-box; height: 413px; width: 826px;"></canvas>
         </div>
     </div>
     @if (isset($data))
         <script>
-            $(document).ready(function () {
+            $(document).ready(function() {
                 var ctx = $('#barchart')[0].getContext('2d');
                 var chartData = @json($data);
-                var labels = chartData.map(function(item) {
-                    return 'Range ' + item.label;
-                });
                 var values = chartData.map(function(item) {
                     return item.value;
                 });
+
                 var barChart = new Chart(ctx, {
-                    type: 'bar',
+                    type: "bar",
                     data: {
-                        labels: labels,
+                        labels: ['Dưới 500 triệu', '500 - 800 triệu', '800 triệu - 1 tỷ', '1 - 2 tỷ',
+                            '2 - 3 tỷ', '3 - 5 tỷ', '5 - 7 tỷ', 'Trên 7 tỷ'
+                        ],
                         datasets: [{
-                            label: 'Số lượng bất động sản',
-                            data: values,
-                            backgroundColor: 'rgba(54, 162, 235, 0.2)',
-                            borderColor: 'rgba(54, 162, 235, 1)',
-                            borderWidth: 1
-                        }]
+                                label: "Bất động sản",
+                                data: values,
+                                backgroundColor: "rgba(0, 156, 255, .7)"
+                            }
+                        ]
                     },
                     options: {
+                        responsive: true,
                         scales: {
                             y: {
                                 beginAtZero: true
