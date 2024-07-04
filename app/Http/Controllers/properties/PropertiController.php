@@ -52,54 +52,55 @@ class PropertiController extends Controller
         }
         switch ($price) {
             case "2":
-                $query->where('properties_descriptions.price', '<', '500000000');
+                $query->whereBetween('properties_descriptions.price', [0, 500000000]);
                 break;
             case "3":
-                $query->where('properties_descriptions.price', '>', '500000000')->where('properties_descriptions.price', '<', '800000000');
+                $query->whereBetween('properties_descriptions.price', [500000001, 800000000]);
                 break;
             case "4":
-                $query->where('properties_descriptions.price', '>', '800000000')->where('properties_descriptions.price', '<', '1000000000');
+                $query->whereBetween('properties_descriptions.price', [800000001, 1000000000]);
                 break;
             case "5":
-                $query->where('properties_descriptions.price', '>', '1000000000')->where('properties_descriptions.price', '<', '2000000000');
+                $query->whereBetween('properties_descriptions.price', [1000000001, 2000000000]);
                 break;
             case "6":
-                $query->where('properties_descriptions.price', '>', '2000000000')->where('properties_descriptions.price', '<', '3000000000');
+                $query->whereBetween('properties_descriptions.price', [2000000001, 3000000000]);
                 break;
             case "7":
-                $query->where('properties_descriptions.price', '>', '3000000000')->where('properties_descriptions.price', '<', '5000000000');
+                $query->whereBetween('properties_descriptions.price', [3000000001, 500000000000]);
                 break;
             case "8":
-                $query->where('properties_descriptions.price', '>', '5000000000')->where('properties_descriptions.price', '<', '7000000000');
+                $query->whereBetween('properties_descriptions.price', [5000000001, 7000000000]);
                 break;
             case "9":
-                $query->where('properties_descriptions.price', '>', '7000000000');
+                $query->whereBetween('properties_descriptions.price', [7000000001, PHP_INT_MAX]);
                 break;
         }
         switch ($area) {
             case "2":
                 $query->where('properties_descriptions.acreage', '<', '30');
+                $query->whereBetween('properties_descriptions.acreage', [0, 30]);
                 break;
             case "3":
-                $query->where('properties_descriptions.acreage', '>', '30')->where('properties_descriptions.acreage', '<', '50');
+                $query->whereBetween('properties_descriptions.acreage', [31, 50]);
                 break;
             case "4":
-                $query->where('properties_descriptions.acreage', '>', '50')->where('properties_descriptions.acreage', '<', '80');
+                $query->whereBetween('properties_descriptions.acreage', [51, 80]);
                 break;
             case "5":
-                $query->where('properties_descriptions.acreage', '>', '80')->where('properties_descriptions.acreage', '<', '100');
+                $query->whereBetween('properties_descriptions.acreage', [81, 100]);
                 break;
             case "6":
-                $query->where('properties_descriptions.acreage', '>', '100')->where('properties_descriptions.acreage', '<', '150');
+                $query->whereBetween('properties_descriptions.acreage', [101, 150]);
                 break;
             case "7":
-                $query->where('properties_descriptions.acreage', '>', '150')->where('properties_descriptions.acreage', '<', '200');
+                $query->whereBetween('properties_descriptions.acreage', [151, 200]);
                 break;
             case "8":
-                $query->where('properties_descriptions.acreage', '>', '200')->where('properties_descriptions.acreage', '<', '250');
+                $query->whereBetween('properties_descriptions.acreage', [201, 250]);
                 break;
             case "9":
-                $query->where('properties_descriptions.acreage', '>', '250');
+                $query->whereBetween('properties_descriptions.acreage', [251, PHP_INT_MAX]);
                 break;
         }
         if ($status != '1') {
@@ -115,7 +116,6 @@ class PropertiController extends Controller
     }
     public function __construct()
     {
-
     }
 
     public function index()
@@ -209,6 +209,3 @@ class PropertiController extends Controller
         return view();
     }
 }
-
-
-
