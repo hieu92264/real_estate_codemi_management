@@ -34,6 +34,7 @@
 </head>
 
 <body>
+    <script src="https://esgoo.net/scripts/jquery.js"></script>
     <div class="container-fluid position-relative bg-white d-flex p-0">
         @include('layouts.sidebar')
         <div class="content">

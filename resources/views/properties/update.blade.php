@@ -112,31 +112,31 @@
 
                 <div class="form-group">
                     <label for="city">Thành Phố</label>
-                    <input value="{{ $properties->hasLocation->city ?? '' }}" type="text" name="city"
+                    <input value="{{ $properties->hasLocation->city }}" type="text" name="city"
                         class="form-control" id="city">
                 </div>
 
                 <div class="form-group">
                     <label for="district">Quận/Huyện</label>
-                    <input value="{{ $properties->hasLocation->district ?? '' }}" type="text" name="district"
+                    <input value="{{ $properties->hasLocation->district }}" type="text" name="district"
                         class="form-control" id="district">
                 </div>
 
                 <div class="form-group">
                     <label for="ward">Phường/Xã</label>
-                    <input type="text" value="{{ $properties->hasLocation->ward ?? '' }}" name="ward"
+                    <input type="text" value="{{ $properties->hasLocation->ward }}" name="ward"
                         class="form-control" id="ward">
                 </div>
 
                 <div class="form-group">
                     <label for="street">Đường</label>
-                    <input type="text" value="{{ $properties->hasLocation->street ?? '' }}" name="street"
+                    <input type="text" value="{{ $properties->hasLocation->street }}" name="street"
                         class="form-control" id="street">
                 </div>
 
                 <div class="form-group">
                     <label for="full_address">Địa Chỉ Đầy Đủ</label>
-                    <input type="text" value="{{ $properties->hasLocation->full_address ?? '' }}" name="full_address"
+                    <input type="text" value="{{ $properties->hasLocation->full_address }}" name="full_address"
                         class="form-control" id="full_address">
                 </div>
 

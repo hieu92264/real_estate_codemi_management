@@ -122,7 +122,7 @@ class PropertiController extends Controller
     {
         $properties = Properties::with(['hasImages', 'hasLocation'])
             ->latest()
-            ->paginate(6);
+            ->paginate(9);
         $types = Properties::distinct()->pluck('type')->toArray();
         $statuses = Properties::distinct()->pluck('status')->toArray();
         $locations = $properties->pluck('hasLocation.district')
