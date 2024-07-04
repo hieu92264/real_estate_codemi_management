@@ -90,79 +90,64 @@
             <div id="tab-1" class="tab-pane fade show p-0 active">
                 <div class="row g-4">
                     @foreach ($properties as $property)
-                        <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.1s">
-                            <a href="{{ route('bat-dong-san.show', $property->id) }}">
+                    <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.1s">
+                        <a href="{{ route('bat-dong-san.show', $property->id) }}">
                             <div class="property-item rounded overflow-hidden">
-                                <div class="position-relative overflow-hidden">
+                                <div class="position-relative overflow-hidden" style="height: 250px;">
                                     @if ($property->hasImages->isNotEmpty())
                                         @foreach ($property->hasImages->take(1) as $image)
-                                             
-                                                <img class="img-fluid" src="{{ asset('storage/' . $image->image_url) }}"
-                                                    alt="">
-                                            
-                                        @break
-                                    @endforeach
-                                @else
-                                    <img src="{{ asset('default-image.jpg') }}" class="card-img-top rounded-0"
-                                        alt="Default Image" style="height: 250px; object-fit: cover;">
-                                @endif
-
-                                <div
-                                    class="bg-primary rounded text-white position-absolute start-0 top-0 m-4 py-1 px-3">
-                                    {{ $property->status }}
+                                            <img class="img-fluid w-100 h-100" src="{{ asset('storage/' . $image->image_url) }}" alt="" style="object-fit: cover;">
+                                            @break
+                                        @endforeach
+                                    @else
+                                        <img src="{{ asset('default-image.jpg') }}" class="img-fluid w-100 h-100" alt="" style="object-fit: cover;">
+                                        <div class="position-absolute top-50 start-50 translate-middle text-center text-white" style="background: #bebebe; padding: 10px;">
+                                            Không có ảnh
+                                        </div>
+                                    @endif
+                                    <div class="bg-primary rounded text-white position-absolute start-0 top-0 m-4 py-1 px-3">
+                                        {{ $property->status }}
+                                    </div>
+                                    <div class="bg-white rounded-top text-primary position-absolute start-0 bottom-0 mx-4 pt-1 px-3" style="border: 3px solid #db5151">
+                                        {{ $property->type }}
+                                    </div>
                                 </div>
-                                <div
-                                    class="bg-white rounded-top text-primary position-absolute start-0 bottom-0 mx-4 pt-1 px-3" style="border: 3px solid #db5151">
-                                    {{ $property->type }}
+                    
+                                <div class="p-4 pb-0">
+                                    <h5 class="text-primary mb-3"><i class="fas fa-dollar-sign"></i>
+                                        @if ($property->hasDescription)
+                                            {{ number_format($property->hasDescription->price, 0, ',', '.') }} vnđ
+                                        @endif
+                                    </h5>
+                                    {{-- <a class="d-block h5 mb-2" href="">Golden Urban House For Sell</a> --}}
+                                    <h6>
+                                        <i class="fa fa-map-marker-alt text-primary me-2"></i>
+                                        {{ $property->hasLocation->full_address ?? 'No address available' }}
+                                    </h6>
+                                </div>
+                    
+                                {{-- Thêm chi tiết --}}
+                                <div class="d-flex border-top">
+                                    <small class="flex-fill text-center border-end py-2"><i class="fa fa-ruler-combined text-primary me-2"></i>
+                                        @if ($property->hasDescription)
+                                            {{ $property->hasDescription->acreage }} m²
+                                        @endif
+                                    </small>
+                                    <small class="flex-fill text-center border-end py-2"><i class="fa fa-bed text-primary me-2"></i>
+                                        @if ($property->hasDescription)
+                                            {{ $property->hasDescription->bedrooms }} phòng ngủ
+                                        @endif
+                                    </small>
+                                    <small class="flex-fill text-center py-2"><i class="fa fa-bath text-primary me-2"></i>
+                                        @if ($property->hasDescription)
+                                            {{ $property->hasDescription->toilets }} toilets
+                                        @endif
+                                    </small>
                                 </div>
                             </div>
-
-                            <div class="p-4 pb-0">
-
-                                <h5 class="text-primary mb-3"><i class="fas fa-dollar-sign"></i>
-                                    @if ($property->hasDescription)
-
-                                        {{ number_format($property->hasDescription->price, 0, ',', '.') }} vnđ 
-
-
-                                    @endif
-                                </h5>
-                                {{-- <a class="d-block h5 mb-2" href="">Golden Urban House For Sell</a> --}}
-                                <h6>
-                                    <i class="fa fa-map-marker-alt text-primary me-2"></i>
-                                    {{ $property->hasLocation->full_address ?? 'No address available' }}
-                                </h6>
-                            </div>
-
-                            {{-- Thêm chi tiết --}}
-                            <div class="d-flex border-top">
-                                <small class="flex-fill text-center border-end py-2"><i
-                                        class="fa fa-ruler-combined text-primary me-2"></i>
-                                    @if ($property->hasDescription)
-
-                                        {{ $property->hasDescription->acreage }} m²
-
-                                    @endif
-                                </small>
-                                <small class="flex-fill text-center border-end py-2"><i
-                                        class="fa fa-bed text-primary me-2"></i>
-                                    @if ($property->hasDescription)
-
-                                        {{ $property->hasDescription->bedrooms }} phòng ngủ
-
-                                    @endif
-                                </small>
-                                <small class="flex-fill text-center py-2"><i class="fa fa-bath text-primary me-2"></i>
-                                    @if ($property->hasDescription)
-
-                                        {{ $property->hasDescription->toilets }} toilets
-
-                                    @endif
-                                </small>
-                            </div>
-                        </div>
-                    </a>
+                        </a>
                     </div>
+                    
                 @endforeach
                 <div>
                     {{ $properties->links('pagination::bootstrap-4') }}
