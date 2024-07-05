@@ -207,3 +207,14 @@
     
 })(jQuery);
 
+function formatCurrency(input) {
+    // Remove non-digit characters except dots (.)
+    let value = input.value.replace(/[^\d.]/g, '');
+    
+    // Format number with commas and maintain decimal places
+    let parts = value.toString().split('.');
+    parts[0] = parts[0].replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+    input.value = parts.join('.');
+}
+
+

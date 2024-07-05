@@ -409,7 +409,9 @@ legend {
     padding: 0;
     margin-bottom: .5rem;
     font-size: calc(1.275rem + .3vw);
-    line-height: inherit
+    line-height: inherit;
+    text-align: center;
+    font-size: 1.2em;
 }
 
 @media (min-width: 1200px) {
@@ -8373,7 +8375,7 @@ fieldset:disabled .btn {
 }
 
 .bg-info {
-    background-color: #0dcaf0 !important
+    background-color: #0000ff !important
 }
 
 .bg-warning {
