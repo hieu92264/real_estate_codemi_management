@@ -28,11 +28,14 @@
                     {{-- Trạng thái --}}
                     <div class="form-group mb-3">
                         <label>Trạng Thái</label>
+                        <div class="custom-select-wrapper">
                         <select name="status" id="status" class="form-control">
+                            <div class="custom-select-wrapper">
                             <option value="available">Có Sẵn</option>
                             <option value="sold">Đã Bán</option>
                             <option value="pending">Đang Chờ</option>
                         </select>
+                        </div>
                         @error('status')
                             <div class="alert alert-danger">{{ $message }}</div>
                         @enderror
@@ -105,18 +108,19 @@
 
                         <div class="form-group">
                             <label for="house_direction">Hướng Nhà</label>
-                            <select name="house_direction" id="house_direction" class="form-control">
-                                <option value="0">Chọn hướng nhà</option>
-                                <option value="Bắc">Bắc</option>
-                                <option value="Đông Bắc">Đông Bắc</option>
-                                <option value="Đông">Đông</option>
-                                <option value="Đông Nam">Đông Nam</option>
-                                <option value="Nam">Nam</option>
-                                <option value="Tây Nam">Tây Nam</option>
-                                <option value="Tây">Tây</option>
-                                <option value="Tây Bắc">Tây Bắc</option>
-                            </select>
-                        </div>
+                            <div class="custom-select-wrapper">
+                                <select name="house_direction" id="house_direction" class="form-control">
+                                    <option value="0">Chọn hướng nhà</option>
+                                    <option value="north">Bắc</option>
+                                    <option value="northeast">Đông Bắc</option>
+                                    <option value="east">Đông</option>
+                                    <option value="southeast">Đông Nam</option>
+                                    <option value="south">Nam</option>
+                                    <option value="southwest">Tây Nam</option>
+                                    <option value="west">Tây</option>
+                                    <option value="northwest">Tây Bắc</option>
+                                </select>
+                            </div>
 
                         <div class="form-group">
                             <label for="floors">Số Tầng</label>
@@ -136,7 +140,15 @@
 
                         <div class="form-group">
                             <label for="legality">Pháp Lý</label>
-                            <input type="text" name="legality" class="form-control" id="legality">
+                            <div class="custom-select-wrapper">
+                                <select name="legality" class="form-control" id="legality">
+                                    <option value="so_hong">Sổ Hồng</option>
+                                    <option value="so_do">Sổ Đỏ</option>
+                                    <option value="giay_phep_xay_dung">Giấy phép xây dựng</option>
+                                    <option value="chung_nhan_quyen_su_dung_dat">Chứng nhận quyền sử dụng đất</option>
+                                    <option value="khac">Khác</option>
+                                </select>
+                            </div>
                         </div>
 
                         <div class="form-group">
@@ -154,9 +166,11 @@
                         <legend>Địa Chỉ</legend>
                         <div class="form-group">
                             <label for="city">Thành Phố</label>
+                            <div class="custom-select-wrapper">
                             <select class="form-control" id="city" name="city_id" title="Chọn Tỉnh Thành">
                                 <option value="0">Tỉnh Thành</option>
                             </select>
+                            </div>
                             <input type="hidden" name="city" id="city_name">
                             @error('city')
                                 <div class="alert alert-danger">{{ $message }}</div>
@@ -165,9 +179,11 @@
 
                         <div class="form-group">
                             <label for="district">Quận/Huyện</label>
+                            <div class="custom-select-wrapper">
                             <select class="form-control" id="district" name="district_id" title="Chọn Quận Huyện">
                                 <option value="0">Quận Huyện</option>
                             </select>
+                            </div>
                             <input type="hidden" name="district" id="district_name">
                             @error('district')
                                 <div class="alert alert-danger">{{ $message }}</div>
@@ -176,9 +192,11 @@
 
                         <div class="form-group">
                             <label for="ward">Phường/Xã</label>
+                            <div class="custom-select-wrapper">
                             <select class="form-control" id="ward" name="ward_id" title="Chọn Phường Xã">
                                 <option value="0">Phường Xã</option>
                             </select>
+                            </div>
                             <input type="hidden" name="ward" id="ward_name">
                             @error('ward')
                                 <div class="alert alert-danger">{{ $message }}</div>
@@ -212,8 +230,8 @@
                             @enderror
                         </div>
                     </fieldset>
-                    <br>
-                    <div class="form-group">
+                    
+                    <div class="d-flex justify-content-center">
                         <button type="submit" class="btn btn-primary">Tạo Mới</button>
                     </div>
                 </form>
