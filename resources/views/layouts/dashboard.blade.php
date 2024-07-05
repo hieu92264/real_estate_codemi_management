@@ -1,6 +1,4 @@
 @extends('home')
 @section('content')
-    <div class="row">
-        @include('charts.bar-chart')
-    </div>
+    @include('charts.bar-chart')
 @endsection
