@@ -108,6 +108,7 @@ class PropertiController extends Controller
         // // switch
         return view('properties.index', [
             'properties' => $query->paginate(6),
+
         ]);
     }
     public function __construct()

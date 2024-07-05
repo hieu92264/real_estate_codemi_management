@@ -1,5 +1,8 @@
 @extends('home')
 @section('content')
+    @php
+        $directions = ['Đông', 'Tây', 'Nam', 'Bắc', 'Đông Bắc', 'Đông Nam', 'Tây Bắc', 'Tây Nam'];
+    @endphp
     <div class="container d-flex justify-content-center">
         <div class="col-md-8">
             <h1 class="mb-4 text-center">Sửa Bất Động Sản</h1>
@@ -71,8 +74,13 @@
 
                 <div class="form-group">
                     <label for="house_direction">Hướng Nhà</label>
-                    <input type="text" value="{{ $properties->hasDescription->house_direction }}" name="house_direction"
-                        class="form-control" id="house_direction">
+                    <select name="house_direction" class="form-control" id="house_direction">
+                        @foreach ($directions as $direction)
+                            <option value="{{ $direction }}"
+                                {{ $properties->hasDescription->house_direction === $direction ? 'selected' : '' }}>
+                                {{ $direction }}</option>
+                        @endforeach
+                    </select>
                 </div>
 
                 <div class="form-group">

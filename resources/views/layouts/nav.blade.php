@@ -19,7 +19,7 @@
             <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">
                 <img class="rounded-circle me-lg-2" src="{{ asset('admin/img/user2.jpg') }}" alt=""
                     style="width: 40px; height: 40px;">
-                <span class="d-none d-lg-inline-flex">{{ Auth::user()->name }}</span>
+                <span class="d-none d-lg-inline-flex">{{ Auth::user()->name ?? '' }}</span>
             </a>
             <div class="dropdown-menu dropdown-menu-end bg-light border-0 rounded-0 rounded-bottom m-0">
                 <a href="{{ route('change.password') }}" class="dropdown-item d-flex align-items-center">
@@ -29,7 +29,7 @@
                 <a href="{{ route('logout') }}" class="dropdown-item d-flex align-items-center">
                     <i class="fas fa-sign-out-alt me-2"></i> Đăng xuất
                 </a>
-                
+
             </div>
         </div>
     </div>
