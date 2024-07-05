@@ -17,7 +17,10 @@ class PropertiController extends Controller
 {
     public function search(Request $request)
     {
-
+        
+        $types = Properties::distinct()->pluck('type');
+        $statuses = Properties::distinct()->pluck('status');
+        $locations = Location::distinct()->pluck('district');
 
         $search = $request->input('search');
         $type = $request->input('type');
@@ -107,6 +110,9 @@ class PropertiController extends Controller
         }
         // // switch
         return view('properties.index', [
+            'types' => $types, 
+            'statuses' => $statuses, 
+            'locations' => $locations,
             'properties' => $query->paginate(6),
         ]);
     }
