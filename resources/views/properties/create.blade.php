@@ -60,7 +60,57 @@
                         @enderror
                     </div>
 
-                    <!-- Các trường form tiếp theo -->
+                    <div class="form-group">
+                        <label for="acreage">Diện Tích</label>
+                        <input type="number"step="0.01" name="acreage" class="form-control" id="acreage" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="price">Giá</label>
+                        <input type="text" name="price" class="form-control" id="price" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="frontage">Mặt Tiền</label>
+                        <input type="number" }}" step="0.01" name="frontage" class="form-control" id="frontage">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="house_direction">Hướng Nhà</label>
+                        <input type="text" ection }}" name="house_direction" class="form-control" id="house_direction">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="floors">Số Tầng</label>
+                        <input type="number" " name="floors"
+                                class="form-control" id="floors">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="bedrooms">Số Phòng Ngủ</label>
+                            <input type="number" }}" name="bedrooms" class="form-control" id="bedrooms">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="toilets">Số Phòng Tắm</label>
+                        <input type="number" }" name="toilets" class="form-control" id="toilets">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="legality">Pháp Lý</label>
+                        <input type="text" }}" name="legality" class="form-control" id="legality">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="furniture">Nội Thất</label>
+                        <input type="text" }}" name="furniture" class="form-control" id="furniture">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="other_description">Mô Tả Khác</label>
+                        <textarea name="other_description" class="form-control" id="other_description">{{ $properties->hasDescription->other_description ?? '' }}</textarea>
+                    </div>
+
 
                     <div class="form-group">
                         <label for="city">Thành Phố</label>
