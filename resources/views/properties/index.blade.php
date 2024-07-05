@@ -93,7 +93,7 @@
                     @foreach ($properties as $property)
                         <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.1s">
                             <a href="{{ route('bat-dong-san.show', $property->id) }}">
-                                <div class="property-item rounded overflow-hidden">
+                                <div class="property-item rounded overflow-hidden d-flex flex-column">
                                     <div class="position-relative overflow-hidden" style="height: 250px;">
                                         @if ($property->hasImages->isNotEmpty())
                                             @foreach ($property->hasImages->take(1) as $image)
@@ -110,8 +110,10 @@
                                             Không có ảnh
                                         </div>
                                     @endif
-                                    <div
-                                        class="bg-primary rounded text-white position-absolute start-0 top-0 m-4 py-1 px-3">
+                                    <div class="rounded text-white position-absolute start-0 top-0 m-4 py-1 px-3 
+                                        @if ($property->status == 'available') bg-success
+                                        @elseif($property->status == 'sold') bg-danger
+                                        @elseif($property->status == 'pending') bg-info @endif">
                                         {{ $property->status }}
                                     </div>
                                     <div class="bg-white rounded-top text-primary position-absolute start-0 bottom-0 mx-4 pt-1 px-3"
@@ -120,22 +122,23 @@
                                     </div>
                                 </div>
 
-                                <div class="p-4 pb-0">
+                                <div class="p-4 pb-0 flex-grow-1">
 
                                     <h5 class="text-primary mb-3"><i class="fas fa-dollar-sign"></i>
                                         @if ($property->hasDescription)
-                                            {{ number_format($property->hasDescription->price, 0, ',', '.') }} vnđ
+                                            {{ $property->hasDescription->price }} vnđ
+                                            {{-- {{ number_format(floatval($property->hasDescription->price), 0, ',', '.') }} vnđ --}}
                                         @endif
                                     </h5>
                                     {{-- <a class="d-block h5 mb-2" href="">Golden Urban House For Sell</a> --}}
                                     <h6>
                                         <i class="fa fa-map-marker-alt text-primary me-2"></i>
-                                        {{ $property->hasLocation->full_address ?? '' }},{{ $property->hasLocation->street ?? '' }},{{ $property->hasLocation->ward ?? '' }},{{ $property->hasLocation->district ?? '' }},{{ $property->hasLocation->city ?? '' }}
+                                        {{ $property->hasLocation->full_address ?? '' }} {{ $property->hasLocation->street ?? '' }},{{ $property->hasLocation->ward ?? '' }},{{ $property->hasLocation->district ?? '' }},{{ $property->hasLocation->city ?? '' }}
                                     </h6>
                                 </div>
 
                                 {{-- Thêm chi tiết --}}
-                                <div class="d-flex border-top">
+                                <div class="d-flex border-top mt-auto">
                                     <small class="flex-fill text-center border-end py-2"><i
                                             class="fa fa-ruler-combined text-primary me-2"></i>
 

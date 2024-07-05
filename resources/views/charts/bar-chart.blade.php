@@ -1,7 +1,9 @@
 <div class="container mt-5">
     <div class="col-sm-12 col-xl-6">
-        <h6 class="mb-4">Thống kê bất động sản theo giá</h6>
-        <x-filters />
+
+        <h4 class="mb-4">Thống kê bất động sản theo giá</h4>
+            <x-filters />
+
         <div class="bg-light rounded h-100 p-4">
             <canvas id="barchart" width="1652" height="826"
                 style="display: block; box-sizing: border-box; height: 413px; width: 826px;"></canvas>
