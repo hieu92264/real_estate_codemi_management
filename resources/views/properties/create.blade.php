@@ -111,6 +111,33 @@
                         @enderror
                     </div>
 
+                    {{-- Thêm chi tiết --}}
+                    <div class="d-flex border-top">
+                        <small class="flex-fill text-center border-end py-2"><i
+                                class="fa fa-ruler-combined text-primary me-2"></i>
+
+                            @if ($property->hasDescription)
+                                {{ $property->hasDescription->acreage }} m²
+                            @endif
+                        </small>
+
+                        <small class="flex-fill text-center border-end py-2"><i
+                                class="fa fa-bed text-primary me-2"></i>
+
+                            @if ($property->hasDescription)
+                                {{ $property->hasDescription->bedrooms }} phòng ngủ
+                            @endif
+                        </small>
+
+                        <small class="flex-fill text-center py-2"><i
+                                class="fa fa-bath text-primary me-2"></i>
+
+                            @if ($property->hasDescription)
+                                {{ $property->hasDescription->toilets }} toilets
+                            @endif
+                        </small>
+                    </div>
+
                     <div class="form-group">
                         <label for="images">Hình Ảnh</label>
                         <input type="file" name="images[]" class="form-control" id="images" multiple>
