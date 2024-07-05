@@ -1,6 +1,6 @@
 <div class="sidebar pe-4 pb-3">
     <nav class="navbar bg-light navbar-light">
-        <a href="{{route('home')}}" class="navbar-brand mx-1 mb-3 d-inline-block">
+        <a href="{{ route('home') }}" class="navbar-brand mx-1 mb-3 d-inline-block">
             <h2 class="text-primary"><img src="{{ asset('admin/img/codemi-viet-nam.jpg') }}"></h2>
         </a>
         <div class="d-flex align-items-center ms-4 mb-4">
@@ -12,12 +12,13 @@
                 </div>
             </div>
             <div class="ms-3">
-                <h6 class="mb-0">{{ Auth::user()->name }}</h6>
+                <h6 class="mb-0">{{ Auth::user()->name ?? '' }}</h6>
 
             </div>
         </div>
         <div class="navbar-nav w-100">
-            <a href="{{ route('bat-dong-san.index') }}" class="nav-item nav-link"><i class="fa fa-home me-2"></i>Bất động sản</a>
+            <a href="{{ route('bat-dong-san.index') }}" class="nav-item nav-link"><i class="fa fa-home me-2"></i>Bất
+                động sản</a>
             {{-- <a href="{{ route('bat-dong-san.index') }}" class="nav-item nav-link"><i
                     class="fa fa-tachometer-alt me-2"></i>Bất
                 động sản</a> --}}
@@ -27,10 +28,13 @@
                             class="fa fa-id-badge me-2"></i>Phân quyền</a>
                     <div class="dropdown-menu bg-transparent border-0">
                         @if (Auth::user()->hasPermission('Xem thông tin tài khoản'))
-                            <a href="{{ route('users.index') }}" class="dropdown-item"><i class="fa fa-user me-2"></i>Người dùng</a>
+                            <a href="{{ route('users.index') }}" class="dropdown-item"><i
+                                    class="fa fa-user me-2"></i>Người dùng</a>
                         @endif
                         @if (Auth::user()->hasPermission('Xem thông tin chức vụ'))
+
                             <a href="{{ route('roles.index') }}" class="dropdown-item"><i class="fa fa-briefcase me-2"></i>Chức vụ</a>
+
                         @endif
                     </div>
                 </div>

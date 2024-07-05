@@ -38,6 +38,7 @@
                         @enderror
                     </div>
 
+
                     {{-- Thông tin chủ sở hữu --}}
                     <fieldset class="mb-3">
                         <legend>Thông Tin Chủ Sở Hữu</legend>
@@ -131,6 +132,7 @@
                             <label for="toilets">Số Phòng Tắm</label>
                             <input type="number" name="toilets" class="form-control" id="toilets">
                         </div>
+
 
                         <div class="form-group">
                             <label for="legality">Pháp Lý</label>

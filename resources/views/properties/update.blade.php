@@ -1,5 +1,6 @@
 @extends('home')
 @section('content')
+
     <div class="container d-flex justify-content-center">
         <div class="col-md-8">
             <h1 class="mb-4 text-center">Sửa Bất Động Sản</h1>
@@ -33,6 +34,7 @@
                         <option value="pending" {{ old('status', $properties->status) == 'pending' ? 'selected' : '' }}>Đang
                             Chờ</option>
                     </select>
+
                 </fieldset>
 
                 {{-- Thông tin chủ sở hữu --}}
@@ -48,6 +50,7 @@
                         <input value="{{ $properties->hasDescription->phone_number }}" type="text" name="phone_number"
                             class="form-control" id="phone_number" required>
                     </div>
+
 
                     <div class="form-group">
                         <label for="gmail">Email</label>

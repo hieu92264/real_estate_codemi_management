@@ -114,6 +114,7 @@ class PropertiController extends Controller
             'statuses' => $statuses, 
             'locations' => $locations,
             'properties' => $query->paginate(6),
+
         ]);
     }
     public function __construct()
