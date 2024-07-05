@@ -16,7 +16,7 @@
                 <div class="form-group mb-2">
                     <input type="text" name="search" class="form-control" placeholder="Tìm kiếm">
                 </div>
-                <button type="submit" class="btn btn-primary mb-2 ml-2">Tìm kiếm</button>
+                <button type="submit" class="btn btn-success mb-2 ml-2">Tìm kiếm</button>
             </form>
         </div>
     </div>
@@ -43,12 +43,12 @@
                     <td>{{ $user->email }}</td>
                     <td>
                         @foreach ($user->roles()->pluck('name') as $rolename)
-                            <label for="" class="badge bg-primary mx-1">{{ $rolename }}</label>
+                            <label for="" class="badge bg-success mx-1">{{ $rolename }}</label>
                         @endforeach
                     </td>
                     <td class="d-flex justify-content-center align-items-center ">
                         @if (Auth::user()->hasPermission('Sửa tài khoản'))
-                            <a href="{{ route('users.edit', $user->id) }}" class="btn btn-success btn-sm  ">Sửa</a>
+                            <a href="{{ route('users.edit', $user->id) }}" class="btn btn-primary btn-sm">Sửa</a>
                         @endif
                         @if (Auth::user()->hasPermission('Xóa tài khoản') && $user->id !== Auth::user()->id)
                             <form style="margin-left: 5px" action="{{ route('users.destroy', $user->id) }}" method="POST"

@@ -24,13 +24,13 @@
             @if (Auth::user()->hasPermission('Xem thông tin tài khoản') || Auth::user()->hasPermission('Xem thông tin chức vụ'))
                 <div class="nav-item dropdown">
                     <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown"><i
-                            class="fa fa-key me-2"></i>Phân quyền</a>
+                            class="fa fa-id-badge me-2"></i>Phân quyền</a>
                     <div class="dropdown-menu bg-transparent border-0">
                         @if (Auth::user()->hasPermission('Xem thông tin tài khoản'))
                             <a href="{{ route('users.index') }}" class="dropdown-item"><i class="fa fa-user me-2"></i>Người dùng</a>
                         @endif
                         @if (Auth::user()->hasPermission('Xem thông tin chức vụ'))
-                            <a href="{{ route('roles.index') }}" class="dropdown-item"><i class="fa fa-briefcase"></i>Chức vụ</a>
+                            <a href="{{ route('roles.index') }}" class="dropdown-item"><i class="fa fa-briefcase me-2"></i>Chức vụ</a>
                         @endif
                     </div>
                 </div>
