@@ -164,9 +164,9 @@
                         </a>
                     </div>
                 @endforeach
-            </div>
-            <div>
-                {{ $properties->links('pagination::bootstrap-4') }}
+                <div>
+                    {{ $properties->links('pagination::bootstrap-4') }}
+                </div>
             </div>
         </div>
     </div>
