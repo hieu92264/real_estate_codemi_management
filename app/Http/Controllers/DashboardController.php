@@ -13,6 +13,7 @@ class DashboardController extends Controller
         return view('layouts.dashboard', [
             'barChartData' => $this->getBarChartData($request),
             'pieChartData' => $this->getPieChartData(),
+            'doughnutChartData' => $this->getDoughnutChartData(),
         ]);
     }
 
@@ -67,6 +68,19 @@ class DashboardController extends Controller
         $labels = Properties::distinct()->pluck('status');
         foreach ($labels as $label) {
             $count = Properties::where('status', $label)->count();
+            $data[] = [
+                'label' => $label,
+                'value' => $count
+            ];
+        }
+        return $data;
+    }
+    public function getDoughnutChartData()
+    {
+        $data = [];
+        $labels = Properties::distinct()->pluck('type');
+        foreach ($labels as $label) {
+            $count = Properties::where('type', $label)->count();
             $data[] = [
                 'label' => $label,
                 'value' => $count
