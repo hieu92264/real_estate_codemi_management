@@ -17,7 +17,7 @@ class PropertiController extends Controller
 {
     public function search(Request $request)
     {
-        
+
         $types = Properties::distinct()->pluck('type');
         $statuses = Properties::distinct()->pluck('status');
         $locations = Location::distinct()->pluck('district');
@@ -54,28 +54,28 @@ class PropertiController extends Controller
         }
         switch ($price) {
             case "2":
-                $query->whereBetween('properties_descriptions.price', [0, 500000000]);
+                $query->whereBetween(DB::raw('CAST(properties_descriptions.price AS UNSIGNED)'), [0, 500000000]);
                 break;
             case "3":
-                $query->whereBetween('properties_descriptions.price', [500000001, 800000000]);
+                $query->whereBetween(DB::raw('CAST(properties_descriptions.price AS UNSIGNED)'), [500000001, 800000000]);
                 break;
             case "4":
-                $query->whereBetween('properties_descriptions.price', [800000001, 1000000000]);
+                $query->whereBetween(DB::raw('CAST(properties_descriptions.price AS UNSIGNED)'), [800000001, 1000000000]);
                 break;
             case "5":
-                $query->whereBetween('properties_descriptions.price', [1000000001, 2000000000]);
+                $query->whereBetween(DB::raw('CAST(properties_descriptions.price AS UNSIGNED)'), [1000000001, 2000000000]);
                 break;
             case "6":
-                $query->whereBetween('properties_descriptions.price', [2000000001, 3000000000]);
+                $query->whereBetween(DB::raw('CAST(properties_descriptions.price AS UNSIGNED)'), [2000000001, 3000000000]);
                 break;
             case "7":
-                $query->whereBetween('properties_descriptions.price', [3000000001, 500000000000]);
+                $query->whereBetween(DB::raw('CAST(properties_descriptions.price AS UNSIGNED)'), [3000000001, 500000000000]);
                 break;
             case "8":
-                $query->whereBetween('properties_descriptions.price', [5000000001, 7000000000]);
+                $query->whereBetween(DB::raw('CAST(properties_descriptions.price AS UNSIGNED)'), [5000000001, 7000000000]);
                 break;
             case "9":
-                $query->whereBetween('properties_descriptions.price', [7000000001, PHP_INT_MAX]);
+                $query->whereBetween(DB::raw('CAST(properties_descriptions.price AS UNSIGNED)'), [7000000001, PHP_INT_MAX]);
                 break;
         }
         switch ($area) {
@@ -110,8 +110,8 @@ class PropertiController extends Controller
         }
         // // switch
         return view('properties.index', [
-            'types' => $types, 
-            'statuses' => $statuses, 
+            'types' => $types,
+            'statuses' => $statuses,
             'locations' => $locations,
             'properties' => $query->paginate(6),
 
@@ -292,5 +292,4 @@ class PropertiController extends Controller
         Cache::forget('properties_cache');
         return redirect()->route('bat-dong-san.index')->with('success', 'Bạn đã cập nhật thành công bất động sản');
     }
-
 }

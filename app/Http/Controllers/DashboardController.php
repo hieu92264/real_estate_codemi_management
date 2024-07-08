@@ -54,11 +54,6 @@ class DashboardController extends Controller
                 ];
             }
         }
-
-        // return view('layouts.dashboard', [
-        //     'barChartData' => $data
-        // ]);
-        // return response()->json($data);
         return $data;
     }
 
