@@ -18,6 +18,7 @@ class DashboardController extends Controller
         ]);
     }
 
+
     public function getBarChartData(Request $request)
     {
         $priceRanges = [
@@ -32,16 +33,13 @@ class DashboardController extends Controller
         ];
 
         $data = [];
-        $query = Properties::with('hasDescription');
+
         if ($request->input('from') == '' || $request->input('to') == '') {
             foreach ($priceRanges as $key => $values) {
-                $query->whereHas('hasDescription', function ($q) use ($values) {
+                $count = Properties::whereHas('hasDescription', function ($q) use ($values) {
                     $q->whereBetween(DB::raw('CAST(price AS UNSIGNED)'), $values);
-                });
-                // $count = Properties::join('properties_descriptions', 'properties.id', '=', 'properties_descriptions.property_id')
-                //     ->whereBetween('properties_descriptions.price', $values)
-                //     ->count();
-                $count = $query->count();
+                })->count();
+
                 $data[] = [
                     'label' => $values,
                     'value' => $count
@@ -50,24 +48,21 @@ class DashboardController extends Controller
         } else {
             $toEndOfDay = $request->input('to') . ' 23:59:59';
             foreach ($priceRanges as $key => $values) {
-                $count = Properties::join('properties_descriptions', 'properties.id', '=', 'properties_descriptions.property_id')
-                    ->whereBetween('properties_descriptions.created_at', [$request->input('from'), $toEndOfDay])
-                    ->whereBetween('properties_descriptions.price', $values)
-                    ->count();
+                $count = Properties::whereHas('hasDescription', function ($q) use ($values, $toEndOfDay, $request) {
+                    $q->whereBetween(DB::raw('CAST(price AS UNSIGNED)'), $values)
+                        ->whereBetween('created_at', [$request->input('from'), $toEndOfDay]);
+                })->count();
+
                 $data[] = [
                     'label' => $values,
                     'value' => $count
                 ];
             }
         }
-        // <<<<<<< hkd
-        //         return view('layouts.dashboard', [
-        //             'data' => $data
-        //         ]);
-        //         // return response()->json($data);
-        // =======
+
         return $data;
     }
+
 
     public function getPieChartData()
     {
