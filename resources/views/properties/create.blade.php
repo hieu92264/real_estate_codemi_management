@@ -27,11 +27,13 @@
                 {{-- Trạng thái --}}
                 <div class="form-group mb-3">
                     <label>Trạng Thái</label>
+                    <div class="custom-select-wrapper">
                     <select name="status" id="status" class="form-control">
                         <option value="available">Có Sẵn</option>
                         <option value="sold">Đã Bán</option>
                         <option value="pending">Đang Chờ</option>
                     </select>
+                    </div>
                     @error('status')
                     <div class="alert alert-danger">{{ $message }}</div>
                     @enderror
