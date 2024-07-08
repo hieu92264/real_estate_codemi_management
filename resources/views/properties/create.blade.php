@@ -1,7 +1,7 @@
 @extends('home')
 
 @section('content')
-<div class="container d-flex justify-content-center">  
+    <div class="container d-flex justify-content-center">
         <div class="col-md-8">
             <h1 class="mb-4 text-center">Tạo Bất Động Sản</h1>
 
@@ -20,7 +20,7 @@
                         <label class="form-check-label" for="type_dat_nen">Đất Nền</label>
                     </div>
                     @error('type')
-                    <div class="alert alert-danger">{{ $message }}</div>
+                        <div class="alert alert-danger">{{ $message }}</div>
                     @enderror
                 </fieldset>
 
@@ -28,14 +28,14 @@
                 <div class="form-group mb-3">
                     <label>Trạng Thái</label>
                     <div class="custom-select-wrapper">
-                    <select name="status" id="status" class="form-control">
-                        <option value="available">Có Sẵn</option>
-                        <option value="sold">Đã Bán</option>
-                        <option value="pending">Đang Chờ</option>
-                    </select>
+                        <select name="status" id="status" class="form-control">
+                            <option value="available">Có Sẵn</option>
+                            <option value="sold">Đã Bán</option>
+                            <option value="pending">Đang Chờ</option>
+                        </select>
                     </div>
                     @error('status')
-                    <div class="alert alert-danger">{{ $message }}</div>
+                        <div class="alert alert-danger">{{ $message }}</div>
                     @enderror
                 </div>
 
@@ -46,7 +46,7 @@
                         <label for="owner">Chủ Sở Hữu</label>
                         <input type="text" name="owner" class="form-control" id="owner" required>
                         @error('owner')
-                        <div class="alert alert-danger">{{ $message }}</div>
+                            <div class="alert alert-danger">{{ $message }}</div>
                         @enderror
                     </div>
 
@@ -54,7 +54,7 @@
                         <label for="phone_number">Số Điện Thoại</label>
                         <input type="text" name="phone_number" class="form-control" id="phone_number" required>
                         @error('phone_number')
-                        <div class="alert alert-danger">{{ $message }}</div>
+                            <div class="alert alert-danger">{{ $message }}</div>
                         @enderror
                     </div>
 
@@ -62,7 +62,7 @@
                         <label for="gmail">Email</label>
                         <input type="email" name="gmail" class="form-control" id="gmail" required>
                         @error('gmail')
-                        <div class="alert alert-danger">{{ $message }}</div>
+                            <div class="alert alert-danger">{{ $message }}</div>
                         @enderror
                     </div>
                 </fieldset>
@@ -73,7 +73,8 @@
                     <div class="form-group">
                         <label for="acreage">Diện Tích</label>
                         <div class="input-group">
-                            <input type="number" step="0.01" name="acreage" class="form-control" id="acreage" required>
+                            <input type="number" step="0.01" name="acreage" class="form-control" id="acreage"
+                                required>
                             <div class="input-group-append">
                                 <span class="input-group-text">m²</span>
                             </div>
@@ -135,13 +136,13 @@
                     <div class="form-group">
                         <label for="legality">Pháp Lý</label>
                         <div class="custom-select-wrapper">
-                        <select name="legality" class="form-control" id="legality">
-                            <option value="so_hong">Sổ Hồng</option>
-                            <option value="so_do">Sổ Đỏ</option>
-                            <option value="giay_phep_xay_dung">Giấy phép xây dựng</option>
-                            <option value="chung_nhan_quyen_su_dung_dat">Chứng nhận quyền sử dụng đất</option>
-                            <option value="khac">Khác</option>
-                        </select>
+                            <select name="legality" class="form-control" id="legality">
+                                <option value="so_hong">Sổ Hồng</option>
+                                <option value="so_do">Sổ Đỏ</option>
+                                <option value="giay_phep_xay_dung">Giấy phép xây dựng</option>
+                                <option value="chung_nhan_quyen_su_dung_dat">Chứng nhận quyền sử dụng đất</option>
+                                <option value="khac">Khác</option>
+                            </select>
                         </div>
                     </div>
 
@@ -162,48 +163,48 @@
                     <div class="form-group">
                         <label for="city">Thành Phố</label>
                         <div class="custom-select-wrapper">
-                        <select class="form-control" id="city" name="city_id" title="Chọn Tỉnh Thành">
-                            <option value="0">Tỉnh Thành</option>
-                            <option value="1">Hà Nội</option>
-                            <option value="2">Hồ Chí Minh</option>
-                            <!-- Thêm các option khác nếu cần -->
-                        </select>
+                            <select class="form-control" id="city" name="city_id" title="Chọn Tỉnh Thành">
+                                <option value="0">Tỉnh Thành</option>
+                                <option value="1">Hà Nội</option>
+                                <option value="2">Hồ Chí Minh</option>
+                                <!-- Thêm các option khác nếu cần -->
+                            </select>
                         </div>
                         <input type="hidden" name="city" id="city_name">
                         @error('city')
-                        <div class="alert alert-danger">{{ $message }}</div>
+                            <div class="alert alert-danger">{{ $message }}</div>
                         @enderror
                     </div>
 
                     <div class="form-group">
                         <label for="district">Quận/Huyện</label>
                         <div class="custom-select-wrapper">
-                        <select class="form-control" id="district" name="district_id" title="Chọn Quận Huyện">
-                            <option value="0">Quận Huyện</option>
-                            <option value="1">Quận 1</option>
-                            <option value="2">Quận 2</option>
-                            <!-- Thêm các option khác nếu cần -->
-                        </select>
+                            <select class="form-control" id="district" name="district_id" title="Chọn Quận Huyện">
+                                <option value="0">Quận Huyện</option>
+                                <option value="1">Quận 1</option>
+                                <option value="2">Quận 2</option>
+                                <!-- Thêm các option khác nếu cần -->
+                            </select>
                         </div>
                         <input type="hidden" name="district" id="district_name">
                         @error('district')
-                        <div class="alert alert-danger">{{ $message }}</div>
+                            <div class="alert alert-danger">{{ $message }}</div>
                         @enderror
                     </div>
 
                     <div class="form-group">
                         <label for="ward">Phường/Xã</label>
                         <div class="custom-select-wrapper">
-                        <select class="form-control" id="ward" name="ward_id" title="Chọn Phường Xã">
-                            <option value="0">Phường Xã</option>
-                            <option value="1">Phường A</option>
-                            <option value="2">Phường B</option>
-                            <!-- Thêm các option khác nếu cần -->
-                        </select>
+                            <select class="form-control" id="ward" name="ward_id" title="Chọn Phường Xã">
+                                <option value="0">Phường Xã</option>
+                                <option value="1">Phường A</option>
+                                <option value="2">Phường B</option>
+                                <!-- Thêm các option khác nếu cần -->
+                            </select>
                         </div>
                         <input type="hidden" name="ward" id="ward_name">
                         @error('ward')
-                        <div class="alert alert-danger">{{ $message }}</div>
+                            <div class="alert alert-danger">{{ $message }}</div>
                         @enderror
                     </div>
 
@@ -211,7 +212,7 @@
                         <label for="street">Đường</label>
                         <input type="text" name="street" class="form-control" id="street">
                         @error('street')
-                        <div class="alert alert-danger">{{ $message }}</div>
+                            <div class="alert alert-danger">{{ $message }}</div>
                         @enderror
                     </div>
 
@@ -219,7 +220,7 @@
                         <label for="full_address">Số nhà</label>
                         <input type="text" name="full_address" class="form-control" id="full_address">
                         @error('full_address')
-                        <div class="alert alert-danger">{{ $message }}</div>
+                            <div class="alert alert-danger">{{ $message }}</div>
                         @enderror
                     </div>
                 </fieldset>
@@ -231,7 +232,7 @@
                         <label for="images">Hình Ảnh</label>
                         <input type="file" name="images[]" class="form-control" id="images" multiple>
                         @error('images')
-                        <div class="alert alert-danger">{{ $message }}</div>
+                            <div class="alert alert-danger">{{ $message }}</div>
                         @enderror
                     </div>
                 </fieldset>
@@ -241,10 +242,10 @@
                 </div>
             </form>
         </div>
-</div>
+    </div>
 
-<script src="{{ asset('admin/js/api_viet_nam.js') }}"></script>
-<script src="{{ asset('admin/js/format_currency.js') }}"></script>
+    <script src="{{ asset('admin/js/api_viet_nam.js') }}"></script>
+    <script src="{{ asset('admin/js/format_currency.js') }}"></script>
 @endsection
 
 
