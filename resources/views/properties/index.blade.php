@@ -93,7 +93,7 @@
                     @foreach ($properties as $property)
                         <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.1s">
                             <a href="{{ route('bat-dong-san.show', $property->id) }}">
-                                <div class="property-item rounded overflow-hidden">
+                                <div class="property-item rounded overflow-hidden d-flex flex-column">
                                     <div class="position-relative overflow-hidden" style="height: 250px;">
                                         @if ($property->hasImages->isNotEmpty())
                                             @foreach ($property->hasImages->take(1) as $image)
@@ -135,7 +135,7 @@
                                 </div>
 
                                 {{-- Thêm chi tiết --}}
-                                <div class="d-flex border-top">
+                                <div class="d-flex border-top mt-auto">
                                     <small class="flex-fill text-center border-end py-2"><i
                                             class="fa fa-ruler-combined text-primary me-2"></i>
 

@@ -323,7 +323,10 @@ i{
 .property-item {
     box-shadow: 0 0 30px rgba(0, 0, 0, .08);
     margin: 0;
-    padding: 0
+    padding: 0;
+    min-height:405px;
+    box-sizing: border-box;
+    flex: 1 1 30%;
 }
 
 .property-item a {

@@ -48,7 +48,19 @@
                     </a>
                 </div>
             </div>
-
+            <div class="nav-item dropdown">
+                <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">
+                    <i class="fa fa-user-tie me-2"></i>Báo cáo thống kê
+                </a>
+                <div class="dropdown-menu bg-transparent border-0" style="width: auto;">
+                    <a href="{{ route('priceReport') }}" class="dropdown-item">
+                        <i class="fa fa-users me-2"></i>Thống kê theo giá nhà
+                    </a>
+                    <a href="{{ route('danh-sach-nguoi-ban.index') }}" class="dropdown-item ml-auto">
+                        <i class="fa fa-users me-2"></i>Thống kê theo khu vực
+                    </a>
+                </div>
+            </div>
 
 
         </div>
