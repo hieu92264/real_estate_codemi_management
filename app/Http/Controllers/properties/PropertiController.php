@@ -12,6 +12,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Http;
 
 class PropertiController extends Controller
 {
@@ -144,7 +145,7 @@ class PropertiController extends Controller
     {
         return view('properties.create');
     }
-    //
+
     public function store(CreatePropertiesRequest $request)
     {
         $validatedData = $request->validated();
@@ -154,7 +155,6 @@ class PropertiController extends Controller
             'status' => $validatedData['status'],
             'created_by_id' => Auth::id(),
         ]);
-
         $property->hasDescription()->create([
             'owner' => $validatedData['owner'],
             'phone_number' => $validatedData['phone_number'],
@@ -190,6 +190,8 @@ class PropertiController extends Controller
         Cache::forget('properties_cache');
         return redirect()->route('bat-dong-san.index')->with('success', 'Bạn đã thêm thành công 1 bất động sản');
     }
+
+
     public function show($id)
     {
         $property = Properties::findOrFail($id);
@@ -292,4 +294,5 @@ class PropertiController extends Controller
         Cache::forget('properties_cache');
         return redirect()->route('bat-dong-san.index')->with('success', 'Bạn đã cập nhật thành công bất động sản');
     }
+
 }
