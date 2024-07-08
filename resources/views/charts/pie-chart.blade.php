@@ -9,14 +9,14 @@
         <script>
             $(document).ready(function() {
                 var ctx5 = document.getElementById('pie-chart').getContext('2d');
-                var chartData5 = @json($pieChartData); // Giả sử bạn đã có dữ liệu này
+                var chartData5 = @json($pieChartData);
                 var values = chartData5.map(function(item) {
                     return item.value;
                 });
                 var labels = chartData5.map(function(item) {
                     return item.label;
                 });
-                var colors = []; // Khởi tạo mảng colors
+                var colors = [];
                 labels.forEach(element => {
                     var count = 7;
                     colors.push("rgba(235, 22, 22, ." + count + ")");
