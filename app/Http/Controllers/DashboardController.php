@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Properties;
 use Illuminate\Http\Request;
 use Carbon\Carbon;
+use Illuminate\Support\Facades\DB;
 
 class DashboardController extends Controller
 {
@@ -31,11 +32,16 @@ class DashboardController extends Controller
         ];
 
         $data = [];
+        $query = Properties::with('hasDescription');
         if ($request->input('from') == '' || $request->input('to') == '') {
             foreach ($priceRanges as $key => $values) {
-                $count = Properties::join('properties_descriptions', 'properties.id', '=', 'properties_descriptions.property_id')
-                    ->whereBetween('properties_descriptions.price', $values)
-                    ->count();
+                $query->whereHas('hasDescription', function ($q) use ($values) {
+                    $q->whereBetween(DB::raw('CAST(price AS UNSIGNED)'), $values);
+                });
+                // $count = Properties::join('properties_descriptions', 'properties.id', '=', 'properties_descriptions.property_id')
+                //     ->whereBetween('properties_descriptions.price', $values)
+                //     ->count();
+                $count = $query->count();
                 $data[] = [
                     'label' => $values,
                     'value' => $count
@@ -54,12 +60,12 @@ class DashboardController extends Controller
                 ];
             }
         }
-// <<<<<<< hkd
-//         return view('layouts.dashboard', [
-//             'data' => $data
-//         ]);
-//         // return response()->json($data);
-// =======
+        // <<<<<<< hkd
+        //         return view('layouts.dashboard', [
+        //             'data' => $data
+        //         ]);
+        //         // return response()->json($data);
+        // =======
         return $data;
     }
 
@@ -88,7 +94,5 @@ class DashboardController extends Controller
             ];
         }
         return $data;
-
     }
-
 }
