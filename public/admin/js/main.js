@@ -215,4 +215,3 @@ function formatCurrency(input) {
     input.value = parts.join(',');
 }
 
-
