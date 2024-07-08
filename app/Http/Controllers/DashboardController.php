@@ -45,10 +45,10 @@ class DashboardController extends Controller
                 ];
             }
         }
-
         return view('layouts.dashboard', [
             'data' => $data
         ]);
         // return response()->json($data);
     }
+
 }

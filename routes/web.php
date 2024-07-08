@@ -39,6 +39,10 @@ Route::get("/logout", [AuthController::class, "logout"])->name("logout");
 // })->name("home");
 
 Route::get("/trang-chu", [DashboardController::class, 'getBarChartData'])->name('home');
+//biểu đồ tròn của trạng thái 
+
+
+
 //trang quan li 
 Route::middleware('auth')->group(function () {
     Route::get('/dashboard', [Controller::class, 'showFormHome'])->name('showFormDashboard');

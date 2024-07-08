@@ -12,12 +12,13 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Http;
 
 class PropertiController extends Controller
 {
     public function search(Request $request)
     {
-        
+
         $types = Properties::distinct()->pluck('type');
         $statuses = Properties::distinct()->pluck('status');
         $locations = Location::distinct()->pluck('district');
@@ -110,8 +111,8 @@ class PropertiController extends Controller
         }
         // // switch
         return view('properties.index', [
-            'types' => $types, 
-            'statuses' => $statuses, 
+            'types' => $types,
+            'statuses' => $statuses,
             'locations' => $locations,
             'properties' => $query->paginate(6),
 
@@ -145,16 +146,63 @@ class PropertiController extends Controller
         return view('properties.create');
     }
     //
+    // public function store(CreatePropertiesRequest $request)
+    // {
+    //     $validatedData = $request->validated();
+
+    //     $property = Properties::create([
+    //         'type' => $validatedData['type'],
+    //         'status' => $validatedData['status'],
+    //         'created_by_id' => Auth::id(),
+    //     ]);
+    //     $property->hasDescription()->create([
+    //         'owner' => $validatedData['owner'],
+    //         'phone_number' => $validatedData['phone_number'],
+    //         'gmail' => $validatedData['gmail'],
+    //         'acreage' => $validatedData['acreage'],
+    //         'price' => $validatedData['price'],
+    //         'frontage' => $validatedData['frontage'],
+    //         'house_direction' => $validatedData['house_direction'],
+    //         'floors' => $validatedData['floors'],
+    //         'bedrooms' => $validatedData['bedrooms'],
+    //         'toilets' => $validatedData['toilets'],
+    //         'legality' => $validatedData['legality'],
+    //         'furniture' => $validatedData['furniture'],
+    //         'other_description' => $validatedData['other_description'],
+    //     ]);
+
+    //     if ($request->hasFile('images')) {
+    //         foreach ($request->file('images') as $image) {
+    //             $imagePath = $image->store('property_images', 'public'); // Lưu vào thư mục public/property_images
+    //             $propertyImage = new PropertyImages([
+    //                 'image_url' => 'property_images/' . basename($imagePath), // Lưu đường dẫn tương đối trong cơ sở dữ liệu
+    //             ]);
+    //             $property->hasImages()->save($propertyImage);
+    //         }
+    //     }
+    //     $property->hasLocation()->create([
+    //         'city' => $validatedData['city'],
+    //         'district' => $validatedData['district'],
+    //         'ward' => $validatedData['ward'],
+    //         'street' => $validatedData['street'],
+    //         'full_address' => $validatedData['full_address']
+    //     ]);
+    //     Cache::forget('properties_cache');
+    //     return redirect()->route('bat-dong-san.index')->with('success', 'Bạn đã thêm thành công 1 bất động sản');
+    // }
+
     public function store(CreatePropertiesRequest $request)
     {
         $validatedData = $request->validated();
 
+        // Create the property
         $property = Properties::create([
             'type' => $validatedData['type'],
             'status' => $validatedData['status'],
             'created_by_id' => Auth::id(),
         ]);
 
+        // Create property description
         $property->hasDescription()->create([
             'owner' => $validatedData['owner'],
             'phone_number' => $validatedData['phone_number'],
@@ -171,23 +219,65 @@ class PropertiController extends Controller
             'other_description' => $validatedData['other_description'],
         ]);
 
+        // Save property images
         if ($request->hasFile('images')) {
             foreach ($request->file('images') as $image) {
-                $imagePath = $image->store('property_images', 'public'); // Lưu vào thư mục public/property_images
+                $imagePath = $image->store('property_images', 'public');
                 $propertyImage = new PropertyImages([
-                    'image_url' => 'property_images/' . basename($imagePath), // Lưu đường dẫn tương đối trong cơ sở dữ liệu
+                    'image_url' => 'property_images/' . basename($imagePath),
                 ]);
                 $property->hasImages()->save($propertyImage);
             }
         }
-        $property->hasLocation()->create([
-            'city' => $validatedData['city'],
-            'district' => $validatedData['district'],
-            'ward' => $validatedData['ward'],
-            'street' => $validatedData['street'],
-            'full_address' => $validatedData['full_address']
-        ]);
+
+        // Check if street and full_address are provided
+        if (!empty($validatedData['street']) && !empty($validatedData['full_address'])) {
+            $fullAddress = urlencode($validatedData['full_address'] . ', ' . $validatedData['street'] . ', ' . $validatedData['ward'] . ', ' . $validatedData['district'] . ', ' . $validatedData['city']);
+        } else {
+            $fullAddress = urlencode($validatedData['district'] . ', ' . $validatedData['city']);
+        }
+
+        // Build geocoding URL
+        $geocodeUrl = "https://nominatim.openstreetmap.org/search?format=json&q={$fullAddress}";
+
+        // Call geocoding API
+        try {
+            $response = Http::get($geocodeUrl);
+
+            if ($response->successful()) {
+                $locationData = $response->json();
+
+                if (!empty($locationData) && isset($locationData[0])) {
+                    $latitude = $locationData[0]['lat'];
+                    $longitude = $locationData[0]['lon'];
+
+                    // Create property location with latitude and longitude
+                    $property->hasLocation()->create([
+                        'city' => $validatedData['city'],
+                        'district' => $validatedData['district'],
+                        'ward' => $validatedData['ward'],
+                        'street' => $validatedData['street'],
+                        'full_address' => $validatedData['full_address'],
+                        'latitude' => $latitude,
+                        'longitude' => $longitude,
+                    ]);
+                } else {
+                    // Handle case where location data is empty
+                    return redirect()->back()->withInput()->withErrors(['error' => 'Không tìm thấy thông tin vị trí cho địa chỉ này. Vui lòng thử lại.']);
+                }
+            } else {
+                // Handle HTTP error when requesting geocoding API
+                return redirect()->back()->withInput()->withErrors(['error' => 'Lỗi khi gọi API geocoding. Vui lòng thử lại sau.']);
+            }
+        } catch (\Exception $e) {
+            // Handle exception (e.g., network error, timeout)
+            return redirect()->back()->withInput()->withErrors(['error' => 'Có lỗi xảy ra khi thực hiện tác vụ. Vui lòng thử lại sau.']);
+        }
+
+        // Clear cache if needed
         Cache::forget('properties_cache');
+
+        // Redirect with success message
         return redirect()->route('bat-dong-san.index')->with('success', 'Bạn đã thêm thành công 1 bất động sản');
     }
     public function show($id)
