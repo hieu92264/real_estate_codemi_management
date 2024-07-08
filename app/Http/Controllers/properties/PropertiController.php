@@ -62,76 +62,107 @@ class PropertiController extends Controller
                 });
             }
 
-        if ($type != '1') {
-            $query->where('properties.type', $type);
+            if ($type != '1') {
+                $query->where('properties.type', $type);
+            }
+            if ($local != '1') {
+                $query->whereHas('hasLocation', function ($q) use ($local) {
+                    $q->where('district', $local);
+                });
+            }
+            $priceRanges = [
+                "2" => [0, 500000000],
+                "3" => [500000001, 800000000],
+                "4" => [800000001, 1000000000],
+                "5" => [1000000001, 2000000000],
+                "6" => [2000000001, 3000000000],
+                "7" => [3000000001, 5000000000],
+                "8" => [5000000001, 7000000000],
+                "9" => [7000000001, PHP_INT_MAX],
+            ];
+            if ($price != '1') {
+                if (array_key_exists($price, $priceRanges)) {
+                    $query->whereHas("hasDescription", function ($q) use ($priceRanges, $price) {
+                        $q->whereBetween("price", $priceRanges[$price]);
+                    });
+                }
+            }
+            // switch ($price) {
+            //     case "2":
+            //         $query->whereBetween('properties_descriptions.price', [0, 500000000]);
+            //         break;
+            //     case "3":
+            //         $query->whereBetween('properties_descriptions.price', [500000001, 800000000]);
+            //         break;
+            //     case "4":
+            //         $query->whereBetween('properties_descriptions.price', [800000001, 1000000000]);
+            //         break;
+            //     case "5":
+            //         $query->whereBetween('properties_descriptions.price', [1000000001, 2000000000]);
+            //         break;
+            //     case "6":
+            //         $query->whereBetween('properties_descriptions.price', [2000000001, 3000000000]);
+            //         break;
+            //     case "7":
+            //         $query->whereBetween('properties_descriptions.price', [3000000001, 5000000000]);
+            //         break;
+            //     case "8":
+            //         $query->whereBetween('properties_descriptions.price', [5000000001, 7000000000]);
+            //         break;
+            //     case "9":
+            //         $query->whereBetween('properties_descriptions.price', [7000000001, PHP_INT_MAX]);
+            //         break;
+            //     default:
+            //         break;
+            // }
+            // switch ($area) {
+            //     case "2":
+            //         // $query->where('properties_descriptions.acreage', '<', '30');
+            //         $query->whereBetween('properties_descriptions.acreage', [0, 30]);
+            //         break;
+            //     case "3":
+            //         $query->whereBetween('properties_descriptions.acreage', [31, 50]);
+            //         break;
+            //     case "4":
+            //         $query->whereBetween('properties_descriptions.acreage', [51, 80]);
+            //         break;
+            //     case "5":
+            //         $query->whereBetween('properties_descriptions.acreage', [81, 100]);
+            //         break;
+            //     case "6":
+            //         $query->whereBetween('properties_descriptions.acreage', [101, 150]);
+            //         break;
+            //     case "7":
+            //         $query->whereBetween('properties_descriptions.acreage', [151, 200]);
+            //         break;
+            //     case "8":
+            //         $query->whereBetween('properties_descriptions.acreage', [201, 250]);
+            //         break;
+            //     case "9":
+            //         $query->whereBetween('properties_descriptions.acreage', [251, PHP_INT_MAX]);
+            //         break;
+            //     default:
+            //         break;
+            // }
+            // if ($status != '1') {
+            //     $query->where('properties.status', $status);
+            // }
+            // // // switch
+            return view('properties.index', [
+                'types' => $types,
+                'statuses' => $statuses,
+                'locations' => $locations,
+                'properties' => $query->paginate(6)->appends([
+                    'search' => request('search'),
+                    'type' => request('type'),
+                    'local' => request('local'),
+                    'price' => request('price'),
+                    'area' => request('area'),
+                    'status' => request('status'),
+                ]),
+            ]);
+            // return $query->get();
         }
-        if ($local != '1') {
-            $query->where('locations.district', $local);
-        }
-        switch ($price) {
-            case "2":
-                $query->whereBetween('properties_descriptions.price', [0, 500000000]);
-                break;
-            case "3":
-                $query->whereBetween('properties_descriptions.price', [500000001, 800000000]);
-                break;
-            case "4":
-                $query->whereBetween('properties_descriptions.price', [800000001, 1000000000]);
-                break;
-            case "5":
-                $query->whereBetween('properties_descriptions.price', [1000000001, 2000000000]);
-                break;
-            case "6":
-                $query->whereBetween('properties_descriptions.price', [2000000001, 3000000000]);
-                break;
-            case "7":
-                $query->whereBetween('properties_descriptions.price', [3000000001, 5000000000]);
-                break;
-            case "8":
-                $query->whereBetween('properties_descriptions.price', [5000000001, 7000000000]);
-                break;
-            case "9":
-                $query->whereBetween('properties_descriptions.price', [7000000001, PHP_INT_MAX]);
-                break;
-        }
-        switch ($area) {
-            case "2":
-                $query->where('properties_descriptions.acreage', '<', '30');
-                $query->whereBetween('properties_descriptions.acreage', [0, 30]);
-                break;
-            case "3":
-                $query->whereBetween('properties_descriptions.acreage', [31, 50]);
-                break;
-            case "4":
-                $query->whereBetween('properties_descriptions.acreage', [51, 80]);
-                break;
-            case "5":
-                $query->whereBetween('properties_descriptions.acreage', [81, 100]);
-                break;
-            case "6":
-                $query->whereBetween('properties_descriptions.acreage', [101, 150]);
-                break;
-            case "7":
-                $query->whereBetween('properties_descriptions.acreage', [151, 200]);
-                break;
-            case "8":
-                $query->whereBetween('properties_descriptions.acreage', [201, 250]);
-                break;
-            case "9":
-                $query->whereBetween('properties_descriptions.acreage', [251, PHP_INT_MAX]);
-                break;
-        }
-        if ($status != '1') {
-            $query->where('properties.status', $status);
-        }
-        // // switch
-        return view('properties.index', [
-            'types' => $types,
-            'statuses' => $statuses,
-            'locations' => $locations,
-            'properties' => $query->paginate(6),
-
-        ]);
     }
     public function __construct()
     {
@@ -139,11 +170,14 @@ class PropertiController extends Controller
 
     public function index()
     {
-        $properties = Cache::remember('properties_cache', now()->addHours(1), function () {
-            return Properties::with(['hasImages', 'hasLocation'])
-                ->latest()
-                ->paginate(9);
-        });
+        // $properties = Cache::remember('properties_cache', now()->addHours(1), function () {
+        //     return Properties::with(['hasImages', 'hasLocation'])
+        //         ->latest()
+        //         ->paginate(9);
+        // });
+        $properties = Properties::with(['hasImages', 'hasLocation'])
+            ->latest()
+            ->paginate(9);
         $types = Properties::distinct()->pluck('type')->toArray();
         $statuses = Properties::distinct()->pluck('status')->toArray();
         $locations = $properties->pluck('hasLocation.district')
