@@ -2,7 +2,7 @@
     <div class="col-sm-12">
         <h4 class="mb-4">Thống kê theo trạng thái bất động sản</h4>
         <div class="bg-light rounded h-100 p-4">
-            <canvas id="pie-chart" width="233.5" height="233"
+            <canvas id="pie-chart"
                 style="display: block; box-sizing: border-box; height: 186.4px; width: 186.8px;"></canvas>
         </div>
     </div>
