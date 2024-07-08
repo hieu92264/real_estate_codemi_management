@@ -236,7 +236,6 @@ class PropertiController extends Controller
             'street' => $validatedData['street'],
             'full_address' => $validatedData['full_address']
         ]);
-        Cache::forget('properties_cache');
         return redirect()->route('bat-dong-san.index')->with('success', 'Bạn đã thêm thành công 1 bất động sản');
     }
 
@@ -340,7 +339,6 @@ class PropertiController extends Controller
 
             ]);
         }
-        Cache::forget('properties_cache');
         return redirect()->route('bat-dong-san.index')->with('success', 'Bạn đã cập nhật thành công bất động sản');
     }
 }
