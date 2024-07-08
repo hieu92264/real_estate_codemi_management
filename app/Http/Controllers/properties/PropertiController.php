@@ -15,7 +15,100 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Http;
 
 class PropertiController extends Controller
+{
+    public function search(Request $request)
     {
+        if ($request->input('search') == '' && $request->input('type') == '1' && $request->input('local') == '1' && $request->input('price') == '1' && $request->input('area') == '1' && $request->input('status') == '1') {
+            return redirect()->route('bat-dong-san.index');
+        } else {
+            $types = Properties::distinct()->pluck('type');
+            $statuses = Properties::distinct()->pluck('status');
+            $locations = Location::distinct()->pluck('district');
+
+            $search = $request->input('search');
+            $type = $request->input('type');
+            $local = $request->input('local');
+            $price = $request->input('price');
+            $area = $request->input('area');
+            $status = $request->input('status');
+
+            $query = Properties::with(['hasImages', 'hasLocation', 'hasDescription']);
+            if (!empty($search)) {
+                $query->where(function ($q) use ($search) {
+                    $q->whereHas('hasDescription', function ($q) use ($search) {
+                        $q->where('owner', 'LIKE', "%$search%")
+                            ->orWhere("phone_number", "LIKE", "%$search%")
+                            ->orWhere("gmail", "LIKE", "%$search%");
+                    })
+                        ->orWhereHas("hasLocation", function ($q) use ($search) {
+                            $q->where("district", "LIKE", "%$search%")
+                                ->orWhere("ward", "LIKE", "%$search%")
+                                ->orWhere("street", "LIKE", "%$search%");
+                        })
+                        ->orWhere("id", "LIKE", "%$search%");
+                });
+            }
+
+            if ($type != '1') {
+                $query->where('properties.type', $type);
+            }
+            if ($local != '1') {
+                $query->whereHas('hasLocation', function ($q) use ($local) {
+                    $q->where('district', $local);
+                });
+            }
+            $priceRanges = [
+                "2" => [0, 500000000],
+                "3" => [500000001, 800000000],
+                "4" => [800000001, 1000000000],
+                "5" => [1000000001, 2000000000],
+                "6" => [2000000001, 3000000000],
+                "7" => [3000000001, 5000000000],
+                "8" => [5000000001, 7000000000],
+                "9" => [7000000001, PHP_INT_MAX],
+            ];
+            if ($price != '1') {
+                if (array_key_exists($price, $priceRanges)) {
+                    $query->whereHas("hasDescription", function ($q) use ($priceRanges, $price) {
+                        $q->whereBetween(DB::raw('CAST(price AS UNSIGNED)'), $priceRanges[$price]);
+                    });
+                }
+            }
+            $acreageRanges = [
+                "2" => [0, 30],
+                "3" => [31, 50],
+                "4" => [51, 80],
+                "5" => [81, 100],
+                "6" => [101, 150],
+                "7" => [151, 200],
+                "8" => [201, 250],
+                "9" => [251, PHP_INT_MAX],
+            ];
+            if ($area != '1') {
+                if (array_key_exists($area, $acreageRanges)) {
+                    $query->whereHas('hasDescription', function ($q) use ($acreageRanges, $area) {
+                        $q->whereBetween('acreage', $acreageRanges[$area]);
+                    });
+                }
+            }
+            if ($status != '1') {
+                $query->where('properties.status', $status);
+            }
+            return view('properties.index', [
+                'types' => $types,
+                'statuses' => $statuses,
+                'locations' => $locations,
+                'properties' => $query->paginate(6)->appends([
+                    'search' => request('search'),
+                    'type' => request('type'),
+                    'local' => request('local'),
+                    'price' => request('price'),
+                    'area' => request('area'),
+                    'status' => request('status'),
+                ]),
+            ]);
+        }
+    }
     public function __construct()
     {
     }
@@ -32,7 +125,7 @@ class PropertiController extends Controller
             ->paginate(9);
         $types = Properties::distinct()->pluck('type')->toArray();
         $statuses = Properties::distinct()->pluck('status')->toArray();
-        $locations = Location::pluck('district')
+        $locations = $properties->pluck('hasLocation.district')
             ->filter()
             ->unique()
             ->toArray();
