@@ -8,6 +8,7 @@ use App\Models\Location;
 use App\Models\Properties;
 use App\Models\PropertiesDescription;
 use App\Models\PropertyImages;
+use GuzzleHttp\Client;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Cache;
@@ -16,8 +17,14 @@ use Illuminate\Support\Facades\Http;
 
 class PropertiController extends Controller
 {
+    public function __construct()
+    {
+    }
     public function search(Request $request)
     {
+
+
+
 
         $types = Properties::distinct()->pluck('type');
         $statuses = Properties::distinct()->pluck('status');
@@ -109,18 +116,18 @@ class PropertiController extends Controller
         if ($status != '1') {
             $query->where('properties.status', $status);
         }
+        // dd($query->paginate(6));
         // // switch
-        return view('properties.index', [
-            'types' => $types,
-            'statuses' => $statuses,
-            'locations' => $locations,
-            'properties' => $query->paginate(6),
+        $properties = $query->paginate(6);
+        // return view('properties.index', [
+        //     'types' => $types,
+        //     'statuses' => $statuses,
+        //     'locations' => $locations,
+        //     'properties' => $query->paginate(6),
+        // ]);
+        return view('properties.index', compact('types', 'statuses', 'locations', 'properties'));
+    }
 
-        ]);
-    }
-    public function __construct()
-    {
-    }
 
     public function index()
     {
@@ -183,14 +190,36 @@ class PropertiController extends Controller
                 $property->hasImages()->save($propertyImage);
             }
         }
-        $property->hasLocation()->create([
-            'city' => $validatedData['city'],
-            'district' => $validatedData['district'],
-            'ward' => $validatedData['ward'],
-            'street' => $validatedData['street'],
-            'full_address' => $validatedData['full_address']
+        $ward = $validatedData['ward'];
+        $address = "{$ward}, {$validatedData['district']}, {$validatedData['city']}, Vietnam";
+        $client = new Client();
+        $response = $client->get('https://nominatim.openstreetmap.org/search', [
+            'query' => [
+                'format' => 'json',
+                'q' => $address,
+                'limit' => 1,
+            ],
         ]);
-        Cache::forget('properties_cache');
+
+        $body = json_decode($response->getBody(), true);
+        if (!empty($body) && isset($body[0]['lat']) && isset($body[0]['lon'])) {
+            $latitude = $body[0]['lat'];
+            $longitude = $body[0]['lon'];
+
+            // Save latitude and longitude to property location
+            $property->hasLocation()->create([
+                'city' => $validatedData['city'],
+                'district' => $validatedData['district'],
+                'ward' => $validatedData['ward'],
+                'latitude' => $latitude,
+                'longitude' => $longitude,
+            ]);
+        }
+
+        // $property->hasLocation()->create([
+        //     // 'street' => $validatedData['street'],
+        //     // 'full_address' => $validatedData['full_address']
+        // ]);
         return redirect()->route('bat-dong-san.index')->with('success', 'Bạn đã thêm thành công 1 bất động sản');
     }
 
@@ -207,7 +236,6 @@ class PropertiController extends Controller
     public function destroy(Properties $bat_dong_san)
     {
         $bat_dong_san->delete();
-        Cache::forget('properties_cache');
         return redirect()->route('bat-dong-san.index')->with('success', 'Bạn đã xóa thành công 1 bất động sản');
     }
     public function edit(Properties $bat_dong_san)
@@ -294,7 +322,6 @@ class PropertiController extends Controller
 
             ]);
         }
-        Cache::forget('properties_cache');
         return redirect()->route('bat-dong-san.index')->with('success', 'Bạn đã cập nhật thành công bất động sản');
     }
 
