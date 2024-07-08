@@ -54,6 +54,12 @@ class DashboardController extends Controller
                 ];
             }
         }
+// <<<<<<< hkd
+//         return view('layouts.dashboard', [
+//             'data' => $data
+//         ]);
+//         // return response()->json($data);
+// =======
         return $data;
     }
 
@@ -82,5 +88,7 @@ class DashboardController extends Controller
             ];
         }
         return $data;
+
     }
+
 }

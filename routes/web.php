@@ -39,7 +39,9 @@ Route::get("/logout", [AuthController::class, "logout"])->name("logout");
 //     return view("layouts.dashboard");
 // })->name("home");
 
+
 Route::get("/trang-chu", [DashboardController::class, 'index'])->name('home');
+
 //trang quan li 
 Route::middleware('auth')->group(function () {
     Route::get('/dashboard', [Controller::class, 'showFormHome'])->name('showFormDashboard');
