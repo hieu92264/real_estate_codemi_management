@@ -32,6 +32,7 @@ class PropertiController extends Controller
             $area = $request->input('area');
             $status = $request->input('status');
 
+
             // $query = Properties::query();
             // $query->join('properties_descriptions', 'properties.id', '=', 'properties_descriptions.property_id')
             //     ->join('locations', 'properties.id', '=', 'locations.property_id')
@@ -47,6 +48,10 @@ class PropertiController extends Controller
                 //         ->orWhere("locations.street", "LIKE", "%$search%")
                 //         ->orWhere("properties.id", "LIKE", "%$search%");
                 // });
+
+            $query = Properties::with(['hasImages', 'hasLocation', 'hasDescription']);
+            if (!empty($search)) {
+
                 $query->where(function ($q) use ($search) {
                     $q->whereHas('hasDescription', function ($q) use ($search) {
                         $q->where('owner', 'LIKE', "%$search%")
@@ -83,6 +88,7 @@ class PropertiController extends Controller
             if ($price != '1') {
                 if (array_key_exists($price, $priceRanges)) {
                     $query->whereHas("hasDescription", function ($q) use ($priceRanges, $price) {
+
                         $q->whereBetween("price", $priceRanges[$price]);
                     });
                 }
@@ -148,6 +154,32 @@ class PropertiController extends Controller
             //     $query->where('properties.status', $status);
             // }
             // // // switch
+
+                        $q->whereBetween(DB::raw('CAST(price AS UNSIGNED)'), $priceRanges[$price]);
+                    });
+                }
+            }
+            $acreageRanges = [
+                "2" => [0, 30],
+                "3" => [31, 50],
+                "4" => [51, 80],
+                "5" => [81, 100],
+                "6" => [101, 150],
+                "7" => [151, 200],
+                "8" => [201, 250],
+                "9" => [251, PHP_INT_MAX],
+            ];
+            if ($area != '1') {
+                if (array_key_exists($area, $acreageRanges)) {
+                    $query->whereHas('hasLocation', function ($q) use ($acreageRanges, $area) {
+                        $q->whereBetween('acreage', $acreageRanges[$area]);
+                    });
+                }
+            }
+            if ($status != '1') {
+                $query->where('properties.status', $status);
+            }
+
             return view('properties.index', [
                 'types' => $types,
                 'statuses' => $statuses,
@@ -161,7 +193,9 @@ class PropertiController extends Controller
                     'status' => request('status'),
                 ]),
             ]);
+
             // return $query->get();
+
         }
     }
     public function __construct()

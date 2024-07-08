@@ -3,8 +3,8 @@
         <h4 class="mb-4">Xu hướng giao dịch bất động sản trong khoảng giá</h4>
         <x-filters />
         <div class="bg-light rounded h-100 p-4">
-            <canvas id="barchart" width="1652" height="826"
-                style="display: block; box-sizing: border-box; height: 413px; width: 826px;"></canvas>
+            <canvas id="barchart"
+                style="display: block; box-sizing: border-box; height: auto; max-width: 750px;"></canvas>
         </div>
     </div>
     @if (isset($barChartData))
