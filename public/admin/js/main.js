@@ -144,11 +144,11 @@
             labels: ["Italy", "France", "Spain", "USA", "Argentina"],
             datasets: [{
                 backgroundColor: [
-                    "rgba(0, 156, 255, .7)",
-                    "rgba(0, 156, 255, .6)",
-                    "rgba(0, 156, 255, .5)",
-                    "rgba(0, 156, 255, .4)",
-                    "rgba(0, 156, 255, .3)"
+                    "rgba(235, 22, 22, .7)",
+                    "rgba(235, 22, 22, .6)",
+                    "rgba(235, 22, 22, .5)",
+                    "rgba(235, 22, 22, .4)",
+                    "rgba(235, 22, 22, .3)"
                 ],
                 data: [55, 49, 44, 24, 15]
             }]
@@ -164,14 +164,14 @@
     var myChart5 = new Chart(ctx5, {
         type: "pie",
         data: {
-            labels: ["Italy", "France", "Spain", "USA", "Argentina"],
+            labels: ["available", "sold", "pending"],
             datasets: [{
                 backgroundColor: [
-                    "rgba(0, 156, 255, .7)",
-                    "rgba(0, 156, 255, .6)",
-                    "rgba(0, 156, 255, .5)",
-                    "rgba(0, 156, 255, .4)",
-                    "rgba(0, 156, 255, .3)"
+                    "rgba(235, 22, 22, .7)",
+                    "rgba(235, 22, 22, .6)",
+                    "rgba(235, 22, 22, .5)",
+                    "rgba(235, 22, 22, .4)",
+                    "rgba(235, 22, 22, .3)"
                 ],
                 data: [55, 49, 44, 24, 15]
             }]
@@ -190,11 +190,11 @@
             labels: ["Italy", "France", "Spain", "USA", "Argentina"],
             datasets: [{
                 backgroundColor: [
-                    "rgba(0, 156, 255, .7)",
-                    "rgba(0, 156, 255, .6)",
-                    "rgba(0, 156, 255, .5)",
-                    "rgba(0, 156, 255, .4)",
-                    "rgba(0, 156, 255, .3)"
+                    "rgba(235, 22, 22, .7)",
+                    "rgba(235, 22, 22, .6)",
+                    "rgba(235, 22, 22, .5)",
+                    "rgba(235, 22, 22, .4)",
+                    "rgba(235, 22, 22, .3)"
                 ],
                 data: [55, 49, 44, 24, 15]
             }]

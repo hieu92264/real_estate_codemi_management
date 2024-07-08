@@ -83,7 +83,7 @@
                     <div class="form-group">
                         <label for="price">Giá</label>
                         <div class="input-group">
-                            <input type="text" name="price" class="form-control" id="price" required oninput="formatCurrency(this)">
+                            <input type="text" name="price" class="form-control" id="price">
                             <div class="input-group-append">
                                 <span class="input-group-text">VND</span>
                             </div>
@@ -246,3 +246,6 @@
 <script src="{{ asset('admin/js/api_viet_nam.js') }}"></script>
 <script src="{{ asset('admin/js/format_currency.js') }}"></script>
 @endsection
+
+
+{{-- *required oninput="formatCurrency(this) --}}

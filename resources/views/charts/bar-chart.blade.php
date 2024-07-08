@@ -2,9 +2,8 @@
     <div class="col-sm-12">
         <h4 class="mb-4">Xu hướng giao dịch bất động sản trong khoảng giá</h4>
         <x-filters />
-        <div class="bg-light rounded h-100 p-4">
-            <canvas id="barchart" width="1652" height="826"
-                style="display: block; box-sizing: border-box; height: 413px; width: 826px;"></canvas>
+        <div class="bg-light rounded h-100 p-4" style="max-width: 750px; height: auto; margin: auto">
+            <canvas id="barchart"></canvas>
         </div>
     </div>
     @if (isset($barChartData))
@@ -15,6 +14,7 @@
                 var values = chartData.map(function(item) {
                     return item.value;
                 });
+                
 
                 var barChart = new Chart(ctx, {
                     type: "bar",
