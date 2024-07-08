@@ -25,7 +25,7 @@
                         datasets: [{
                             label: "Bất động sản",
                             data: values,
-                            backgroundColor: "rgba(0, 156, 255, .7)"
+                            backgroundColor: "rgba(255, 0, 0, .7)"
                         }]
                     },
                     options: {
