@@ -110,7 +110,8 @@
                                             Không có ảnh
                                         </div>
                                     @endif
-                                    <div class="rounded text-white position-absolute start-0 top-0 m-4 py-1 px-3 
+                                    <div
+                                        class="rounded text-white position-absolute start-0 top-0 m-4 py-1 px-3 
                                         @if ($property->status == 'available') bg-success
                                         @elseif($property->status == 'sold') bg-danger
                                         @elseif($property->status == 'pending') bg-info @endif">
@@ -133,7 +134,8 @@
                                     {{-- <a class="d-block h5 mb-2" href="">Golden Urban House For Sell</a> --}}
                                     <h6>
                                         <i class="fa fa-map-marker-alt text-primary me-2"></i>
-                                        {{ $property->hasLocation->full_address ?? '' }} {{ $property->hasLocation->street ?? '' }},{{ $property->hasLocation->ward ?? '' }},{{ $property->hasLocation->district ?? '' }},{{ $property->hasLocation->city ?? '' }}
+                                        {{ $property->hasLocation->full_address ?? '' }}
+                                        {{ $property->hasLocation->street ?? '' }},{{ $property->hasLocation->ward ?? '' }},{{ $property->hasLocation->district ?? '' }},{{ $property->hasLocation->city ?? '' }}
                                     </h6>
                                 </div>
 
@@ -167,9 +169,9 @@
                         </a>
                     </div>
                 @endforeach
-                <div>
-                    {{ $properties->links('pagination::bootstrap-4') }}
-                </div>
+            </div>
+            <div>
+                {{ $properties->links('pagination::bootstrap-4') }}
             </div>
         </div>
     </div>
