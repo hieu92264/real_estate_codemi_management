@@ -69,7 +69,7 @@ class PropertiController extends Controller
                 $query->whereBetween(DB::raw('CAST(properties_descriptions.price AS UNSIGNED)'), [2000000001, 3000000000]);
                 break;
             case "7":
-                $query->whereBetween(DB::raw('CAST(properties_descriptions.price AS UNSIGNED)'), [3000000001, 500000000000]);
+                $query->whereBetween(DB::raw('CAST(properties_descriptions.price AS UNSIGNED)'), [3000000001, 5000000000]);
                 break;
             case "8":
                 $query->whereBetween(DB::raw('CAST(properties_descriptions.price AS UNSIGNED)'), [5000000001, 7000000000]);

@@ -207,11 +207,11 @@
     
 })(jQuery);
 
-function formatCurrency(input) {
-    let value = input.value.replace(/[^\d,]/g, '');
-    let parts = value.split(',');
+// function formatCurrency(input) {
+//     let value = input.value.replace(/[^\d,]/g, '');
+//     let parts = value.split(',');
     
-    parts[0] = parts[0].replace(/\B(?=(\d{3})+(?!\d))/g, '.');
-    input.value = parts.join(',');
-}
+//     parts[0] = parts[0].replace(/\B(?=(\d{3})+(?!\d))/g, '.');
+//     input.value = parts.join(',');
+// }
 
