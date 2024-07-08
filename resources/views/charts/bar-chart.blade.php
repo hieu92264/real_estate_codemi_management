@@ -1,19 +1,17 @@
 <div class="container mt-5">
-    <div class="col-sm-12 col-xl-6">
-
-        <h4 class="mb-4">Thống kê bất động sản theo giá</h4>
-            <x-filters />
-
+    <div class="col-sm-12">
+        <h4 class="mb-4">Xu hướng giao dịch bất động sản trong khoảng giá</h4>
+        <x-filters />
         <div class="bg-light rounded h-100 p-4">
             <canvas id="barchart" width="1652" height="826"
                 style="display: block; box-sizing: border-box; height: 413px; width: 826px;"></canvas>
         </div>
     </div>
-    @if (isset($data))
+    @if (isset($barChartData))
         <script>
             $(document).ready(function() {
                 var ctx = $('#barchart')[0].getContext('2d');
-                var chartData = @json($data);
+                var chartData = @json($barChartData);
                 var values = chartData.map(function(item) {
                     return item.value;
                 });
@@ -44,3 +42,5 @@
     @endif
 
 </div>
+
+{{-- col-xl-6 --}}

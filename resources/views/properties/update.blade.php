@@ -1,6 +1,5 @@
 @extends('home')
 @section('content')
-
     <div class="container d-flex justify-content-center">
         <div class="col-md-8">
             <h1 class="mb-4 text-center">Sửa Bất Động Sản</h1>
@@ -26,15 +25,19 @@
                 {{-- Trạng thái --}}
                 <fieldset class="mb-3">
                     <label>Trạng Thái</label>
-                    <select name="status" id="status" class="form-control">
-                        <option value="available" {{ old('status', $properties->status) == 'available' ? 'selected' : '' }}>
-                            Có Sẵn</option>
-                        <option value="sold" {{ old('status', $properties->status) == 'sold' ? 'selected' : '' }}>Đã Bán
-                        </option>
-                        <option value="pending" {{ old('status', $properties->status) == 'pending' ? 'selected' : '' }}>Đang
-                            Chờ</option>
-                    </select>
-
+                    <div class="custom-select-wrapper">
+                        <select name="status" id="status" class="form-control">
+                            <option value="available"
+                                {{ old('status', $properties->status) == 'available' ? 'selected' : '' }}>
+                                Có Sẵn</option>
+                            <option value="sold" {{ old('status', $properties->status) == 'sold' ? 'selected' : '' }}>Đã
+                                Bán
+                            </option>
+                            <option value="pending" {{ old('status', $properties->status) == 'pending' ? 'selected' : '' }}>
+                                Đang
+                                Chờ</option>
+                        </select>
+                    </div>
                 </fieldset>
 
                 {{-- Thông tin chủ sở hữu --}}
@@ -81,17 +84,19 @@
 
                     <div class="form-group">
                         <label for="house_direction">Hướng Nhà</label>
-                        <select name="house_direction" id="house_direction" class="form-control"
-                            value="{{ $properties->hasDescription->house_direction }}">
-                            <option value="Bắc">Bắc</option>
-                            <option value="Đông Bắc">Đông Bắc</option>
-                            <option value="Đông">Đông</option>
-                            <option value="Đông Nam">Đông Nam</option>
-                            <option value="Nam">Nam</option>
-                            <option value="Tây Nam">Tây Nam</option>
-                            <option value="Tây">Tây</option>
-                            <option value="Tây Bắc">Tây Bắc</option>
-                        </select>
+                        <div class="custom-select-wrapper">
+                            <select name="house_direction" id="house_direction" class="form-control"
+                                value="{{ $properties->hasDescription->house_direction }}">
+                                <option value="Bắc">Bắc</option>
+                                <option value="Đông Bắc">Đông Bắc</option>
+                                <option value="Đông">Đông</option>
+                                <option value="Đông Nam">Đông Nam</option>
+                                <option value="Nam">Nam</option>
+                                <option value="Tây Nam">Tây Nam</option>
+                                <option value="Tây">Tây</option>
+                                <option value="Tây Bắc">Tây Bắc</option>
+                            </select>
+                        </div>
                     </div>
 
                     <div class="form-group">
@@ -134,27 +139,33 @@
                     <legend>Địa Chỉ</legend>
                     <div class="form-group">
                         <label for="city">Thành Phố</label>
-                        <select class="form-control" id="city" name="city_id" title="Chọn Tỉnh Thành">
-                            <option value="0">{{ $properties->hasLocation->city }}</option>
-                        </select>
+                        <div class="custom-select-wrapper">
+                            <select class="form-control" id="city" name="city_id" title="Chọn Tỉnh Thành">
+                                <option value="0">{{ $properties->hasLocation->city }}</option>
+                            </select>
+                        </div>
                         <input type="hidden" name="city" id="city_name"
                             value="{{ $properties->hasLocation->city }}">
                     </div>
 
                     <div class="form-group">
                         <label for="district">Quận/Huyện</label>
-                        <select class="form-control" id="district" name="district_id" title="Chọn Quận Huyện">
-                            <option value="0">{{ $properties->hasLocation->district }}</option>
-                        </select>
+                        <div class="custom-select-wrapper">
+                            <select class="form-control" id="district" name="district_id" title="Chọn Quận Huyện">
+                                <option value="0">{{ $properties->hasLocation->district }}</option>
+                            </select>
+                        </div>
                         <input type="hidden" name="district" id="district_name"
                             value="{{ $properties->hasLocation->district }}">
                     </div>
 
                     <div class="form-group">
                         <label for="ward">Phường/Xã</label>
-                        <select class="form-control" id="ward" name="ward_id" title="Chọn Phường Xã">
-                            <option value="0">{{ $properties->hasLocation->ward }}</option>
-                        </select>
+                        <div class="custom-select-wrapper">
+                            <select class="form-control" id="ward" name="ward_id" title="Chọn Phường Xã">
+                                <option value="0">{{ $properties->hasLocation->ward }}</option>
+                            </select>
+                        </div>
                         <input type="hidden" name="ward" id="ward_name"
                             value="{{ $properties->hasLocation->ward }}">
                     </div>

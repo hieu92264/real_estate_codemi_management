@@ -8,6 +8,15 @@ use Carbon\Carbon;
 
 class DashboardController extends Controller
 {
+    public function index(Request $request)
+    {
+        return view('layouts.dashboard', [
+            'barChartData' => $this->getBarChartData($request),
+            'pieChartData' => $this->getPieChartData(),
+            'doughnutChartData' => $this->getDoughnutChartData(),
+        ]);
+    }
+
     public function getBarChartData(Request $request)
     {
         $priceRanges = [
@@ -45,10 +54,41 @@ class DashboardController extends Controller
                 ];
             }
         }
-        return view('layouts.dashboard', [
-            'data' => $data
-        ]);
-        // return response()->json($data);
+// <<<<<<< hkd
+//         return view('layouts.dashboard', [
+//             'data' => $data
+//         ]);
+//         // return response()->json($data);
+// =======
+        return $data;
+    }
+
+    public function getPieChartData()
+    {
+        $data = [];
+        $labels = Properties::distinct()->pluck('status');
+        foreach ($labels as $label) {
+            $count = Properties::where('status', $label)->count();
+            $data[] = [
+                'label' => $label,
+                'value' => $count
+            ];
+        }
+        return $data;
+    }
+    public function getDoughnutChartData()
+    {
+        $data = [];
+        $labels = Properties::distinct()->pluck('type');
+        foreach ($labels as $label) {
+            $count = Properties::where('type', $label)->count();
+            $data[] = [
+                'label' => $label,
+                'value' => $count
+            ];
+        }
+        return $data;
+
     }
 
 }

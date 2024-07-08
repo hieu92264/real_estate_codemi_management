@@ -75,9 +75,8 @@
                             </div>
                         </div>
                     </div>
-                    <div class="col-md-2">
-                        <button type="submit" class="btn btn-success" style="margin-left: 10pt">Tìm
-                            Kiếm</button>
+                    <div class="col-md-2 d-flex align-items-center">
+                        <button type="submit" class="btn btn-success w-100">Tìm Kiếm</button>
                     </div>
                 </form>
             </div>
@@ -112,9 +111,11 @@
                                     @endif
                                     <div
                                         class="rounded text-white position-absolute start-0 top-0 m-4 py-1 px-3 
-                                        @if ($property->status == 'available') bg-success
-                                        @elseif($property->status == 'sold') bg-danger
-                                        @elseif($property->status == 'pending') bg-info @endif">
+
+                                            @if ($property->status == 'available') bg-success
+                                            @elseif($property->status == 'sold') bg-danger
+                                            @elseif($property->status == 'pending') bg-info @endif">
+
                                         {{ $property->status }}
                                     </div>
                                     <div class="bg-white rounded-top text-primary position-absolute start-0 bottom-0 mx-4 pt-1 px-3"
@@ -124,7 +125,6 @@
                                 </div>
 
                                 <div class="p-4 pb-0 flex-grow-1">
-
                                     <h5 class="text-primary mb-3"><i class="fas fa-dollar-sign"></i>
                                         @if ($property->hasDescription)
                                             {{ $property->hasDescription->price }} vnđ
@@ -140,26 +140,21 @@
                                 </div>
 
                                 {{-- Thêm chi tiết --}}
-                                <div class="d-flex border-top mt-auto">
-                                    <small class="flex-fill text-center border-end py-2"><i
-                                            class="fa fa-ruler-combined text-primary me-2"></i>
-
+                                <div class="d-flex border-top mt-auto property-footer">
+                                    <small class="flex-fill text-center border-end py-2">
+                                        <i class="fa fa-ruler-combined text-primary me-2"></i>
                                         @if ($property->hasDescription)
                                             {{ $property->hasDescription->acreage }} m²
                                         @endif
                                     </small>
-
-                                    <small class="flex-fill text-center border-end py-2"><i
-                                            class="fa fa-bed text-primary me-2"></i>
-
+                                    <small class="flex-fill text-center border-end py-2">
+                                        <i class="fa fa-bed text-primary me-2"></i>
                                         @if ($property->hasDescription)
                                             {{ $property->hasDescription->bedrooms }} phòng ngủ
                                         @endif
                                     </small>
-
-                                    <small class="flex-fill text-center py-2"><i
-                                            class="fa fa-bath text-primary me-2"></i>
-
+                                    <small class="flex-fill text-center py-2">
+                                        <i class="fa fa-bath text-primary me-2"></i>
                                         @if ($property->hasDescription)
                                             {{ $property->hasDescription->toilets }} toilets
                                         @endif
@@ -175,7 +170,6 @@
             </div>
         </div>
     </div>
-
 </div>
 
 @endsection

@@ -1,10 +1,11 @@
+
 /*!
  * Bootstrap v5.0.0 (https://getbootstrap.com/)
  * Copyright 2011-2021 The Bootstrap Authors
  * Copyright 2011-2021 Twitter, Inc.
  * Licensed under MIT (https://github.com/twbs/bootstrap/blob/main/LICENSE)
  */
-:root {
+ :root {
     --bs-blue: #0d6efd;
     --bs-indigo: #6610f2;
     --bs-purple: #6f42c1;
@@ -4133,7 +4134,7 @@ fieldset:disabled .btn {
 
 .dropdown-item:hover,
 .dropdown-item:focus {
-    color: #007bff;
+    color: #db5151;
     background-color: #f8f9fa
 }
 
@@ -4176,7 +4177,7 @@ fieldset:disabled .btn {
 }
 
 .dropdown-item:hover i {
-    color: #007bff;
+    color: #db5151;
 }
 
 .dropdown-menu-dark {

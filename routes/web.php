@@ -10,6 +10,7 @@ use App\Http\Controllers\entity_management\BuyersController;
 use App\Http\Controllers\entity_management\SellerController;
 use App\Http\Controllers\properties\PropertiController;
 use App\Http\Controllers\entity_management\TransactionController;
+use App\Http\Controllers\report\PriceReportController;
 
 /*
 |--------------------------------------------------------------------------
@@ -38,10 +39,8 @@ Route::get("/logout", [AuthController::class, "logout"])->name("logout");
 //     return view("layouts.dashboard");
 // })->name("home");
 
-Route::get("/trang-chu", [DashboardController::class, 'getBarChartData'])->name('home');
-//biểu đồ tròn của trạng thái 
 
-
+Route::get("/trang-chu", [DashboardController::class, 'index'])->name('home');
 
 //trang quan li 
 Route::middleware('auth')->group(function () {
@@ -56,5 +55,7 @@ Route::middleware('auth')->group(function () {
     Route::get('/tim-kiem', [UserController::class, 'search'])->name('search');
     Route::get('/doi-mat-khau', [AuthController::class, 'changePassword'])->name('change.password');
     Route::post('/doi-mat-khau', [AuthController::class, 'savePassword']);
+    // Route::get('/thong-ke-theo-trang-thai', [DashboardController::class, ''])
+    Route::get('/thong-ke-theo-gia', [PriceReportController::class, 'index'])->name('priceReport');
     // Route::resource('/bat-dong-san', PropertiController::class);
 });
