@@ -375,3 +375,8 @@ i{
     transform: translateY(-50%);
     pointer-events: none;
 }
+
+.centered-title {
+    text-align: center;
+    width: 100%;
+  }

@@ -1,10 +1,11 @@
 <div class="container mt-5">
     <div class="col-sm-12">
-        <h4 class="mb-4">Thống kê theo trạng thái bất động sản</h4>
+        <h4 class="mb-4 centered-title">Thống kê theo trạng thái bất động sản</h4>
         <div class="bg-light rounded h-100 p-4" style="max-width: 600px; margin :auto ">
             <canvas id="pie-chart"></canvas>
         </div>
     </div>
+    <hr class="my-5 w-100">
     @if (isset($pieChartData))
         <script>
             $(document).ready(function() {

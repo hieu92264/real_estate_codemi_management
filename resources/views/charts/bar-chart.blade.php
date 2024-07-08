@@ -1,6 +1,6 @@
 <div class="container mt-5">
     <div class="col-sm-12">
-        <h4 class="mb-4">Xu hướng giao dịch bất động sản trong khoảng giá</h4>
+        <h4 class="mb-4 centered-title">Xu hướng giao dịch bất động sản trong khoảng giá</h4>
         <x-filters />
         <div class="bg-light rounded h-100 p-4" style="max-width: 750px; height: auto; margin: auto">
             <canvas id="barchart"></canvas>
