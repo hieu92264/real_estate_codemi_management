@@ -32,8 +32,26 @@ class PropertiController extends Controller
             $area = $request->input('area');
             $status = $request->input('status');
 
+
+            // $query = Properties::query();
+            // $query->join('properties_descriptions', 'properties.id', '=', 'properties_descriptions.property_id')
+            //     ->join('locations', 'properties.id', '=', 'locations.property_id')
+            //     ->join('property_images', 'properties.id', '=', 'property_images.property_id');
             $query = Properties::with(['hasImages', 'hasLocation', 'hasDescription']);
             if (!empty($search)) {
+                // $query->where(function ($q) use ($search) {
+                //     $q->where('properties_descriptions.owner', 'LIKE', "%$search%")
+                //         ->orWhere("properties_descriptions.phone_number", "LIKE", "%$search%")
+                //         ->orWhere("properties_descriptions.gmail", "LIKE", "%$search%")
+                //         ->orWhere("locations.district", "LIKE", "%$search%")
+                //         ->orWhere("locations.ward", "LIKE", "%$search%")
+                //         ->orWhere("locations.street", "LIKE", "%$search%")
+                //         ->orWhere("properties.id", "LIKE", "%$search%");
+                // });
+
+            $query = Properties::with(['hasImages', 'hasLocation', 'hasDescription']);
+            if (!empty($search)) {
+
                 $query->where(function ($q) use ($search) {
                     $q->whereHas('hasDescription', function ($q) use ($search) {
                         $q->where('owner', 'LIKE', "%$search%")
@@ -70,6 +88,73 @@ class PropertiController extends Controller
             if ($price != '1') {
                 if (array_key_exists($price, $priceRanges)) {
                     $query->whereHas("hasDescription", function ($q) use ($priceRanges, $price) {
+
+                        $q->whereBetween("price", $priceRanges[$price]);
+                    });
+                }
+            }
+            // switch ($price) {
+            //     case "2":
+            //         $query->whereBetween('properties_descriptions.price', [0, 500000000]);
+            //         break;
+            //     case "3":
+            //         $query->whereBetween('properties_descriptions.price', [500000001, 800000000]);
+            //         break;
+            //     case "4":
+            //         $query->whereBetween('properties_descriptions.price', [800000001, 1000000000]);
+            //         break;
+            //     case "5":
+            //         $query->whereBetween('properties_descriptions.price', [1000000001, 2000000000]);
+            //         break;
+            //     case "6":
+            //         $query->whereBetween('properties_descriptions.price', [2000000001, 3000000000]);
+            //         break;
+            //     case "7":
+            //         $query->whereBetween('properties_descriptions.price', [3000000001, 5000000000]);
+            //         break;
+            //     case "8":
+            //         $query->whereBetween('properties_descriptions.price', [5000000001, 7000000000]);
+            //         break;
+            //     case "9":
+            //         $query->whereBetween('properties_descriptions.price', [7000000001, PHP_INT_MAX]);
+            //         break;
+            //     default:
+            //         break;
+            // }
+            // switch ($area) {
+            //     case "2":
+            //         // $query->where('properties_descriptions.acreage', '<', '30');
+            //         $query->whereBetween('properties_descriptions.acreage', [0, 30]);
+            //         break;
+            //     case "3":
+            //         $query->whereBetween('properties_descriptions.acreage', [31, 50]);
+            //         break;
+            //     case "4":
+            //         $query->whereBetween('properties_descriptions.acreage', [51, 80]);
+            //         break;
+            //     case "5":
+            //         $query->whereBetween('properties_descriptions.acreage', [81, 100]);
+            //         break;
+            //     case "6":
+            //         $query->whereBetween('properties_descriptions.acreage', [101, 150]);
+            //         break;
+            //     case "7":
+            //         $query->whereBetween('properties_descriptions.acreage', [151, 200]);
+            //         break;
+            //     case "8":
+            //         $query->whereBetween('properties_descriptions.acreage', [201, 250]);
+            //         break;
+            //     case "9":
+            //         $query->whereBetween('properties_descriptions.acreage', [251, PHP_INT_MAX]);
+            //         break;
+            //     default:
+            //         break;
+            // }
+            // if ($status != '1') {
+            //     $query->where('properties.status', $status);
+            // }
+            // // // switch
+
                         $q->whereBetween(DB::raw('CAST(price AS UNSIGNED)'), $priceRanges[$price]);
                     });
                 }
@@ -94,6 +179,7 @@ class PropertiController extends Controller
             if ($status != '1') {
                 $query->where('properties.status', $status);
             }
+
             return view('properties.index', [
                 'types' => $types,
                 'statuses' => $statuses,
@@ -107,6 +193,9 @@ class PropertiController extends Controller
                     'status' => request('status'),
                 ]),
             ]);
+
+            // return $query->get();
+
         }
     }
     public function __construct()
@@ -125,7 +214,7 @@ class PropertiController extends Controller
             ->paginate(9);
         $types = Properties::distinct()->pluck('type')->toArray();
         $statuses = Properties::distinct()->pluck('status')->toArray();
-        $locations = $properties->pluck('hasLocation.district')
+        $locations = Location::pluck('district')
             ->filter()
             ->unique()
             ->toArray();
