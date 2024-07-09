@@ -94,7 +94,8 @@
                     <div class="form-group">
                         <label for="frontage">Mặt Tiền</label>
                         <div class="input-group">
-                            <input type="number" step="0.01" name="frontage" class="form-control" id="frontage">
+                            <input type="number" step="1" min="1" max="4" name="frontage"
+                                class="form-control" id="frontage">
                             <div class="input-group-append">
                                 <span class="input-group-text">m</span>
                             </div>
