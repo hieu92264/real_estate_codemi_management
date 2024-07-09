@@ -43,7 +43,8 @@ class CreatePropertiesRequest extends FormRequest
             'ward' => 'nullable|string|max:100',
             'street' => 'nullable|string|max:100',
             'full_address' => 'nullable|string|max:255',
-            'images.*' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
+            'images.*' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048'
+
         ];
     }
     public function messages(): array
@@ -58,6 +59,12 @@ class CreatePropertiesRequest extends FormRequest
             'images.*.image' => 'File ảnh không đúng định dạng.',
             'images.*.mimes' => 'File ảnh phải có định dạng jpeg, png, jpg hoặc gif.',
             'images.*.max' => 'Dung lượng của file ảnh không được vượt quá 2MB.',
+            'city.required' => 'Thành phố không được để trống',
+            'district.required' => 'Quận huyện không được để trống',
+            'ward.required' => 'Phường xã không được để trống',
+            'street.required' => 'Đường không được để trống',
+            'gmail.email' => 'gmail phải đúng định dạng',
+            'frontage.max' => 'nhà không được quá 4 mặt tiền'
         ];
     }
 }

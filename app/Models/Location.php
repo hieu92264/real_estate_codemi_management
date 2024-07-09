@@ -18,7 +18,10 @@ class Location extends Model
         'district',
         'ward',
         'street',
-        'full_address'
+        'full_address',
+        'latitude',
+        'longitude',
+
     ];
     public function hasProperty(): BelongsTo
     {
