@@ -30,7 +30,7 @@
            }
        }
    </style>
-   <div class="content"></div>
+   
    <div class="footer">
        <div class="bg-light rounded-top p-2">
            <div class="row">
@@ -40,4 +40,4 @@
            </div>
        </div>
    </div>
-
+   
