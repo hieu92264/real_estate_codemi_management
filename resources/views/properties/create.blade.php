@@ -165,9 +165,6 @@
                         <div class="custom-select-wrapper">
                             <select class="form-control" id="city" name="city_id" title="Chọn Tỉnh Thành">
                                 <option value="0">Tỉnh Thành</option>
-                                <option value="1">Hà Nội</option>
-                                <option value="2">Hồ Chí Minh</option>
-                                <!-- Thêm các option khác nếu cần -->
                             </select>
                         </div>
                         <input type="hidden" name="city" id="city_name">
@@ -181,9 +178,6 @@
                         <div class="custom-select-wrapper">
                             <select class="form-control" id="district" name="district_id" title="Chọn Quận Huyện">
                                 <option value="0">Quận Huyện</option>
-                                <option value="1">Quận 1</option>
-                                <option value="2">Quận 2</option>
-                                <!-- Thêm các option khác nếu cần -->
                             </select>
                         </div>
                         <input type="hidden" name="district" id="district_name">
@@ -197,9 +191,6 @@
                         <div class="custom-select-wrapper">
                             <select class="form-control" id="ward" name="ward_id" title="Chọn Phường Xã">
                                 <option value="0">Phường Xã</option>
-                                <option value="1">Phường A</option>
-                                <option value="2">Phường B</option>
-                                <!-- Thêm các option khác nếu cần -->
                             </select>
                         </div>
                         <input type="hidden" name="ward" id="ward_name">
