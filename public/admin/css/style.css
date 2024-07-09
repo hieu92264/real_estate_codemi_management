@@ -17,6 +17,7 @@
     max-width: 100%;
     margin: 5pt auto;
 }
+
 .form-control {
     max-width: 100%;
 }
@@ -86,12 +87,12 @@
     z-index: 999;
 }
 
-    img{
-        height: 60px;
-        width: 240px;
-        border: #db5151 solid 1px;
-        border-radius: 5px
-    }
+img {
+    height: 60px;
+    width: 240px;
+    border: #db5151 solid 1px;
+    border-radius: 5px
+}
 
 .content {
     margin-left: 250px;
@@ -99,8 +100,9 @@
     background: #F3F6F9;
     transition: 0.5s;
 }
-i{
-     font-size: 1.25em;
+
+i {
+    font-size: 1.25em;
 }
 
 @media (min-width: 992px) {
@@ -306,17 +308,22 @@ i{
 }
 
 .profile-picture img:hover {
-    transform: scale(1.5); /* Adjust the scale value as needed */
+    transform: scale(1.5);
+    /* Adjust the scale value as needed */
 }
 
 .status-indicator {
     position: absolute;
     bottom: 0;
     right: 0;
-    width: 12px; /* Adjust the size as needed */
-    height: 12px; /* Adjust the size as needed */
-    background-color: #28a745; /* Background color for the indicator */
-    border: 2px solid white; /* Border color and width */
+    width: 12px;
+    /* Adjust the size as needed */
+    height: 12px;
+    /* Adjust the size as needed */
+    background-color: #28a745;
+    /* Background color for the indicator */
+    border: 2px solid white;
+    /* Border color and width */
     border-radius: 50%;
 }
 
@@ -326,9 +333,10 @@ i{
     padding: 0;
     min-height: 405px;
     height: 100%;
-    display :flex;
+    display: flex;
     grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-    gap: 30px; /* Khoảng cách giữa các item */
+    gap: 30px;
+    /* Khoảng cách giữa các item */
 }
 
 .property-item a {
@@ -358,15 +366,18 @@ i{
 .property-item .border-end {
     border-right: 1px dashed rgba(0, 185, 142, .3) !important;
 }
+
 /* Media query for smaller screens */
 @media (max-width: 768px) {
     .property-item {
         min-width: 100%;
     }
 }
+
 .custom-select-wrapper {
     position: relative;
 }
+
 .custom-select-wrapper:after {
     content: '\25BC';
     position: absolute;
@@ -374,4 +385,24 @@ i{
     right: 15px;
     transform: translateY(-50%);
     pointer-events: none;
+}
+
+.centered-title {
+    text-align: center;
+    width: 100%;
+}
+
+.close {
+    position: fixed;
+    top: 10px;
+    right: 10px;
+    color: red;
+    font-size: 20px;
+    cursor: pointer;
+    z-index: 1000;
+}
+
+.close:hover {
+    color: #FFFFFF;
+    background-color: red;
 }

@@ -1,10 +1,8 @@
-<div class="container-fluid pt-4 px-4">
-    <div class="row g-4">
-        <div class="col-sm-12 col-xl-6">
-            <div class="bg-light rounded h-100 p-4">
-                <h6 class="mb-4">Doughnut Chart</h6>
-                <canvas id="doughnut-chart"></canvas>
-            </div>
+<div class="container mt-5">
+    <div class="col-sm-12">
+        <h4 class="mb-4 centered-title">Doughnut Chart</h4>
+        <div class="bg-light rounded h-100 p-4" style="max-width: 600px; margin: auto">
+            <canvas id="doughnut-chart"></canvas>
         </div>
     </div>
     @if (isset($doughnutChartData))
@@ -19,9 +17,9 @@
                     return item.label;
                 });
                 var colors = [];
+                var count = 7;
                 labels.forEach(element => {
-                    var count = 7;
-                    colors.push("rgba(0, 156, 255, ." + count + ")");
+                    colors.push("rgba(235, 22, 22, ." + count + ")");
                     count--;
                 });
                 var pieChart = new Chart(ctx5, {

@@ -104,8 +104,8 @@
                     <div class="form-group">
                         <label for="frontage">Mặt Tiền</label>
                         <div class="input-group">
-                            <input type="number" name="frontage" class="form-control" id="frontage"
-                                value="{{ old('frontage') }}">
+                            <input type="number" step="1" min="1" max="4" name="frontage"
+                                class="form-control" id="frontage">
                             <div class="input-group-append">
                                 <span class="input-group-text">m</span>
                             </div>
@@ -193,8 +193,6 @@
                         <div class="custom-select-wrapper">
                             <select class="form-control" id="city" name="city_id" title="Chọn Tỉnh Thành">
                                 <option value="0">Tỉnh Thành</option>
-
-                                <!-- Thêm các option khác nếu cần -->
                             </select>
                         </div>
                         <input type="hidden" name="city" id="city_name">
@@ -208,7 +206,6 @@
                         <div class="custom-select-wrapper">
                             <select class="form-control" id="district" name="district_id" title="Chọn Quận Huyện">
                                 <option value="0">Quận Huyện</option>
-
                             </select>
                         </div>
                         <input type="hidden" name="district" id="district_name">
@@ -272,3 +269,4 @@
     {{-- get lat long --}}
     <script src="{{ asset('admin/js/api_get_lat_lon.js') }}"></script>
 @endsection
+

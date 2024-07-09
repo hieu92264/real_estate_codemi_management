@@ -30,14 +30,16 @@
            }
        }
    </style>
-   
+
+   {{-- <div class="content"></div> --}}
+
    <div class="footer">
        <div class="bg-light rounded-top p-2">
            <div class="row">
                <div class="col-12 col-sm-6 text-center text-sm-start">
-                Copyright &copy; 07/2024 <a href="https://codemivietnam.com/">Codemi Việt Nam</a>. All rights reserved.
+                   Copyright &copy; 07/2024 <a href="https://codemivietnam.com/">Codemi Việt Nam</a>. All rights
+                   reserved.
                </div>
            </div>
        </div>
    </div>
-   

@@ -72,8 +72,8 @@
 
                     <div class="form-group">
                         <label for="price">Giá</label>
-                        <input type="text" value="{{ $properties->hasDescription->price ?? '' }}" name="price"
-                            class="form-control" id="price" required oninput="formatCurrency(this)">
+                        <input type="text" value="{{ $properties->hasDescription->price }}" name="price"
+                            class="form-control" id="price">
                     </div>
 
                     <div class="form-group">
