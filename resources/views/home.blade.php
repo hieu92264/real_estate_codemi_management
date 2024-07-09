@@ -36,12 +36,17 @@
 <body>
     <script src="https://esgoo.net/scripts/jquery.js"></script>
     <div class="container-fluid position-relative bg-white d-flex p-0">
-        @include('layouts.sidebar')
-        <div class="content">
+        <div class="sidebar">
+            @include('layouts.sidebar')
+        </div>
+        <div class="content flex-grow-1 d-flex flex-column">
             @include('layouts.nav')
-            @yield('content')
-            @include('layouts.footer')
-
+            <div class="main-content flex-grow-1 d-flex flex-column">
+                @yield('content')
+                <div class="mt-auto">
+                    @include('layouts.footer')
+                </div>
+            </div>
         </div>
     </div>
     <!-- JavaScript Libraries -->

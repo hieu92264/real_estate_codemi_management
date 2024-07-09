@@ -37,8 +37,8 @@
                                 <small class="help-block">{{ $message }}</small>
                             @enderror
                         </div>
-                        <p></p>
-                        <button type="submit" class="btn btn-primary" style="color: black">Gửi email xác nhận</button>
+                        <br>
+                        <input class="btn btn-custom" type="submit" value="Gửi Email xác nhận" />
                     </form>
                     <p>
                         @if (session('success'))

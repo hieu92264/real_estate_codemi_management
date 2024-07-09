@@ -11,7 +11,7 @@
                                 <div class="input-group">
                                     <input type="text" class="form-control" name="search"
                                         placeholder="Tìm kiếm người mua..." value="{{ request('search') }}">
-                                    <button type="submit" class="btn btn-primary" style="margin-left: 10pt">Tìm
+                                    <button type="submit" class="btn btn-success">Tìm
                                         Kiếm</button>
                                 </div>
                             </form>
@@ -21,8 +21,8 @@
                 <div class="table-responsive">
                     <a href="{{ route('danh-sach-nguoi-mua.create') }}" class="btn btn-success btn-sm my-2">Thêm người
                         mua</a>
-                    <table class="table">
-                        <thead>
+                    <table class="table table-bordered text-center custom-table">
+                        <thead class="custom-header">
                             <tr>
                                 <th scope="col">ID</th>
                                 <th scope="col">Tên người mua</th>
@@ -50,7 +50,7 @@
                                     <td>{{ $buyers->phone }}</td>
                                     <td>{{ $buyers->address }}</td>
                                     <td>{{ $buyers->transaction_history }}</td>
-                                    <td>
+                                    <td class="action-buttons">
                                         <a href="{{ route('danh-sach-nguoi-mua.edit', $buyers->id) }}"
                                             class="btn btn-primary btn-sm">Sửa</a>
                                         {{-- <form class="mt-2" action="{{ route('danh-sach-nguoi-mua.destroy', $buyers->id) }}", method="POST">
@@ -58,12 +58,11 @@
                                         @method('DELETE')
                                         <input type="submit" class="btn btn-danger btn-sm" value="Xóa">
                                     </form> --}}
-                                        <form class="mt-2"
-                                            action="{{ route('danh-sach-nguoi-mua.destroy', $buyers->id) }}" method="POST"
-                                            onsubmit="return confirmDelete()">
+                                        <form action="{{ route('danh-sach-nguoi-mua.destroy', $buyers->id) }}"
+                                            method="POST" onsubmit="return confirmDelete()">
                                             @csrf
                                             @method('DELETE')
-                                            <input type="submit" class="btn btn-danger btn-sm" value="Xóa">
+                                            <button type="submit" class="btn btn-danger btn-sm">Xóa</button>
                                         </form>
                                     </td>
                                 </tr>

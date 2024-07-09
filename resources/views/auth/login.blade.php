@@ -29,7 +29,7 @@
             </div>
             <div class="col-right">
                 <div class="login-form">
-                    <h2>Login</h2>
+                    <h2 class="centered-title">Login</h2>
                     <form method="POST" action="{{ route('doLogin') }}">
                         @csrf
                         <p>
@@ -39,7 +39,7 @@
                             <input type="password" name="password" placeholder="Password">
                         </p>
                         <p>
-                            <input class="btn btn-custom" type="submit" value="Sign In" />
+                            <input class="btn btn-custom" type="submit" value="Đăng nhập" />
                         </p>
                         <p>
                             Quên mật khẩu? <a href="{{ route('showFormForget') }}">CLICK HERE</a>
