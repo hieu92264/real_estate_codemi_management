@@ -184,7 +184,6 @@ class PropertiController extends Controller
             ->filter()
             ->unique()
             ->toArray();
-
         // return compact('properties', 'types', 'statuses', 'locations');
         return view('properties.index', compact('properties', 'types', 'statuses', 'locations'));
     }
@@ -234,7 +233,9 @@ class PropertiController extends Controller
             'district' => $validatedData['district'],
             'ward' => $validatedData['ward'],
             'street' => $validatedData['street'],
-            'full_address' => $validatedData['full_address']
+            'full_address' => $validatedData['full_address'],
+            'latitude' => request('latitude'),
+            'longitude' => request('longitude'),
         ]);
         return redirect()->route('bat-dong-san.index')->with('success', 'Bạn đã thêm thành công 1 bất động sản');
     }
@@ -326,7 +327,9 @@ class PropertiController extends Controller
                 'district' => $validatedData['district'],
                 'ward' => $validatedData['ward'],
                 'street' => $validatedData['street'],
-                'full_address' => $validatedData['full_address']
+                'full_address' => $validatedData['full_address'],
+                'latitude' => request('latitude'),
+                'longitude' => request('longitude'),
 
             ]);
         } else {
@@ -336,7 +339,9 @@ class PropertiController extends Controller
                 'ward' => $validatedData['ward'],
                 'street' => $validatedData['street'],
                 'full_address' => $validatedData['full_address']
-
+                ,
+                'latitude' => request('latitude'),
+                'longitude' => request('longitude'),
             ]);
         }
         return redirect()->route('bat-dong-san.index')->with('success', 'Bạn đã cập nhật thành công bất động sản');
