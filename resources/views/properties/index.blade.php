@@ -81,9 +81,11 @@
                 </form>
             </div>
         </div>
-
-        <a href="{{ route('bat-dong-san.create') }}" class="btn btn-success mb-3" style="margin: 15px;">Thêm mới bất động
-            sản</a>
+        @if (Auth::user()->hasPermission('Thêm bất động sản'))
+            <a href="{{ route('bat-dong-san.create') }}" class="btn btn-success mb-3" style="margin: 15px;">Thêm mới bất
+                động
+                sản</a>
+        @endif
 
 
         <div class="tab-content">
@@ -171,5 +173,4 @@
         </div>
     </div>
 </div>
-
 @endsection

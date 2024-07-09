@@ -90,14 +90,20 @@
                 <div class="col-md-12">
                     <ul class="list-group list-group-flush mt-3">
                         <li class="list-group-item text-center">
-                            <form action="{{ route('bat-dong-san.destroy', $property->id) }}" method="POST"
-                                onsubmit="return confirm('Bạn có muốn xóa bất động sản không?');" class="d-inline-block">
-                                @csrf
-                                @method('DELETE')
-                                <button type="submit" class="btn btn-danger me-2">Xóa bất động sản</button>
-                            </form>
-                            <a href="{{ route('bat-dong-san.edit', $property->id) }}" class="btn btn-success">Sửa bất động
-                                sản</a>
+                            @if (Auth::user()->hasPermission('Xóa bất động sản'))
+                                <form action="{{ route('bat-dong-san.destroy', $property->id) }}" method="POST"
+                                    onsubmit="return confirm('Bạn có muốn xóa bất động sản không?');"
+                                    class="d-inline-block">
+                                    @csrf
+                                    @method('DELETE')
+                                    <button type="submit" class="btn btn-danger me-2">Xóa bất động sản</button>
+                                </form>
+                            @endif
+                            @if (Auth::user()->hasPermission('Sửa Bất động sản'))
+                                <a href="{{ route('bat-dong-san.edit', $property->id) }}" class="btn btn-success">Sửa bất
+                                    động
+                                    sản</a>
+                            @endif
                         </li>
                     </ul>
                 </div>
