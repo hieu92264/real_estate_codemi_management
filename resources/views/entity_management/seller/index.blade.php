@@ -19,13 +19,6 @@
                     </div>
                 </div>
                 <a href="{{ route('danh-sach-nguoi-ban.create') }}" class="btn btn-success btn-sm my-2">Thêm người bán</a>
-                {{-- <form action="{{ route('danh-sach-nguoi-ban.index') }}" method="GET" class="mb-4">
-                    <div class="input-group">
-                        <input type="text" class="form-control" name="search" placeholder="Tìm kiếm người bán..." value="{{ request('search') }}">
-                        <button type="submit" class="btn btn-primary">Tìm Kiếm</button>
-                    </div>
-                </form> --}}
-
                 <table class="table">
                     <thead>
                         <tr>

@@ -131,7 +131,6 @@
                                             vnđ
                                         @endif
                                     </h5>
-                                    {{-- <a class="d-block h5 mb-2" href="">Golden Urban House For Sell</a> --}}
                                     <h6>
                                         <i class="fa fa-map-marker-alt text-primary me-2"></i>
                                         {{ $property->hasLocation->full_address ?? '' }}

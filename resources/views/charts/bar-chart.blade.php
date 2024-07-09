@@ -4,10 +4,6 @@
         <x-filters />
         <div class="bg-light rounded h-100 p-4" style="max-width: 750px; height: auto; margin: auto">
             <canvas id="barchart"></canvas>
-            {{-- <div class="bg-light rounded h-100 p-4">
-            <canvas id="barchart"
-                style="display: block; box-sizing: border-box; height: auto; max-width: 750px;"></canvas>
-        </div> --}}
         </div>
         @if (isset($barChartData))
             <script>
