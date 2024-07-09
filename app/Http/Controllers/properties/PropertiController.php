@@ -16,6 +16,16 @@ use Illuminate\Support\Facades\Http;
 
 class PropertiController extends Controller
 {
+
+    public function __construct()
+    {
+        $this->middleware('permission:Thêm bất động sản', ['only' => ['store', 'create']]);
+        $this->middleware('permission:Xóa bất động sản', ['only' => ['destroy']]);
+        $this->middleware('permission:Xem bất động sản', ['only' => ['show']]); 
+        $this->middleware('permission:Sửa bất động sản', ['only' => ['update']]);
+    }
+
+
     public function search(Request $request)
     {
         if ($request->input('search') == '' && $request->input('type') == '1' && $request->input('local') == '1' && $request->input('price') == '1' && $request->input('area') == '1' && $request->input('status') == '1') {
@@ -122,9 +132,6 @@ class PropertiController extends Controller
             ]);
             // return $query->get();
         }
-    }
-    public function __construct()
-    {
     }
 
     public function index()
