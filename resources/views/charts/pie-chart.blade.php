@@ -10,7 +10,6 @@
         </div> --}}
         </div>
     </div>
-    <hr class="my-5 w-100">
     @if (isset($pieChartData))
         <script>
             $(document).ready(function() {
