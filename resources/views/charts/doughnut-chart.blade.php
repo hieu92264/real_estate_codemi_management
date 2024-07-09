@@ -17,8 +17,8 @@
                     return item.label;
                 });
                 var colors = [];
+                var count = 7;
                 labels.forEach(element => {
-                    var count = 7;
                     colors.push("rgba(235, 22, 22, ." + count + ")");
                     count--;
                 });
