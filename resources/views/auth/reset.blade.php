@@ -46,7 +46,7 @@
                                 <small class="help-block">{{ $message }}</small>
                             @enderror
                         </div>
-                        <button type="submit" class="btn btn-primary" style="color: black">Reset Password</button>
+                        <button type="submit" class="btn btn-custom">Reset Password</button>
                     </form>
                     <p>
                         @if (session('success'))
