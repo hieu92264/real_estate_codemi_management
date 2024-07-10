@@ -85,8 +85,6 @@
             <a href="{{ route('bat-dong-san.create') }}" class="btn btn-success mb-3"
                 style="margin-right:20px; margin-top:20px">Thêm mới bất động sản</a>
         </div>
-
-
         <div class="tab-content">
             <div id="tab-1" class="tab-pane fade show p-0 active">
                 <div class="row g-4">
@@ -132,7 +130,6 @@
                                             vnđ
                                         @endif
                                     </h5>
-                                    {{-- <a class="d-block h5 mb-2" href="">Golden Urban House For Sell</a> --}}
                                     <h6>
                                         <i class="fa fa-map-marker-alt text-primary me-2"></i>
                                         {{ $property->hasLocation->full_address ?? '' }}
@@ -172,5 +169,4 @@
         </div>
     </div>
 </div>
-
 @endsection

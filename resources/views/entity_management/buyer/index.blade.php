@@ -36,14 +36,6 @@
                             </tr>
                         </thead>
                         <tbody>
-                            {{-- <tr>
-                            <th scope="row">1</th>
-                            <td>John</td>
-                            <td>Doe</td>
-                            <td>jhon@email.com</td>
-                            <td>USA</td>
-                            <td>123</td>
-                        </tr> --}}
                             @foreach ($buyer as $buyers)
                                 <tr>
                                     <th scope="row">{{ $buyers->id }}</th>

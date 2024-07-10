@@ -19,9 +19,6 @@
         <div class="navbar-nav w-100">
             <a href="{{ route('bat-dong-san.index') }}" class="nav-item nav-link"><i class="fa fa-home me-2"></i>Bất
                 động sản</a>
-            {{-- <a href="{{ route('bat-dong-san.index') }}" class="nav-item nav-link"><i
-                    class="fa fa-tachometer-alt me-2"></i>Bất
-                động sản</a> --}}
             @if (Auth::user()->hasPermission('Xem thông tin tài khoản') || Auth::user()->hasPermission('Xem thông tin chức vụ'))
                 <div class="nav-item dropdown">
                     <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown"><i

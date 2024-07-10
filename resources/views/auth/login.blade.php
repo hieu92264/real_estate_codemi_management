@@ -14,6 +14,8 @@
 
     <!-- Stylesheet -->
     <link href="{{ asset('auth/css/style.css') }}" rel="stylesheet">
+    <!-- Bootstrap CDN -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css">
 </head>
 
 <body>
@@ -33,7 +35,9 @@
                     <form method="POST" action="{{ route('doLogin') }}">
                         @csrf
                         <p>
-                            <input type="text" name="email" placeholder="Email">
+                            {{-- <input type="text" name="email" placeholder="Email"> --}}
+                            <input type="email" class="form-control" id="email" name="email"
+                                value="{{ old('email') }}" required autofocus>
                         </p>
                         <p>
                             <input type="password" name="password" placeholder="Password">
@@ -50,8 +54,14 @@
                                     {{ session('success') }}
                                 </div>
                             @endif
-                            @if (session('error'))
-                                <p class="error-message">{{ session('error') }}</p>
+                            @if ($errors->any())
+                                <div class="alert alert-danger">
+                                    <ul>
+                                        @foreach ($errors->all() as $error)
+                                            <li>{{ $error }}</li>
+                                        @endforeach
+                                    </ul>
+                                </div>
                             @endif
                         </p>
                     </form>
