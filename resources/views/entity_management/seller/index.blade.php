@@ -25,9 +25,9 @@
                         <button type="submit" class="btn btn-primary">Tìm Kiếm</button>
                     </div>
                 </form> --}}
-
                 <table class="table table-bordered text-center custom-table">
                     <thead class="custom-header">
+
                         <tr>
                             <th scope="col">ID</th>
                             <th scope="col">Tên người bán</th>

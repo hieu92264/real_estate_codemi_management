@@ -12,20 +12,7 @@ use App\Http\Controllers\properties\PropertiController;
 use App\Http\Controllers\entity_management\TransactionController;
 use App\Http\Controllers\report\PriceReportController;
 
-/*
-|--------------------------------------------------------------------------
-| Web Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider and all of them will
-| be assigned to the "web" middleware group. Make something great!
-|
-*/
-
-// Route::get("/", function () {
-//     return view("welcome");
-// });
+// Guest
 Route::middleware('guest')->group(function () {
     Route::get("/", [AuthController::class, 'showFormLogin'])->name("showFormLogin");
     Route::post("/", [AuthController::class, 'doLogin'])->name("doLogin");
@@ -34,15 +21,13 @@ Route::middleware('guest')->group(function () {
     Route::get("/reset-mat-khau", [AuthController::class, "showFormReset"])->name("showFormReset");
     Route::post("/reset-mat-khau", [AuthController::class, "doReset"])->name("doReset");
 });
-Route::get("/logout", [AuthController::class, "logout"])->name("logout");
-// Route::get("/trang-chu", function () {
-//     return view("layouts.dashboard");
-// })->name("home");
+// end guest
 
+Route::get("/logout", [AuthController::class, "logout"])->name("logout");
 
 Route::get("/trang-chu", [DashboardController::class, 'index'])->name('home');
 
-//trang quan li 
+//auth
 Route::middleware('auth')->group(function () {
     Route::get('/dashboard', [Controller::class, 'showFormHome'])->name('showFormDashboard');
     Route::resource('/roles', RoleController::class);
@@ -55,7 +40,6 @@ Route::middleware('auth')->group(function () {
     Route::get('/tim-kiem', [UserController::class, 'search'])->name('search');
     Route::get('/doi-mat-khau', [AuthController::class, 'changePassword'])->name('change.password');
     Route::post('/doi-mat-khau', [AuthController::class, 'savePassword']);
-    // Route::get('/thong-ke-theo-trang-thai', [DashboardController::class, ''])
     Route::get('/thong-ke-theo-gia', [PriceReportController::class, 'index'])->name('priceReport');
-    // Route::resource('/bat-dong-san', PropertiController::class);
 });
+// end auth

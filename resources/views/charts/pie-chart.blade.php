@@ -3,11 +3,6 @@
         <h4 class="mb-4 centered-title">Thống kê theo trạng thái bất động sản</h4>
         <div class="bg-light rounded h-100 p-4" style="max-width: 600px; margin :auto ">
             <canvas id="pie-chart"></canvas>
-            {{-- <h4 class="mb-4">Thống kê theo trạng thái bất động sản</h4>
-        <div class="bg-light rounded h-100 p-4">
-            <canvas id="pie-chart"
-                style="display: block; box-sizing: border-box; height: 186.4px; width: 186.8px;"></canvas>
-        </div> --}}
         </div>
     </div>
     @if (isset($pieChartData))
