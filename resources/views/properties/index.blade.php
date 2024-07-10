@@ -76,14 +76,15 @@
                         </div>
                     </div>
                     <div class="col-md-2 d-flex align-items-center">
-                        <button type="submit" class="btn btn-success w-100">Tìm Kiếm</button>
+                        <button type="submit" class="btn btn-success">Tìm Kiếm</button>
                     </div>
                 </form>
             </div>
         </div>
-
-        <a href="{{ route('bat-dong-san.create') }}" class="btn btn-success mb-3" style="margin: 15px;">Thêm mới bất động
-            sản</a>
+        <div class="d-flex justify-content-end my-2 mr-3">
+            <a href="{{ route('bat-dong-san.create') }}" class="btn btn-success mb-3"
+                style="margin-right:20px; margin-top:20px">Thêm mới bất động sản</a>
+        </div>
 
 
         <div class="tab-content">

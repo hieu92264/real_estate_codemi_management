@@ -19,8 +19,10 @@
                     </div>
                 </div>
                 <div class="table-responsive">
-                    <a href="{{ route('danh-sach-nguoi-mua.create') }}" class="btn btn-success btn-sm my-2">Thêm người
-                        mua</a>
+                    <div class="d-flex justify-content-end my-2 mr-3">
+                        <a href="{{ route('danh-sach-nguoi-mua.create') }}" class="btn btn-success mb-3"
+                            style="margin-right:20px; margin-top:20px">Thêm người mua</a>
+                    </div>
                     <table class="table table-bordered text-center custom-table">
                         <thead class="custom-header">
                             <tr>

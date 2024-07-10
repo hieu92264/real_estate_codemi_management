@@ -9,8 +9,9 @@
                 @csrf
 
                 {{-- Loại nhà --}}
-                <fieldset class="mb-3">
-                    <legend>Loại</legend>
+                <fieldset class="mb-3" style="border: 2px solid #db5151; padding: 15px; border-radius: 5px">
+                    <label>Loại</label>
+                    <br>
                     <div class="form-check form-check-inline">
                         <input class="form-check-input" type="radio" name="type" id="type_nha" value="nhà"
                             {{ old('type') == 'nhà' ? 'checked' : '' }}>
@@ -140,19 +141,19 @@
                     <div class="form-group">
                         <label for="floors">Số Tầng</label>
                         <input type="number" name="floors" class="form-control" id="floors"
-                            value="{{ old('floors') }}">
+                            value="{{ old('floors') }}" min="1">
                     </div>
 
                     <div class="form-group">
                         <label for="bedrooms">Số Phòng Ngủ</label>
                         <input type="number" value="{{ old('bedrooms') }}" name="bedrooms" class="form-control"
-                            id="bedrooms">
+                            id="bedrooms" min="0">
                     </div>
 
                     <div class="form-group">
                         <label for="toilets">Số Phòng Tắm</label>
                         <input type="number" value="{{ old('toilets') }}" name="toilets" class="form-control"
-                            id="toilets">
+                            id="toilets" min="0">
                     </div>
 
                     <div class="form-group">
@@ -269,4 +270,3 @@
     {{-- get lat long --}}
     <script src="{{ asset('admin/js/api_get_lat_lon.js') }}"></script>
 @endsection
-

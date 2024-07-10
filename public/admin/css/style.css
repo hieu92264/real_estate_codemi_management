@@ -89,14 +89,14 @@
 img {
     height: 60px;
     width: 240px;
-    border: #db5151 solid 1px;
+    border: var(--primary) solid 1px;
     border-radius: 5px
 }
 
 .content {
     margin-left: 250px;
     min-height: 100vh;
-    background: #F3F6F9;
+    background: var(--light);
     transition: 0.5s;
 }
 
@@ -407,7 +407,7 @@ i {
 }
 
 .custom-header {
-    background-color: #AEAEB0;
+    background-color: #C0C0C2;
     border-bottom: 2px solid #dee2e6;
     padding: 10px 0;
 }

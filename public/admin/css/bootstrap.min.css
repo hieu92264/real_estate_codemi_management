@@ -18,7 +18,7 @@
     --bs-white: #fff;
     --bs-gray: #6c757d;
     --bs-gray-dark: #343a40;
-    --bs-primary: #009CFF;
+    --bs-primary: #db5151;
     --bs-secondary: #6c757d;
     --bs-success: #198754;
     --bs-info: #0dcaf0;
@@ -7823,7 +7823,8 @@ fieldset:disabled .btn {
 }
 
 .mb-4 {
-    margin-bottom: 1.5rem !important
+    margin-bottom: 1.5rem !important;
+    color: var(--bs-primary);
 }
 
 .mb-5 {
@@ -8273,7 +8274,8 @@ fieldset:disabled .btn {
 }
 
 .text-center {
-    text-align: center !important
+    text-align: center !important;
+    color: (var(--bs-primary));
 }
 
 .text-decoration-none {
@@ -8370,7 +8372,7 @@ fieldset:disabled .btn {
 }
 
 .bg-primary {
-    background-color: #db5151 !important
+    background-color: var(--bs-primary) !important
 }
 
 .bg-secondary {
