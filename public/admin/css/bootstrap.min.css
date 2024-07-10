@@ -329,6 +329,10 @@ th {
     border-width: 0
 }
 
+tbody {
+    background-color: #FFF;
+}
+
 label {
     display: inline-block
 }
@@ -3174,7 +3178,9 @@ fieldset:disabled .btn {
 .btn-success {
     color: #fff;
     background-color: #198754;
-    border-color: #198754
+    border-color: #198754;
+    margin-left: 10px;
+
 }
 
 .btn-success:hover {

@@ -30,15 +30,15 @@
                     <form method="POST" action="{{ route('doForget') }}">
                         @csrf
                         <div class="form-group">
-                            <label for="email">Email address</label>
+                            <label for="email">Địa chỉ Email</label>
                             <input type="email" class="form-control" id="email" name="email"
-                                placeholder="Input field" required>
+                                placeholder="Nhập địa chỉ Email" required>
                             @error('email')
                                 <small class="help-block">{{ $message }}</small>
                             @enderror
                         </div>
-                        <p></p>
-                        <button type="submit" class="btn btn-primary" style="color: black">Gửi email xác nhận</button>
+                        <br>
+                        <input class="btn btn-custom" type="submit" value="Gửi Email xác nhận" />
                     </form>
                     <p>
                         @if (session('success'))
