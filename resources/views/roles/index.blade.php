@@ -1,8 +1,8 @@
 @extends('home')
 @section('content')
     <div class="d-flex justify-content-end my-2 mr-3">
-        <a href="{{ route('roles.create') }}" class="btn btn-success btn-sm" data-bs-toggle="modal"
-            data-bs-target="#exampleModal" style="margin-right: 20px; margin-top: 20px;">Thêm chức vụ</a>
+        <a href="{{ route('roles.create') }}" class="btn btn-success mb-3" data-bs-toggle="modal" data-bs-target="#exampleModal"
+            style="margin-right: 30px; margin-top: 20px;">Thêm chức vụ</a>
     </div>
 
     <div class="table-responsive">
@@ -20,6 +20,10 @@
                         <td>{{ $index + 1 }}</td>
                         <td>{{ $role->name }}</td>
                         <td class="action-buttons d-flex justify-content-center align-items-center">
+                            @if (Auth::user()->hasPermission('Sửa chức vụ'))
+                                <a href="{{ route('roles.show', $role->id) }}" class="btn btn-primary btnOpenEditModal me-2"
+                                    data-role-id="{{ $role->id }}">Sửa</a>
+                            @endif
                             @if (Auth::user()->hasPermission('Xóa chức vụ'))
                                 <form action="{{ route('roles.destroy', $role->id) }}" method="POST"
                                     style="margin-right: 5px;"
@@ -28,10 +32,6 @@
                                     @method('DELETE')
                                     <button type="submit" class="btn btn-danger">Xóa</button>
                                 </form>
-                            @endif
-                            @if (Auth::user()->hasPermission('Sửa chức vụ'))
-                                <a href="{{ route('roles.show', $role->id) }}" class="btn btn-primary btnOpenEditModal"
-                                    data-role-id="{{ $role->id }}">Sửa</a>
                             @endif
                         </td>
                     </tr>

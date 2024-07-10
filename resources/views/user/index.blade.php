@@ -9,8 +9,7 @@
 
     @if (Auth::user()->hasPermission('them tai khoan'))
         <div class="d-flex justify-content-end my-2 mr-3">
-            <a href="{{ route('users.create') }}" class="btn btn-success btn-sm my-2"
-                style="margin-right: 20px; margin-top: 20px;">
+            <a href="{{ route('users.create') }}" class="btn btn-success mb-3" style="margin-right:20px; margin-top:20px">
                 Thêm tài khoản</a>
         </div>
     @endif

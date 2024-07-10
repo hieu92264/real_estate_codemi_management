@@ -1,7 +1,7 @@
 <div class="container mt-5">
     <div class="col-sm-12">
         <h4 class="mb-4 centered-title">Thống kê theo loại bất động sản</h4>
-        <div class="bg-light rounded h-100 p-4" style="max-width: 600px; margin: auto">
+        <div class="bg-light rounded h-100 p-4" style="max-width: 500px; margin: auto">
             <canvas id="doughnut-chart"></canvas>
         </div>
     </div>

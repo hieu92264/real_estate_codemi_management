@@ -10,8 +10,14 @@
                         @if ($property->hasImages->isNotEmpty())
                             @foreach ($property->hasImages as $key => $image)
                                 <div class="mySlides" style="display: {{ $key == 0 ? 'block' : 'none' }}">
-                                    <img src="{{ asset('storage/' . $image->image_url) }}"
-                                        onclick="showModal('{{ asset('storage/' . $image->image_url) }}')">
+                                    <div class="image-wrapper">
+                                        <img src="{{ asset('storage/' . $image->image_url) }}"
+                                            onclick="showModal('{{ asset('storage/' . $image->image_url) }}')">
+                                        <div class="image-overlay"
+                                            onclick="showModal('{{ asset('storage/' . $image->image_url) }}')">
+                                            Xem chi tiết ảnh
+                                        </div>
+                                    </div>
                                 </div>
                             @endforeach
                         @else
@@ -55,7 +61,8 @@
                         @endif
                         @if ($property->hasLocation)
                             <li class="list-group-item"><strong>Địa chỉ:</strong>
-                                {{ $property->hasLocation->full_address ?? '' }} {{ $property->hasLocation->street ?? '' }},
+                                {{ $property->hasLocation->full_address ?? '' }}
+                                {{ $property->hasLocation->street ?? '' }},
                                 {{ $property->hasLocation->ward ?? '' }}, {{ $property->hasLocation->district ?? '' }},
                                 {{ $property->hasLocation->city ?? '' }}
                             </li>
@@ -90,19 +97,18 @@
                 <div class="col-md-12">
                     <ul class="list-group list-group-flush mt-3">
                         <li class="list-group-item text-center">
+                            @if (Auth::user()->hasPermission('Sửa Bất động sản'))
+                                <a href="{{ route('bat-dong-san.edit', $property->id) }}" class="btn btn-success me-2">Sửa
+                                    bất động sản</a>
+                            @endif
                             @if (Auth::user()->hasPermission('Xóa bất động sản'))
                                 <form action="{{ route('bat-dong-san.destroy', $property->id) }}" method="POST"
                                     onsubmit="return confirm('Bạn có muốn xóa bất động sản không?');"
                                     class="d-inline-block">
                                     @csrf
                                     @method('DELETE')
-                                    <button type="submit" class="btn btn-danger me-2">Xóa bất động sản</button>
+                                    <button type="submit" class="btn btn-danger">Xóa bất động sản</button>
                                 </form>
-                            @endif
-                            @if (Auth::user()->hasPermission('Sửa Bất động sản'))
-                                <a href="{{ route('bat-dong-san.edit', $property->id) }}" class="btn btn-success">Sửa bất
-                                    động
-                                    sản</a>
                             @endif
                         </li>
                     </ul>
