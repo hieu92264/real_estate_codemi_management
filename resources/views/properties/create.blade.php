@@ -9,20 +9,14 @@
                 @csrf
 
                 {{-- Loại nhà --}}
-                <fieldset class="mb-3" style="border: 2px solid #db5151; padding: 15px; border-radius: 5px">
-                    <label>Loại</label>
-                    <br>
-                    <div class="form-check form-check-inline">
-                        <input class="form-check-input" type="radio" name="type" id="type_nha" value="nhà"
-                            {{ old('type') == 'nhà' ? 'checked' : '' }}>
-                        <label class="form-check-label" for="type_nha">Nhà</label>
-                    </div>
-                    <div class="form-check form-check-inline">
-                        <input class="form-check-input" type="radio" name="type" id="type_dat_nen" value="đất nền"
-                            {{ old('type') == 'đất nền' ? 'checked' : '' }}>
-                        <label class="form-check-label" for="type_dat_nen">Đất Nền</label>
-                    </div>
-                    @error('type')
+                <fieldset class="mb-3">
+                    <label>Loại</label> <br>
+                    <div class="form-check form-check-inline"> <input class="form-check-input" type="radio" name="type"
+                            id="type_nha" value="nhà" {{ old('type') == 'nhà' ? 'checked' : '' }}> <label
+                            class="form-check-label" for="type_nha">Nhà</label> </div>
+                    <div class="form-check form-check-inline"> <input class="form-check-input" type="radio" name="type"
+                            id="type_dat_nen" value="đất nền" {{ old('type') == 'đất nền' ? 'checked' : '' }}> <label
+                            class="form-check-label" for="type_dat_nen">Đất Nền</label> </div> @error('type')
                         <div class="alert alert-danger">{{ $message }}</div>
                     @enderror
                 </fieldset>

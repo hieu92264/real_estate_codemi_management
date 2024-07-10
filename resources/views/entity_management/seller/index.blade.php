@@ -6,7 +6,7 @@
             <div class="table-responsive">
                 <div class="container mt-3">
                     <div class="row justify-content-center">
-                        <div class="col-md-8">
+                        <div class="col-md-6">
                             <form action="{{ route('danh-sach-nguoi-ban.index') }}" method="GET" class="mb-4">
                                 <div class="input-group">
                                     <input type="text" class="form-control" name="search"

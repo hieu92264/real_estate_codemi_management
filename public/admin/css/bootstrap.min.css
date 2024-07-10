@@ -334,7 +334,8 @@ tbody {
 }
 
 label {
-    display: inline-block
+    display: inline-block;
+    font-size: 1.1em;
 }
 
 button {
@@ -1223,7 +1224,11 @@ progress {
 
     .col-md-8 {
         flex: 0 0 auto;
-        width: 66.66667%
+        width: 66.66667%;
+        border: 1px solid #db5151;
+        padding: 20px;
+        border-radius: 10px;
+        box-shadow: 0 4px 8px rgba(200, 0, 0, 0.5);
     }
 
     .col-md-9 {
@@ -7824,7 +7829,6 @@ fieldset:disabled .btn {
 
 .mb-4 {
     margin-bottom: 1.5rem !important;
-    color: var(--bs-primary);
 }
 
 .mb-5 {

@@ -82,8 +82,10 @@
             </div>
         </div>
         <div class="d-flex justify-content-end my-2 mr-3">
-            <a href="{{ route('bat-dong-san.create') }}" class="btn btn-success mb-3"
-                style="margin-right:20px; margin-top:20px">Thêm mới bất động sản</a>
+            @if (Auth::user()->hasPermission('Thêm bất động sản'))
+                <a href="{{ route('bat-dong-san.create') }}" class="btn btn-success mb-3"
+                    style="margin-right:20px; margin-top:20px">Thêm mới bất động sản</a>
+            @endif
         </div>
         <div class="tab-content">
             <div id="tab-1" class="tab-pane fade show p-0 active">

@@ -6,7 +6,8 @@
             @csrf
             <div class="row justify-content-center">
                 <div class="col-sm-12 col-lg-8 col-xl-6">
-                    <div class="bg-light rounded h-100 p-4">
+                    <div class="bg-light rounded h-100 p-4"
+                        style="border: 1px solid #db5151; box-shadow: 0 4px 8px rgba(200, 0, 0, 0.5);">
                         <h4 class="mb-4 text-center">Thêm mới tài khoản</h4>
                         <div class="form-group mb-3">
                             <label for="name" class="form-label">Họ và tên</label>

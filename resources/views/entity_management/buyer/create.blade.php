@@ -2,7 +2,7 @@
 
 @section('content')
     <div class="container d-flex justify-content-center align-items-center flex-column rounded p-4"
-        style="max-width: 800px; margin-top: 40px;">
+        style="max-width: 800px; margin-top: 40px; border: 1px solid #db5151; box-shadow: 0 4px 8px rgba(200, 0, 0, 0.5);">
         <h4 class="mb-4 text-center">Tạo Người Mua Mới</h4>
         <form action="{{ route('danh-sach-nguoi-mua.store') }}" method="POST" class="w-100">
             @csrf
