@@ -37,6 +37,63 @@
     <link rel="stylesheet" href="{{ asset('map/css/MarkerCluster.Default.css') }}">
     <script src="{{ asset('map/js/MarkerCluster.js') }}"></script>
     <script src="{{ asset('map/js/leaflet.markerCluster-src.js') }}"></script>
+
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+        }
+
+        .custom-select-wrapper {
+            width: 100%;
+            max-width: 500px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        #map {
+            height: 800px;
+            width: 100%;
+            max-width: 1300px;
+        }
+
+        fieldset {
+            padding: 10px;
+            border-radius: 5px;
+            border: 2px solid #db5151;
+            margin-bottom: 20px;
+            width: 100%;
+            max-width: 800px;
+        }
+
+        .form-group {
+            margin-bottom: 5px;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            display: flex;
+        }
+
+        .form-control {
+            width: 100%;
+            max-width: 800px;
+            margin: auto
+        }
+
+        .form-group input,
+        .form-group select {
+            width: 100%;
+            max-width: 500px;/
+        }
+
+        label {
+            font-size: 0.9rem;
+            margin-right: 420px
+        }
+    </style>
 </head>
 
 <body>
@@ -72,7 +129,7 @@
             <input type="hidden" name="ward" id="ward_name">
         </div>
     </fieldset>
-    <div id="map" style="height: 400px; width: 100%;"></div>
+    <div id="map"></div>
     <script src="{{ asset('admin/js/map/api_get_lat_lon.js') }}"></script>
     <script src="{{ asset('admin/js/api_viet_nam.js') }}"></script>
 </body>
