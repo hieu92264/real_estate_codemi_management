@@ -128,7 +128,7 @@
                                 <div class="p-4 pb-0 flex-grow-1">
                                     <h5 class="text-primary mb-3"><i class="fas fa-dollar-sign"></i>
                                         @if ($property->hasDescription)
-                                            {{ number_format(floatval($property->hasDescription->price), 0, ',', '.') }}
+                                            {{ number_format($property->hasDescription->price, 0, ',', '.') }}
                                             vnđ
                                         @endif
                                     </h5>

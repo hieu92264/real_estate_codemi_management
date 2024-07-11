@@ -72,8 +72,8 @@
 
                     <div class="form-group">
                         <label for="price">Giá</label>
-                        <input type="text" value="{{ $properties->hasDescription->price }}" name="price"
-                            class="form-control" id="price">
+                        <input type="text" value="{{ number_format($properties->hasDescription->price, 0, ',', '.') }}"
+                            name="price" class="form-control" id="price">
                     </div>
 
                     <div class="form-group">
@@ -127,7 +127,7 @@
 
                     <div class="form-group">
                         <label for="bedrooms">Số Phòng Ngủ</label>
-                        <input type="number" value="{{ $properties->hasDescription->bedroom ?? '' }}" name="bedrooms"
+                        <input type="number" value="{{ $properties->hasDescription->bedrooms ?? '' }}" name="bedrooms"
                             class="form-control" id="bedrooms" min="0">
                     </div>
 
@@ -249,6 +249,6 @@
         </div>
     </div>
     <script src="{{ asset('admin/js/api_viet_nam.js') }}"></script>
-    <script src="{{ asset('admin/js/formatCurrency.js') }}"></script>
+    <script src="{{ asset('admin/js/formatPrice.js') }}"></script>
     <script src="{{ asset('admin/js/get_lat_long_new.js') }}"></script>
 @endsection

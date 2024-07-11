@@ -230,14 +230,14 @@
                     </div>
 
                     <div class="form-group">
-                        <label for="full_address">Dịa chỉ cụ thể</label>
+                        <label for="full_address">Địa chỉ cụ thể</label>
                         {{-- <input type="text" name="full_address" class="form-control" id="full_address">
                          --}}
                         <div style="display: flex; flex-direction: column;">
                             <div style="display: flex;">
                                 <div style="flex: 1;">
-                                    <input type="text" name="full_address" id="searchInput" style="width: 100%;"
-                                        placeholder="Enter your address">
+                                    <input class="form-control" type="text" name="full_address" id="searchInput"
+                                        style="width: 100%;" placeholder="Enter your address">
                                 </div>
                                 <input type="hidden" id="lat" name="latitude">
                                 <input type="hidden" id="long" name="longitude">
@@ -272,7 +272,7 @@
     </div>
 
     <script src="{{ asset('admin/js/api_viet_nam.js') }}"></script>
-    <script src="{{ asset('admin/js/format_currency.js') }}"></script>
     {{-- get lat long --}}
     <script src="{{ asset('admin/js/get_lat_long_new.js') }}"></script>
+    <script src="{{ asset('admin/js/formatPrice.js') }}"></script>
 @endsection
