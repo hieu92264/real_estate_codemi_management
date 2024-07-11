@@ -9,6 +9,7 @@
         "guzzlehttp/guzzle": "^7.8",
         "laravel/framework": "^10.0",
         "laravel/sanctum": "^3.2",
+        "laravel/telescope": "^5.1",
         "laravel/tinker": "^2.8",
         "maatwebsite/excel": "^1.1"
     },

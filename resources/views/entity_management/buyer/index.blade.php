@@ -6,12 +6,12 @@
             <div class="table-responsive">
                 <div class="container mt-3">
                     <div class="row justify-content-center">
-                        <div class="col-md-8">
+                        <div class="col-md-6">
                             <form action="{{ route('danh-sach-nguoi-mua.index') }}" method="GET" class="mb-4">
                                 <div class="input-group">
                                     <input type="text" class="form-control" name="search"
                                         placeholder="Tìm kiếm người mua..." value="{{ request('search') }}">
-                                    <button type="submit" class="btn btn-primary" style="margin-left: 10pt">Tìm
+                                    <button type="submit" class="btn btn-success">Tìm
                                         Kiếm</button>
                                 </div>
                             </form>
@@ -19,10 +19,12 @@
                     </div>
                 </div>
                 <div class="table-responsive">
-                    <a href="{{ route('danh-sach-nguoi-mua.create') }}" class="btn btn-success btn-sm my-2">Thêm người
-                        mua</a>
-                    <table class="table">
-                        <thead>
+                    <div class="d-flex justify-content-end my-2 mr-3">
+                        <a href="{{ route('danh-sach-nguoi-mua.create') }}" class="btn btn-success mb-3"
+                            style="margin-right:20px; margin-top:20px">Thêm người mua</a>
+                    </div>
+                    <table class="table table-bordered text-center custom-table">
+                        <thead class="custom-header">
                             <tr>
                                 <th scope="col">ID</th>
                                 <th scope="col">Tên người mua</th>
@@ -34,14 +36,6 @@
                             </tr>
                         </thead>
                         <tbody>
-                            {{-- <tr>
-                            <th scope="row">1</th>
-                            <td>John</td>
-                            <td>Doe</td>
-                            <td>jhon@email.com</td>
-                            <td>USA</td>
-                            <td>123</td>
-                        </tr> --}}
                             @foreach ($buyer as $buyers)
                                 <tr>
                                     <th scope="row">{{ $buyers->id }}</th>
@@ -50,7 +44,7 @@
                                     <td>{{ $buyers->phone }}</td>
                                     <td>{{ $buyers->address }}</td>
                                     <td>{{ $buyers->transaction_history }}</td>
-                                    <td>
+                                    <td class="action-buttons">
                                         <a href="{{ route('danh-sach-nguoi-mua.edit', $buyers->id) }}"
                                             class="btn btn-primary btn-sm">Sửa</a>
                                         {{-- <form class="mt-2" action="{{ route('danh-sach-nguoi-mua.destroy', $buyers->id) }}", method="POST">
@@ -58,12 +52,11 @@
                                         @method('DELETE')
                                         <input type="submit" class="btn btn-danger btn-sm" value="Xóa">
                                     </form> --}}
-                                        <form class="mt-2"
-                                            action="{{ route('danh-sach-nguoi-mua.destroy', $buyers->id) }}" method="POST"
-                                            onsubmit="return confirmDelete()">
+                                        <form action="{{ route('danh-sach-nguoi-mua.destroy', $buyers->id) }}"
+                                            method="POST" onsubmit="return confirmDelete()">
                                             @csrf
                                             @method('DELETE')
-                                            <input type="submit" class="btn btn-danger btn-sm" value="Xóa">
+                                            <button type="submit" class="btn btn-danger btn-sm">Xóa</button>
                                         </form>
                                     </td>
                                 </tr>

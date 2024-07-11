@@ -10,18 +10,13 @@
 
                 {{-- Loại nhà --}}
                 <fieldset class="mb-3">
-                    <legend>Loại</legend>
-                    <div class="form-check form-check-inline">
-                        <input class="form-check-input" type="radio" name="type" id="type_nha" value="nhà"
-                            {{ old('type') == 'nhà' ? 'checked' : '' }}>
-                        <label class="form-check-label" for="type_nha">Nhà</label>
-                    </div>
-                    <div class="form-check form-check-inline">
-                        <input class="form-check-input" type="radio" name="type" id="type_dat_nen" value="đất nền"
-                            {{ old('type') == 'đất nền' ? 'checked' : '' }}>
-                        <label class="form-check-label" for="type_dat_nen">Đất Nền</label>
-                    </div>
-                    @error('type')
+                    <label>Loại</label> <br>
+                    <div class="form-check form-check-inline"> <input class="form-check-input" type="radio" name="type"
+                            id="type_nha" value="nhà" {{ old('type') == 'nhà' ? 'checked' : '' }}> <label
+                            class="form-check-label" for="type_nha">Nhà</label> </div>
+                    <div class="form-check form-check-inline"> <input class="form-check-input" type="radio" name="type"
+                            id="type_dat_nen" value="đất nền" {{ old('type') == 'đất nền' ? 'checked' : '' }}> <label
+                            class="form-check-label" for="type_dat_nen">Đất Nền</label> </div> @error('type')
                         <div class="alert alert-danger">{{ $message }}</div>
                     @enderror
                 </fieldset>
@@ -104,8 +99,8 @@
                     <div class="form-group">
                         <label for="frontage">Mặt Tiền</label>
                         <div class="input-group">
-                            <input type="number" name="frontage" class="form-control" id="frontage"
-                                value="{{ old('frontage') }}">
+                            <input type="number" step="1" min="1" max="4" name="frontage"
+                                class="form-control" id="frontage">
                             <div class="input-group-append">
                                 <span class="input-group-text">m</span>
                             </div>
@@ -140,19 +135,19 @@
                     <div class="form-group">
                         <label for="floors">Số Tầng</label>
                         <input type="number" name="floors" class="form-control" id="floors"
-                            value="{{ old('floors') }}">
+                            value="{{ old('floors') }}" min="1">
                     </div>
 
                     <div class="form-group">
                         <label for="bedrooms">Số Phòng Ngủ</label>
                         <input type="number" value="{{ old('bedrooms') }}" name="bedrooms" class="form-control"
-                            id="bedrooms">
+                            id="bedrooms" min="0">
                     </div>
 
                     <div class="form-group">
                         <label for="toilets">Số Phòng Tắm</label>
                         <input type="number" value="{{ old('toilets') }}" name="toilets" class="form-control"
-                            id="toilets">
+                            id="toilets" min="0">
                     </div>
 
                     <div class="form-group">
@@ -193,8 +188,6 @@
                         <div class="custom-select-wrapper">
                             <select class="form-control" id="city" name="city_id" title="Chọn Tỉnh Thành">
                                 <option value="0">Tỉnh Thành</option>
-
-                                <!-- Thêm các option khác nếu cần -->
                             </select>
                         </div>
                         <input type="hidden" name="city" id="city_name">
@@ -208,7 +201,6 @@
                         <div class="custom-select-wrapper">
                             <select class="form-control" id="district" name="district_id" title="Chọn Quận Huyện">
                                 <option value="0">Quận Huyện</option>
-
                             </select>
                         </div>
                         <input type="hidden" name="district" id="district_name">

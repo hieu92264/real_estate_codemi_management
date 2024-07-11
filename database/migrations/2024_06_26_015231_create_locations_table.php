@@ -21,7 +21,6 @@ return new class extends Migration
             $table->string('full_address', 255);
             // $table->decimal('latitude', 9, 6);
             // $table->decimal('longitude', 9, 6);
-            // $table->string('google_map_url', 255);
             $table->timestamps();
         });
     }

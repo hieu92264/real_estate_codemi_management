@@ -42,21 +42,8 @@ class PropertiController extends Controller
             $area = $request->input('area');
             $status = $request->input('status');
 
-            // $query = Properties::query();
-            // $query->join('properties_descriptions', 'properties.id', '=', 'properties_descriptions.property_id')
-            //     ->join('locations', 'properties.id', '=', 'locations.property_id')
-            //     ->join('property_images', 'properties.id', '=', 'property_images.property_id');
             $query = Properties::with(['hasImages', 'hasLocation', 'hasDescription']);
             if (!empty($search)) {
-                // $query->where(function ($q) use ($search) {
-                //     $q->where('properties_descriptions.owner', 'LIKE', "%$search%")
-                //         ->orWhere("properties_descriptions.phone_number", "LIKE", "%$search%")
-                //         ->orWhere("properties_descriptions.gmail", "LIKE", "%$search%")
-                //         ->orWhere("locations.district", "LIKE", "%$search%")
-                //         ->orWhere("locations.ward", "LIKE", "%$search%")
-                //         ->orWhere("locations.street", "LIKE", "%$search%")
-                //         ->orWhere("properties.id", "LIKE", "%$search%");
-                // });
                 $query->where(function ($q) use ($search) {
                     $q->whereHas('hasDescription', function ($q) use ($search) {
                         $q->where('owner', 'LIKE', "%$search%")
@@ -93,7 +80,7 @@ class PropertiController extends Controller
             if ($price != '1') {
                 if (array_key_exists($price, $priceRanges)) {
                     $query->whereHas("hasDescription", function ($q) use ($priceRanges, $price) {
-                        $q->whereBetween("price", $priceRanges[$price]);
+                        $q->whereBetween(DB::raw('CAST(price AS UNSIGNED)'), $priceRanges[$price]);
                     });
                 }
             }
@@ -130,7 +117,6 @@ class PropertiController extends Controller
                     'status' => request('status'),
                 ]),
             ]);
-            // return $query->get();
         }
     }
 
@@ -146,7 +132,7 @@ class PropertiController extends Controller
             ->paginate(9);
         $types = Properties::distinct()->pluck('type')->toArray();
         $statuses = Properties::distinct()->pluck('status')->toArray();
-        $locations = Location::pluck('district')
+        $locations = $properties->pluck('hasLocation.district')
             ->filter()
             ->unique()
             ->toArray();
@@ -305,7 +291,7 @@ class PropertiController extends Controller
                 'ward' => $validatedData['ward'],
                 'street' => $validatedData['street'],
                 'full_address' => $validatedData['full_address']
-                ,
+ j/               ,
                 'latitude' => request('latitude'),
                 'longitude' => request('longitude'),
             ]);
@@ -314,3 +300,4 @@ class PropertiController extends Controller
     }
 
 }
+

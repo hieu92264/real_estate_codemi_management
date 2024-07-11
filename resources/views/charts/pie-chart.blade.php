@@ -1,9 +1,8 @@
 <div class="container mt-5">
     <div class="col-sm-12">
-        <h4 class="mb-4">Thống kê theo trạng thái bất động sản</h4>
-        <div class="bg-light rounded h-100 p-4">
-            <canvas id="pie-chart"
-                style="display: block; box-sizing: border-box; height: 186.4px; width: 186.8px;"></canvas>
+        <h4 class="mb-4 centered-title">Thống kê theo trạng thái bất động sản</h4>
+        <div class="bg-light rounded h-100 p-4" style="max-width: 500px; margin :auto ">
+            <canvas id="pie-chart"></canvas>
         </div>
     </div>
     @if (isset($pieChartData))
@@ -18,9 +17,9 @@
                     return item.label;
                 });
                 var colors = [];
+                var count = 7;
                 labels.forEach(element => {
-                    var count = 7;
-                    colors.push("rgba(0, 156, 255, ." + count + ")");
+                    colors.push("rgba(235, 22, 22, 0." + count + ")");
                     count--;
                 });
                 var pieChart = new Chart(ctx5, {

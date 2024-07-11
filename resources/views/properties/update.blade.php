@@ -72,8 +72,8 @@
 
                     <div class="form-group">
                         <label for="price">Giá</label>
-                        <input type="text" value="{{ $properties->hasDescription->price ?? '' }}" name="price"
-                            class="form-control" id="price" required oninput="formatCurrency(this)">
+                        <input type="text" value="{{ $properties->hasDescription->price }}" name="price"
+                            class="form-control" id="price">
                     </div>
 
                     <div class="form-group">
@@ -122,19 +122,19 @@
                     <div class="form-group">
                         <label for="floors">Số Tầng</label>
                         <input type="number" value="{{ $properties->hasDescription->floors ?? '' }}" name="floors"
-                            class="form-control" id="floors">
+                            class="form-control" id="floors" min="1">
                     </div>
 
                     <div class="form-group">
                         <label for="bedrooms">Số Phòng Ngủ</label>
                         <input type="number" value="{{ $properties->hasDescription->bedroom ?? '' }}" name="bedrooms"
-                            class="form-control" id="bedrooms">
+                            class="form-control" id="bedrooms" min="0">
                     </div>
 
                     <div class="form-group">
                         <label for="toilets">Số Phòng Tắm</label>
                         <input type="number" value="{{ $properties->hasDescription->toilets ?? '' }}" name="toilets"
-                            class="form-control" id="toilets">
+                            class="form-control" id="toilets" min="0">
                     </div>
 
                     <div class="form-group">
