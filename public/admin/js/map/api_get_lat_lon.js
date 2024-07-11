@@ -12,9 +12,10 @@ function sendRequest(ward = null, district = null, city = null) {
         data: requestData,
         success: function (response) {
             if (Array.isArray(response)) {
+                markers.clearLayers();
                 response.forEach(house => {
                     const marker = L.marker([house.latitude, house.longitude]).addTo(map);
-                    const fullAddress = `${house.full_Address} ${house.street} ${house.ward} ${house.district} ${house.city}`;
+                    const fullAddress = `${house.full_address} ${house.street} ${house.ward} ${house.district} ${house.city}`;
                     marker.bindPopup('Địa chỉ thực: ' + fullAddress).openPopup();
                     markers.addLayer(marker);
                 });
@@ -35,35 +36,6 @@ L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
 const markers = L.markerClusterGroup();
 
 $(document).ready(function () {
-    // Event listener for ward selection change
-    // $('#ward').change(function () {
-    //     const ward = this.value;
-    //     $('#ward_name').val(ward);
-
-    //     const district = $('#district').val();
-    //     const city = $('#city').val();
-
-    //     // Send request if all fields are selected
-    //     if (ward && district && city) {
-    //         sendRequest(ward, district, city);
-    //     }
-    // });
-
-    // // Event listener for district selection change
-    // $('#district').change(function () {
-    //     const district = this.value;
-    //     $('#district_name').val(district);
-
-    //     const city = $('#city').val();
-    //     sendRequest(null, district, city);
-    // });
-
-    // // Event listener for city selection change
-    // $('#city').change(function () {
-    //     const city = this.value;
-    //     $('#city_name').val(city);
-    //     sendRequest(null, null, city);
-    // });
     document.getElementById('ward').addEventListener('change', function () {
         let ward = this.options[this.selectedIndex].text;
         document.getElementById('ward_name').value = ward;
