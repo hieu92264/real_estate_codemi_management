@@ -132,7 +132,7 @@ class PropertiController extends Controller
             ->paginate(9);
         $types = Properties::distinct()->pluck('type')->toArray();
         $statuses = Properties::distinct()->pluck('status')->toArray();
-        $locations = $properties->pluck('hasLocation.district')
+        $locations = Location::pluck('district')
             ->filter()
             ->unique()
             ->toArray();

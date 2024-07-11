@@ -18,17 +18,17 @@ class MapController extends Controller
 
         // Check for the presence of 'city' in the request and apply the filter
         if ($request->has("city") && $request->input("city") != "") {
-            $query->where("city", $request->input("city"));
+            $query->where("city", "like", "%" . $request->input("city") . "%");
         }
 
         // Check for the presence of 'district' in the request and apply the filter
         if ($request->has("district") && $request->input("district") != "") {
-            $query->where("district", $request->input("district"));
+            $query->where("district", "like", "%" . $request->input("district") . "%");
         }
 
         // Check for the presence of 'ward' in the request and apply the filter
         if ($request->has("ward") && $request->input("ward") != "") {
-            $query->where("ward", $request->input("ward"));
+            $query->where("ward", "like", "%" . $request->input("ward") . "%");
         }
 
         return response()->json($query->get());
