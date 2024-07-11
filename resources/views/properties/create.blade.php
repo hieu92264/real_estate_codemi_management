@@ -269,4 +269,3 @@
     {{-- get lat long --}}
     <script src="{{ asset('admin/js/api_get_lat_lon.js') }}"></script>
 @endsection
-
