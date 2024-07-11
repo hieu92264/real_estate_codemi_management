@@ -21,9 +21,7 @@ class PropertiController extends Controller
     {
         $this->middleware('permission:Thêm bất động sản', ['only' => ['store', 'create']]);
         $this->middleware('permission:Xóa bất động sản', ['only' => ['destroy']]);
-
         // $this->middleware('permission:Xem bất động sản', ['only' => ['show']]);
-
         $this->middleware('permission:Sửa bất động sản', ['only' => ['update']]);
     }
 
@@ -292,7 +290,7 @@ class PropertiController extends Controller
                 'district' => $validatedData['district'],
                 'ward' => $validatedData['ward'],
                 'street' => $validatedData['street'],
-                'full_address' => $validatedData['full_address']           ,
+                'full_address' => $validatedData['full_address'],
                 'latitude' => request('latitude'),
                 'longitude' => request('longitude'),
             ]);
@@ -301,5 +299,3 @@ class PropertiController extends Controller
     }
 
 }
-
-    
