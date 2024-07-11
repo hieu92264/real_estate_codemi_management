@@ -59,15 +59,13 @@ function sendRequest(ward = null, district = null, city = null) {
     });
 }
 
-const HERE_API_KEY = 'isQPx0RpqayXu0EMpVQSHN8wkWnh-k7InyTiW6mMn6Q';
+const map = L.map('map').setView([20.8506, 106.6822], 10);
 
-const map = L.map('map').setView([10.776889, 106.700806], 10);
 
 // Here Maps tile layer
-L.tileLayer(`https://{s}.base.maps.ls.hereapi.com/maptile/2.1/maptile/newest/normal.day/{z}/{x}/{y}/256/png8?apiKey=${HERE_API_KEY}&ppi=320`, {
-    attribution: '© HERE 2024',
-    subdomains: '1234'
+L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+    attribution: '© OpenStreetMap contributors'
 }).addTo(map);
 
-const markers = L.markerClusterGroup();
 
+const markers = L.markerClusterGroup();
