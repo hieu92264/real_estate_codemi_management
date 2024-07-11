@@ -1,5 +1,5 @@
 
-const HERE_API_KEY = 'isQPx0RpqayXu0EMpVQSHN8wkWnh-k7InyTiW6mMn6Q';
+const HERE_API_KEY = 'b4_SzA1X0Mi2Dd4J2-eIzgWYHfh7u8Aa93lcQIMCGt4';
 
 let listPlace = [];
 let typingTimer;
@@ -68,7 +68,6 @@ function renderList() {
 
 function handleSelectPosition(item) {
     console.log("Selected position:", item);
-
     // Handle selection logic, e.g., update input fields with selected place details
     document.getElementById("searchInput").value = item.address.label;
     document.getElementById("lat").value = item.position.lat;

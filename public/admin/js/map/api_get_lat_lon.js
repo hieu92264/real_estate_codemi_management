@@ -59,8 +59,6 @@ function sendRequest(ward = null, district = null, city = null) {
     });
 }
 
-const HERE_API_KEY = 'isQPx0RpqayXu0EMpVQSHN8wkWnh-k7InyTiW6mMn6Q';
-
 const map = L.map('map').setView([20.8506, 106.6822], 10);
 
 
