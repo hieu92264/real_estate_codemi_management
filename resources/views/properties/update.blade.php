@@ -127,7 +127,7 @@
 
                     <div class="form-group">
                         <label for="bedrooms">Số Phòng Ngủ</label>
-                        <input type="number" value="{{ $properties->hasDescription->bedroom ?? '' }}" name="bedrooms"
+                        <input type="number" value="{{ $properties->hasDescription->bedrooms ?? '' }}" name="bedrooms"
                             class="form-control" id="bedrooms" min="0">
                     </div>
 
@@ -172,46 +172,6 @@
                 <fieldset class="mb-3">
                     <legend>Địa Chỉ</legend>
                     <div class="form-group">
-                        <label for="city">Thành Phố</label>
-                        <div class="custom-select-wrapper">
-                            <select class="form-control" id="city" name="city_id" title="Chọn Tỉnh Thành">
-                                <option value="0">{{ $properties->hasLocation->city ?? '' }}</option>
-                            </select>
-                        </div>
-                        <input type="hidden" name="city" id="city_name"
-                            value="{{ $properties->hasLocation->city ?? '' }}">
-                    </div>
-
-                    <div class="form-group">
-                        <label for="district">Quận/Huyện</label>
-                        <div class="custom-select-wrapper">
-                            <select class="form-control" id="district" name="district_id" title="Chọn Quận Huyện">
-                                <option value="0">{{ $properties->hasLocation->district ?? '' }}</option>
-                            </select>
-                        </div>
-                        <input type="hidden" name="district" id="district_name"
-                            value="{{ $properties->hasLocation->district ?? '' }}">
-                    </div>
-
-                    <div class="form-group">
-                        <label for="ward">Phường/Xã</label>
-                        <div class="custom-select-wrapper">
-                            <select class="form-control" id="ward" name="ward_id" title="Chọn Phường Xã">
-                                <option value="0">{{ $properties->hasLocation->ward ?? '' }}</option>
-                            </select>
-                        </div>
-                        <input type="hidden" name="ward" id="ward_name"
-                            value="{{ $properties->hasLocation->ward ?? '' }}">
-                    </div>
-                    <input type="hidden" name="latitude" id="ward_latitude">
-                    <input type="hidden" name="longitude" id="ward_longitude">
-                    <div class="form-group">
-                        <label for="street">Đường</label>
-                        <input type="text" value="{{ $properties->hasLocation->street ?? '' }}" name="street"
-                            class="form-control" id="street">
-                    </div>
-
-                    <div class="form-group">
                         <label for="full_address">Dịa chỉ cụ thể</label>
                         {{-- <input type="text" name="full_address" class="form-control" id="full_address">
                          --}}
@@ -220,7 +180,7 @@
                                 <div style="flex: 1;">
                                     <input type="text" name="full_address" id="searchInput" style="width: 100%;"
                                         placeholder="Enter your address"
-                                        value="{{ $properties->hasLocation->full_address ?? '' }}">
+                                        value="{{ $properties->hasLocation->full_address }}">
                                 </div>
                                 <input type="hidden" id="lat" name="latitude"
                                     value="{{ $properties->hasLocation->latitude }}">
@@ -233,6 +193,52 @@
                             <div class="alert alert-danger">{{ $message }}</div>
                         @enderror
                     </div>
+                    <div class="form-group">
+                        <label for="city">Thành Phố</label>
+                        <div class="custom-select-wrapper">
+
+                            <input type="text" name="city" id="city_name"
+                                value="{{ $properties->hasLocation->city }}"class="form-control">
+                        </div>
+                        @error('city')
+                            <div class="alert alert-danger">{{ $message }}</div>
+                        @enderror
+                    </div>
+
+                    <div class="form-group">
+                        <label for="district">Quận/Huyện</label>
+                        <div class="custom-select-wrapper">
+
+                            <input type="text" name="district" value="{{ $properties->hasLocation->district }}"
+                                id="district_name">
+                        </div>
+                        @error('district')
+                            <div class="alert alert-danger">{{ $message }}</div>
+                        @enderror
+                    </div>
+
+                    <div class="form-group">
+                        <label for="ward">Phường/Xã</label>
+                        <div class="custom-select-wrapper">
+
+                            <input type="text" name="ward" value="{{ $properties->hasLocation->ward }}"
+                                id="ward_name">
+                        </div>
+                        @error('ward')
+                            <div class="alert alert-danger">{{ $message }}</div>
+                        @enderror
+                    </div>
+                    <div class="form-group">
+                        <label for="street">Đường</label>
+                        <input type="text" name="street" class="form-control" id="street_name"
+                            value="{{ $properties->hasLocation->street ?? '' }}">
+                        @error('street')
+                            <div class="alert alert-danger">{{ $message }}</div>
+                        @enderror
+                    </div>
+
+                    {{-- <input type="hidden" name="latitude" id="lat">
+                    <input type="hidden" name="longitude" id="long"> --}}
                 </fieldset>
 
                 <fieldset class="mb-3">

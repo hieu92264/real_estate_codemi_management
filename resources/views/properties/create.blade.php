@@ -184,52 +184,6 @@
                 <fieldset class="mb-3">
                     <legend>Địa Chỉ</legend>
                     <div class="form-group">
-                        <label for="city">Thành Phố</label>
-                        <div class="custom-select-wrapper">
-                            <select class="form-control" id="city" name="city_id" title="Chọn Tỉnh Thành">
-                                <option value="0">Tỉnh Thành</option>
-                            </select>
-                        </div>
-                        <input type="hidden" name="city" id="city_name">
-                        @error('city')
-                            <div class="alert alert-danger">{{ $message }}</div>
-                        @enderror
-                    </div>
-
-                    <div class="form-group">
-                        <label for="district">Quận/Huyện</label>
-                        <div class="custom-select-wrapper">
-                            <select class="form-control" id="district" name="district_id" title="Chọn Quận Huyện">
-                                <option value="0">Quận Huyện</option>
-                            </select>
-                        </div>
-                        <input type="hidden" name="district" id="district_name">
-                        @error('district')
-                            <div class="alert alert-danger">{{ $message }}</div>
-                        @enderror
-                    </div>
-
-                    <div class="form-group">
-                        <label for="ward">Phường/Xã</label>
-                        <div class="custom-select-wrapper">
-                            <select class="form-control" id="ward" name="ward_id" title="Chọn Phường Xã">
-                                <option value="0">Phường Xã</option>
-                            </select>
-                        </div>
-                        <input type="hidden" name="ward" id="ward_name">
-                        @error('ward')
-                            <div class="alert alert-danger">{{ $message }}</div>
-                        @enderror
-                    </div>
-                    <div class="form-group">
-                        <label for="street">Đường</label>
-                        <input type="text" name="street" class="form-control" id="street">
-                        @error('street')
-                            <div class="alert alert-danger">{{ $message }}</div>
-                        @enderror
-                    </div>
-
-                    <div class="form-group">
                         <label for="full_address">Dịa chỉ cụ thể</label>
                         {{-- <input type="text" name="full_address" class="form-control" id="full_address">
                          --}}
@@ -248,6 +202,46 @@
                             <div class="alert alert-danger">{{ $message }}</div>
                         @enderror
                     </div>
+                    <div class="form-group">
+                        <label for="city">Thành Phố</label>
+                        <div class="custom-select-wrapper">
+
+                            <input type="text" name="city" id="city_name" class="form-control">
+                        </div>
+                        @error('city')
+                            <div class="alert alert-danger">{{ $message }}</div>
+                        @enderror
+                    </div>
+
+                    <div class="form-group">
+                        <label for="district">Quận/Huyện</label>
+                        <div class="custom-select-wrapper">
+
+                            <input type="text" name="district" id="district_name">
+                        </div>
+                        @error('district')
+                            <div class="alert alert-danger">{{ $message }}</div>
+                        @enderror
+                    </div>
+
+                    <div class="form-group">
+                        <label for="ward">Phường/Xã</label>
+                        <div class="custom-select-wrapper">
+
+                            <input type="text" name="ward" id="ward_name">
+                        </div>
+                        @error('ward')
+                            <div class="alert alert-danger">{{ $message }}</div>
+                        @enderror
+                    </div>
+                    <div class="form-group">
+                        <label for="street">Đường</label>
+                        <input type="text" name="street" class="form-control" id="street_name">
+                        @error('street')
+                            <div class="alert alert-danger">{{ $message }}</div>
+                        @enderror
+                    </div>
+
                     {{-- <input type="hidden" name="latitude" id="lat">
                     <input type="hidden" name="longitude" id="long"> --}}
                 </fieldset>
