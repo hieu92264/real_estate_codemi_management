@@ -291,7 +291,7 @@ class PropertiController extends Controller
                 'ward' => $validatedData['ward'],
                 'street' => $validatedData['street'],
                 'full_address' => $validatedData['full_address']
-                ,
+ j/               ,
                 'latitude' => request('latitude'),
                 'longitude' => request('longitude'),
             ]);
