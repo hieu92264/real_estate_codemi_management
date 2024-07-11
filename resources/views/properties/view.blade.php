@@ -55,9 +55,10 @@
                         @endif
                         @if ($property->hasLocation)
                             <li class="list-group-item"><strong>Địa chỉ:</strong>
-                                {{ $property->hasLocation->full_address ?? '' }} {{ $property->hasLocation->street ?? '' }},
+                                {{ $property->hasLocation->full_address ?? '' }}
+                                {{-- {{ $property->hasLocation->street ?? '' }},
                                 {{ $property->hasLocation->ward ?? '' }}, {{ $property->hasLocation->district ?? '' }},
-                                {{ $property->hasLocation->city ?? '' }}
+                                {{ $property->hasLocation->city ?? '' }} --}}
                             </li>
                         @endif
                         @if ($property->hasDescription && $property->hasDescription->acreage)

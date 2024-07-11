@@ -32,9 +32,8 @@
                                     class="fa fa-user me-2"></i>Người dùng</a>
                         @endif
                         @if (Auth::user()->hasPermission('Xem thông tin chức vụ'))
-
-                            <a href="{{ route('roles.index') }}" class="dropdown-item"><i class="fa fa-briefcase me-2"></i>Chức vụ</a>
-
+                            <a href="{{ route('roles.index') }}" class="dropdown-item"><i
+                                    class="fa fa-briefcase me-2"></i>Chức vụ</a>
                         @endif
                     </div>
                 </div>
