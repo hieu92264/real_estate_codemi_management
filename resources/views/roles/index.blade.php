@@ -1,41 +1,44 @@
 @extends('home')
 @section('content')
-    <a href="{{ route('roles.create') }}" class="btn btn-success btn-sm my-2" data-bs-toggle="modal"
-        data-bs-target="#exampleModal">Thêm chức vụ</a>
+    <div class="d-flex justify-content-end my-2 mr-3">
+        <a href="{{ route('roles.create') }}" class="btn btn-success mb-3" data-bs-toggle="modal" data-bs-target="#exampleModal"
+            style="margin-right: 30px; margin-top: 20px;">Thêm chức vụ</a>
+    </div>
 
-    <table class="table table-bordered text-center">
-        <thead>
-            <tr>
-                <th scope="col">STT</th>
-                {{-- <th scope="col">Id</th> --}}
-                <th scope="col">Tên chức vụ</th>
-                <th scope="col">Hành động</th>
-            </tr>
-        </thead>
-        <tbody>
-            @foreach ($dataRole as $index => $role)
+    <div class="table-responsive">
+        <table class="table table-bordered text-center custom-table">
+            <thead class="custom-header">
                 <tr>
-                    <td>{{ $index + 1 }}</td>
-                    {{-- <td>{{ $role->id }}</td> --}}
-                    <td>{{ $role->name }}</td>
-                    <td class="d-flex justify-content-center align-items-center">
-                        @if (Auth::user()->hasPermission('Xóa chức vụ'))
-                            <form action="{{ route('roles.destroy', $role->id) }}" method="POST" style="margin-right: 5px;"
-                                onsubmit="return confirm('Bạn có muốn xóa chức vụ này không');">
-                                @csrf
-                                @method('DELETE')
-                                <button type="submit" class="btn btn-danger">Delete</button>
-                            </form>
-                        @endif
-                        @if (Auth::user()->hasPermission('Sửa chức vụ'))
-                            <a href="{{ route('roles.show', $role->id) }}" class="btn btn-primary btnOpenEditModal"
-                                data-role-id="{{ $role->id }}">Edit</a>
-                        @endif
-                    </td>
+                    <th scope="col">STT</th>
+                    <th scope="col">Tên chức vụ</th>
+                    <th scope="col">Hành động</th>
                 </tr>
-            @endforeach
-        </tbody>
-    </table>
+            </thead>
+            <tbody>
+                @foreach ($dataRole as $index => $role)
+                    <tr>
+                        <td>{{ $index + 1 }}</td>
+                        <td>{{ $role->name }}</td>
+                        <td class="action-buttons d-flex justify-content-center align-items-center">
+                            @if (Auth::user()->hasPermission('Sửa chức vụ'))
+                                <a href="{{ route('roles.show', $role->id) }}" class="btn btn-primary btnOpenEditModal me-2"
+                                    data-role-id="{{ $role->id }}">Sửa</a>
+                            @endif
+                            @if (Auth::user()->hasPermission('Xóa chức vụ'))
+                                <form action="{{ route('roles.destroy', $role->id) }}" method="POST"
+                                    style="margin-right: 5px;"
+                                    onsubmit="return confirm('Bạn có muốn xóa chức vụ này không');">
+                                    @csrf
+                                    @method('DELETE')
+                                    <button type="submit" class="btn btn-danger">Xóa</button>
+                                </form>
+                            @endif
+                        </td>
+                    </tr>
+                @endforeach
+            </tbody>
+        </table>
+    </div>
 
     {{-- modal --}}
     <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -68,7 +71,9 @@
                                 @endforeach
                             </div>
                         </div>
-                        <button type="submit" class="btn btn-primary">Thêm mới</button>
+                        <div class="text-center">
+                            <button type="submit" class="btn btn-primary">Thêm mới</button>
+                        </div>
                     </form>
                 </div>
             </div>

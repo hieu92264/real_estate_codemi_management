@@ -76,16 +76,17 @@
                         </div>
                     </div>
                     <div class="col-md-2 d-flex align-items-center">
-                        <button type="submit" class="btn btn-success w-100">Tìm Kiếm</button>
+                        <button type="submit" class="btn btn-success">Tìm Kiếm</button>
                     </div>
                 </form>
             </div>
         </div>
-
-        <a href="{{ route('bat-dong-san.create') }}" class="btn btn-success mb-3" style="margin: 15px;">Thêm mới bất động
-            sản</a>
-
-
+        <div class="d-flex justify-content-end my-2 mr-3">
+            @if (Auth::user()->hasPermission('Thêm bất động sản'))
+                <a href="{{ route('bat-dong-san.create') }}" class="btn btn-success mb-3"
+                    style="margin-right:20px; margin-top:20px">Thêm mới bất động sản</a>
+            @endif
+        </div>
         <div class="tab-content">
             <div id="tab-1" class="tab-pane fade show p-0 active">
                 <div class="row g-4">
@@ -131,10 +132,8 @@
                                             vnđ
                                         @endif
                                     </h5>
-                                    {{-- <a class="d-block h5 mb-2" href="">Golden Urban House For Sell</a> --}}
                                     <h6>
                                         <i class="fa fa-map-marker-alt text-primary me-2"></i>
-                                        {{ $property->hasLocation->full_address ?? '' }}
                                         {{ $property->hasLocation->street ?? '' }},{{ $property->hasLocation->ward ?? '' }},{{ $property->hasLocation->district ?? '' }},{{ $property->hasLocation->city ?? '' }}
                                     </h6>
                                 </div>
@@ -171,5 +170,4 @@
         </div>
     </div>
 </div>
-
 @endsection

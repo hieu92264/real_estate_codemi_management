@@ -29,9 +29,9 @@ class AuthController extends Controller
             request()->session()->regenerate();
             return redirect()->route('home');
         }
-        return redirect()->route('showFormLogin')->withErrors([
-            'error' => 'tai khoan mat khau khong dung'
-        ]);
+        return back()->withErrors([
+            'error' => 'Tài khoản hoặc mật khẩu không đúng'
+        ])->withInput($request->only('email'));
     }
 
 
@@ -61,7 +61,6 @@ class AuthController extends Controller
         } else {
             return redirect()->back()->with('error', 'Email not found');
         }
-
     }
 
     public function showFormReset(Request $request)
@@ -100,11 +99,13 @@ class AuthController extends Controller
         $request->session()->regenerateToken();
         return redirect()->route('showFormLogin');
     }
-    public function changePassword(){
+    public function changePassword()
+    {
         return view('auth.change_password');
     }
 
-    public function savePassword(Request $request) {
+    public function savePassword(Request $request)
+    {
         $validate = $request->validate([
             'old_password' => 'required',
             'password' => 'required|min:6',

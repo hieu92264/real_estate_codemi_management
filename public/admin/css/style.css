@@ -17,6 +17,7 @@
     max-width: 100%;
     margin: 5pt auto;
 }
+
 .form-control {
     max-width: 100%;
 }
@@ -71,7 +72,6 @@
     border-radius: 50px;
 }
 
-
 /*** Layout ***/
 .sidebar {
     position: fixed;
@@ -86,21 +86,26 @@
     z-index: 999;
 }
 
-    img{
-        height: 60px;
-        width: 240px;
-        border: #db5151 solid 1px;
-        border-radius: 5px
-    }
+img {
+    height: 60px;
+    width: 240px;
+    border: var(--primary) solid 1px;
+    border-radius: 5px
+}
 
 .content {
     margin-left: 250px;
     min-height: 100vh;
-    background: #F3F6F9;
+    background: var(--light);
     transition: 0.5s;
 }
-i{
-     font-size: 1.25em;
+
+i {
+    font-size: 1.25em;
+}
+
+h1 {
+    color: var(--primary) !important;
 }
 
 @media (min-width: 992px) {
@@ -306,17 +311,22 @@ i{
 }
 
 .profile-picture img:hover {
-    transform: scale(1.5); /* Adjust the scale value as needed */
+    transform: scale(1.5);
+    /* Adjust the scale value as needed */
 }
 
 .status-indicator {
     position: absolute;
     bottom: 0;
     right: 0;
-    width: 12px; /* Adjust the size as needed */
-    height: 12px; /* Adjust the size as needed */
-    background-color: #28a745; /* Background color for the indicator */
-    border: 2px solid white; /* Border color and width */
+    width: 12px;
+    /* Adjust the size as needed */
+    height: 12px;
+    /* Adjust the size as needed */
+    background-color: #28a745;
+    /* Background color for the indicator */
+    border: 2px solid white;
+    /* Border color and width */
     border-radius: 50%;
 }
 
@@ -326,9 +336,10 @@ i{
     padding: 0;
     min-height: 405px;
     height: 100%;
-    display :flex;
+    display: flex;
     grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-    gap: 30px; /* Khoảng cách giữa các item */
+    gap: 30px;
+    /* Khoảng cách giữa các item */
 }
 
 .property-item a {
@@ -358,15 +369,30 @@ i{
 .property-item .border-end {
     border-right: 1px dashed rgba(0, 185, 142, .3) !important;
 }
+
 /* Media query for smaller screens */
 @media (max-width: 768px) {
     .property-item {
         min-width: 100%;
+        padding: 10px;
+    }
+
+    .property-footer {
+        display: block;
+    }
+
+}
+
+@media (max-width: 576px) {
+    .property-item .position-relative {
+        height: auto;
     }
 }
+
 .custom-select-wrapper {
     position: relative;
 }
+
 .custom-select-wrapper:after {
     content: '\25BC';
     position: absolute;
@@ -375,3 +401,73 @@ i{
     transform: translateY(-50%);
     pointer-events: none;
 }
+
+.centered-title {
+    text-align: center;
+    width: 100%;
+}
+
+.close {
+    position: fixed;
+    top: 10px;
+    right: 10px;
+    color: red;
+    font-size: 20px;
+    cursor: pointer;
+    z-index: 1000;
+}
+
+.close:hover {
+    color: #FFFFFF;
+    background-color: red;
+}
+
+.custom-header {
+    background-color: #C0C0C2;
+    border-bottom: 2px solid #dee2e6;
+    padding: 10px 0;
+}
+
+.custom-table th,
+.custom-table td {
+    vertical-align: middle;
+}
+
+.action-buttons form {
+    display: inline-block;
+}
+
+.action-buttons form:first-child {
+    margin-right: 5px;
+}
+
+/* Property Image */
+.image-wrapper {
+    position: relative;
+    display: inline-block;
+}
+
+.image-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    transition: opacity 0.5s ease;
+    cursor: pointer;
+}
+
+.image-wrapper:hover .image-overlay {
+    opacity: 1;
+}
+/* fieldset {
+    border: 2px solid #db5151;
+    padding: 15px;
+    border-radius: 5px
+} */

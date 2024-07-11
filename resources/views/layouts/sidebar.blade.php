@@ -19,9 +19,6 @@
         <div class="navbar-nav w-100">
             <a href="{{ route('bat-dong-san.index') }}" class="nav-item nav-link"><i class="fa fa-home me-2"></i>Bất
                 động sản</a>
-            {{-- <a href="{{ route('bat-dong-san.index') }}" class="nav-item nav-link"><i
-                    class="fa fa-tachometer-alt me-2"></i>Bất
-                động sản</a> --}}
             @if (Auth::user()->hasPermission('Xem thông tin tài khoản') || Auth::user()->hasPermission('Xem thông tin chức vụ'))
                 <div class="nav-item dropdown">
                     <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown"><i
@@ -32,9 +29,8 @@
                                     class="fa fa-user me-2"></i>Người dùng</a>
                         @endif
                         @if (Auth::user()->hasPermission('Xem thông tin chức vụ'))
-
-                            <a href="{{ route('roles.index') }}" class="dropdown-item"><i class="fa fa-briefcase me-2"></i>Chức vụ</a>
-
+                            <a href="{{ route('roles.index') }}" class="dropdown-item"><i
+                                    class="fa fa-briefcase me-2"></i>Chức vụ</a>
                         @endif
                     </div>
                 </div>
@@ -54,7 +50,7 @@
             </div>
             <div class="nav-item dropdown">
                 <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">
-                    <i class="fa fa-user-tie me-2"></i>Báo cáo thống kê
+                    <i class="fas fa-table me-2"></i>Báo cáo thống kê
                 </a>
                 <div class="dropdown-menu bg-transparent border-0" style="width: auto;">
                     <a href="{{ route('priceReport') }}" class="dropdown-item">
