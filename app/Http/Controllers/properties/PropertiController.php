@@ -21,7 +21,7 @@ class PropertiController extends Controller
     {
         $this->middleware('permission:Thêm bất động sản', ['only' => ['store', 'create']]);
         $this->middleware('permission:Xóa bất động sản', ['only' => ['destroy']]);
-        $this->middleware('permission:Xem bất động sản', ['only' => ['show']]);
+        // $this->middleware('permission:Xem bất động sản', ['only' => ['show']]);
         $this->middleware('permission:Sửa bất động sản', ['only' => ['update']]);
     }
 
@@ -298,4 +298,6 @@ class PropertiController extends Controller
         }
         return redirect()->route('bat-dong-san.index')->with('success', 'Bạn đã cập nhật thành công bất động sản');
     }
+
 }
+

@@ -221,8 +221,6 @@
                             <div class="alert alert-danger">{{ $message }}</div>
                         @enderror
                     </div>
-                    <input type="hidden" name="latitude" id="ward_latitude">
-                    <input type="hidden" name="longitude" id="ward_longitude">
                     <div class="form-group">
                         <label for="street">Đường</label>
                         <input type="text" name="street" class="form-control" id="street">
@@ -232,12 +230,26 @@
                     </div>
 
                     <div class="form-group">
-                        <label for="full_address">Số nhà</label>
-                        <input type="text" name="full_address" class="form-control" id="full_address">
+                        <label for="full_address">Dịa chỉ cụ thể</label>
+                        {{-- <input type="text" name="full_address" class="form-control" id="full_address">
+                         --}}
+                        <div style="display: flex; flex-direction: column;">
+                            <div style="display: flex;">
+                                <div style="flex: 1;">
+                                    <input type="text" name="full_address" id="searchInput" style="width: 100%;"
+                                        placeholder="Enter your address">
+                                </div>
+                                <input type="hidden" id="lat" name="latitude">
+                                <input type="hidden" id="long" name="longitude">
+                            </div>
+                            <div id="placeList"></div>
+                        </div>
                         @error('full_address')
                             <div class="alert alert-danger">{{ $message }}</div>
                         @enderror
                     </div>
+                    {{-- <input type="hidden" name="latitude" id="lat">
+                    <input type="hidden" name="longitude" id="long"> --}}
                 </fieldset>
 
                 {{-- Hình ảnh --}}
@@ -262,5 +274,5 @@
     <script src="{{ asset('admin/js/api_viet_nam.js') }}"></script>
     <script src="{{ asset('admin/js/format_currency.js') }}"></script>
     {{-- get lat long --}}
-    <script src="{{ asset('admin/js/api_get_lat_lon.js') }}"></script>
+    <script src="{{ asset('admin/js/get_lat_long_new.js') }}"></script>
 @endsection

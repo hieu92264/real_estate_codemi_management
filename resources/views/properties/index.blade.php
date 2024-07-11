@@ -134,7 +134,6 @@
                                     </h5>
                                     <h6>
                                         <i class="fa fa-map-marker-alt text-primary me-2"></i>
-                                        {{ $property->hasLocation->full_address ?? '' }}
                                         {{ $property->hasLocation->street ?? '' }},{{ $property->hasLocation->ward ?? '' }},{{ $property->hasLocation->district ?? '' }},{{ $property->hasLocation->city ?? '' }}
                                     </h6>
                                 </div>

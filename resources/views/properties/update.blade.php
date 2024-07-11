@@ -212,9 +212,26 @@
                     </div>
 
                     <div class="form-group">
-                        <label for="full_address">Địa Chỉ Đầy Đủ</label>
-                        <input type="text" value="{{ $properties->hasLocation->full_address ?? '' }}"
-                            name="full_address" class="form-control" id="full_address">
+                        <label for="full_address">Dịa chỉ cụ thể</label>
+                        {{-- <input type="text" name="full_address" class="form-control" id="full_address">
+                         --}}
+                        <div style="display: flex; flex-direction: column;">
+                            <div style="display: flex;">
+                                <div style="flex: 1;">
+                                    <input type="text" name="full_address" id="searchInput" style="width: 100%;"
+                                        placeholder="Enter your address"
+                                        value="{{ $properties->hasLocation->full_address ?? '' }}">
+                                </div>
+                                <input type="hidden" id="lat" name="latitude"
+                                    value="{{ $properties->hasLocation->latitude }}">
+                                <input type="hidden" id="long" name="longitude"
+                                    value="{{ $properties->hasLocation->longitude }}">
+                            </div>
+                            <div id="placeList"></div>
+                        </div>
+                        @error('full_address')
+                            <div class="alert alert-danger">{{ $message }}</div>
+                        @enderror
                     </div>
                 </fieldset>
 
@@ -233,5 +250,5 @@
     </div>
     <script src="{{ asset('admin/js/api_viet_nam.js') }}"></script>
     <script src="{{ asset('admin/js/formatCurrency.js') }}"></script>
-    <script src="{{ asset('admin/js/api_get_lat_lon.js') }}"></script>
+    <script src="{{ asset('admin/js/get_lat_long_new.js') }}"></script>
 @endsection
