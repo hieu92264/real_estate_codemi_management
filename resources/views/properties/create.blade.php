@@ -250,7 +250,7 @@
     </div>
 
     <script src="{{ asset('admin/js/api_viet_nam.js') }}"></script>
-    <script src="{{ asset('admin/js/format_currency.js') }}"></script>
+    <script src="{{ asset('admin/js/formatPrice.js') }}"></script>
     {{-- get lat long --}}
     <script src="{{ asset('admin/js/get_lat_long_new.js') }}"></script>
 @endsection

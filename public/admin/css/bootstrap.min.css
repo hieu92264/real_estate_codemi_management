@@ -4144,15 +4144,17 @@ fieldset:disabled .btn {
 
 .dropdown-item:hover,
 .dropdown-item:focus {
-    color: #db5151;
-    background-color: #f8f9fa
+    color: var(--bs-primary);
+    background-color: #f8f9fa;
+    width: 100%;
 }
 
 .dropdown-item.active,
 .dropdown-item:active {
     color: #fff;
     text-decoration: none;
-    background-color: #009CFF
+    background-color: var(--bs-primary);
+    width: 100%;
 }
 
 .dropdown-item.disabled,
@@ -4191,6 +4193,10 @@ fieldset:disabled .btn {
     color: #db5151;
 }
 
+.dropdown-item:active i {
+    color: #fff;
+}
+
 .dropdown-menu-dark {
     color: #dee2e6;
     background-color: #343a40;
@@ -4210,7 +4216,8 @@ fieldset:disabled .btn {
 .dropdown-menu-dark .dropdown-item.active,
 .dropdown-menu-dark .dropdown-item:active {
     color: #fff;
-    background-color: #009CFF
+    background-color: #009CFF;
+    width: 100%;
 }
 
 .dropdown-menu-dark .dropdown-item.disabled,
