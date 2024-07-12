@@ -43,7 +43,7 @@
                             <div class="modal-body"
                                 style="display: flex; justify-content: center; align-items: center; padding: 0;">
                                 <!-- Điều chỉnh kích thước ảnh để to hơn -->
-                                <img id="modalImage" src="" style="width: auto; height: 90%;">
+                                <img id="modalImage" src="" style="width: auto; height: 80%;">
                             </div>
                         </div>
                     </div>
@@ -83,8 +83,8 @@
                     <ul class="list-group list-group-flush mt-3">
                         @if ($property->hasDescription && $property->hasDescription->price)
                             <li class="list-group-item"><strong>Giá thành:</strong>
-                                {{ $property->hasDescription->price }} vnđ</li>
-                            {{-- {{ number_format(floatval($property->hasDescription->price), 0, ',', '.') }} vnđ --}}
+                                {{ number_format(floatval($property->hasDescription->price), 0, ',', '.') }}
+                                vnđ</li>
                         @endif
                         @if ($property->hasDescription && $property->hasDescription->frontage)
                             <li class="list-group-item"><strong>Mặt tiền:</strong>
