@@ -60,12 +60,8 @@ function sendRequest(ward = null, district = null, city = null) {
 }
 
 const map = L.map('map').setView([20.8506, 106.6822], 10);
-
-
 // Here Maps tile layer
 L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
     attribution: '© OpenStreetMap contributors'
 }).addTo(map);
-
-
 const markers = L.markerClusterGroup();

@@ -10,6 +10,7 @@ use App\Http\Controllers\entity_management\BuyersController;
 use App\Http\Controllers\entity_management\SellerController;
 use App\Http\Controllers\properties\PropertiController;
 use App\Http\Controllers\entity_management\TransactionController;
+use App\Http\Controllers\MapController;
 use App\Http\Controllers\report\PriceReportController;
 
 // Guest
@@ -43,3 +44,6 @@ Route::middleware('auth')->group(function () {
     Route::get('/thong-ke-theo-gia', [PriceReportController::class, 'index'])->name('priceReport');
 });
 // end auth
+Route::get('/load-map', function () {
+    return view('map.map');
+})->name('map');

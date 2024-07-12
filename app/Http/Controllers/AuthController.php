@@ -29,6 +29,7 @@ class AuthController extends Controller
             request()->session()->regenerate();
             return redirect()->route('home');
         }
+
         return back()->withErrors([
             'error' => 'Tài khoản hoặc mật khẩu không đúng'
         ])->withInput($request->only('email'));

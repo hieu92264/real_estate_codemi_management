@@ -1,45 +1,13 @@
-<!DOCTYPE html>
-<html>
 
-<head>
-    <meta charset="utf-8">
-    <title>DASHMIN</title>
-    <meta content="width=device-width, initial-scale=1.0" name="viewport">
-    <meta content="" name="keywords">
-    <meta content="" name="description">
-
-    <!-- Favicon -->
-    <link href="img/favicon.ico" rel="icon">
-
-    <!-- Google Web Fonts -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Heebo:wght@400;500;600;700&display=swap" rel="stylesheet">
-
-    <!-- Icon Font Stylesheet -->
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css" rel="stylesheet">
-
-    <!-- Libraries Stylesheet -->
-    <link href="{{ asset('admin/lib/owlcarousel/assets/owl.carousel.min.css') }}" rel="stylesheet">
-    <link href="{{ asset('admin/lib/tempusdominus/css/tempusdominus-bootstrap-4.css') }}" rel="stylesheet" />
-
-    <!-- Customized Bootstrap Stylesheet -->
-    <link href="{{ asset('admin/css/bootstrap.min.css') }}" rel="stylesheet">
-
-    <!-- Template Stylesheet -->
-    <link href="{{ asset('admin/css/style.css') }}" rel="stylesheet">
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+@extends('home')
+@section('map_library')
     <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
     <link rel="stylesheet" href="{{ asset('map/css/MarkerCluster.css') }}">
     <link rel="stylesheet" href="{{ asset('map/css/MarkerCluster.Default.css') }}">
     <script src="{{ asset('map/js/MarkerCluster.js') }}"></script>
     <script src="{{ asset('map/js/leaflet.markerCluster-src.js') }}"></script>
-</head>
-
-<body>
+@endsection
+@section('content')
     <fieldset class="mb-3">
         <legend>Địa Chỉ</legend>
         <div class="form-group">
@@ -75,6 +43,4 @@
     <div id="map" style="height: 400px; width: 100%;"></div>
     <script src="{{ asset('admin/js/map/api_get_lat_lon.js') }}"></script>
     <script src="{{ asset('admin/js/api_viet_nam.js') }}"></script>
-</body>
-
-</html>
+@endsection
