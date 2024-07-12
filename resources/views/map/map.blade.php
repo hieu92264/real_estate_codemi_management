@@ -1,4 +1,3 @@
-
 @extends('home')
 @section('map_library')
     <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
@@ -40,7 +39,7 @@
             <input type="hidden" name="ward" id="ward_name">
         </div>
     </fieldset>
-    <div id="map"></div>
+    <div id="map" style="height: 400px; width: 100%;"></div>
     <script src="{{ asset('admin/js/map/api_get_lat_lon.js') }}"></script>
     <script src="{{ asset('admin/js/api_viet_nam.js') }}"></script>
 @endsection
