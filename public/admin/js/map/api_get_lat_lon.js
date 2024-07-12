@@ -116,4 +116,3 @@ const markers = L.markerClusterGroup({
 });
 
 map.addLayer(markers);
-
