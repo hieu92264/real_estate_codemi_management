@@ -98,7 +98,7 @@ function fetchLatLong(ward = null, district = null, city = null) {
             if (data && data.length > 0) {
                 let lat = data[0].lat;
                 let lon = data[0].lon;
-                map = L.map('map').setView([lat, lon], 10);
+                map.setView([lat, lon], 10);
             }
         })
         .catch(error => console.error('Error fetching lat/long:', error));
