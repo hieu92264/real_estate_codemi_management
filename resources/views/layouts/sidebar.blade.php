@@ -54,7 +54,7 @@
                 </a>
                 <div class="dropdown-menu bg-transparent border-0" style="width: auto;">
                     <a href="{{ route('map') }}" class="dropdown-item">
-                        <i class="fa fa-users me-2"></i>Xu hướng giao dịch bất động sản
+                        <i class="fas fa-chart-line me-2"></i>Xu hướng giao dịch bất động sản
                     </a>
                     {{-- <a href="{{ route('danh-sach-nguoi-ban.index') }}" class="dropdown-item ml-auto">
                         <i class="fa fa-users me-2"></i>Thống kê theo khu vực
