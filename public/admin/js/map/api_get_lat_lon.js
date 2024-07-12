@@ -24,6 +24,7 @@ $(document).ready(function () {
         let city = this.options[this.selectedIndex].text;
         document.getElementById('city_name').value = city;
         fetchLatLong(null, null, city);
+        console.log(subStringCity(city));
         sendRequest(null, null, subStringCity(city));
     });
 });
@@ -41,6 +42,7 @@ function sendRequest(ward = null, district = null, city = null) {
         data: requestData,
         success: function (response) {
             if (Array.isArray(response)) {
+                console.log(response);
                 markers.clearLayers();
                 response.forEach(house => {
                     if (district && house.district !== district) {
