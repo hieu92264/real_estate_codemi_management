@@ -1,5 +1,5 @@
 const HERE_API_KEY = 'qOu7AMeZZxfT8qgmS3i5K7JwK59MTBSPFEdL7Xe8-HQ';
-
+// const HERE_API_KEY = 'b4_SzA1X0Mi2Dd4J2-eIzgWYHfh7u8Aa93lcQIMCGt4';
 let listPlace = [];
 let typingTimer;
 const typingInterval = 1500;

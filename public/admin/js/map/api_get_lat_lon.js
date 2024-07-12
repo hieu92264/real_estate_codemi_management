@@ -63,6 +63,7 @@ function sendRequest(ward = null, district = null, city = null) {
     });
 }
 
+
 function subStringCity(City) {
     let subString = "Thành phố";
     if (City.indexOf(subString) != -1) {
@@ -115,3 +116,4 @@ const markers = L.markerClusterGroup({
 });
 
 map.addLayer(markers);
+

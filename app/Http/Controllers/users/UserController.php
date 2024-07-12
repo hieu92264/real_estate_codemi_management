@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Role;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Hash;
 
@@ -14,6 +15,7 @@ class UserController extends Controller
     //
     public function __construct()
     {
+
         $this->middleware('permission:Xem thông tin tài khoản', ['only' => ['index']]);
         $this->middleware('permission:Thêm tài khoản', ['only' => ['create', 'store']]);
         $this->middleware('permission:Sửa tài khoản', ['only' => ['update', 'show']]);
