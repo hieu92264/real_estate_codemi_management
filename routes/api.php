@@ -20,4 +20,4 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 });
 
 Route::get('/map', [MapController::class, 'index'])->name('map');
-Route::get('/map/search', [MapController::class, 'search'])->name('search');
+Route::get('/map/search', [MapController::class, 'search'])->name('searchMap');

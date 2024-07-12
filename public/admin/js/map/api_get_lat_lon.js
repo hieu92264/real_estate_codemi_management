@@ -1,69 +1,4 @@
-
-function sendRequest(ward = null, district = null, city = null) {
-    const requestData = {
-        ward: ward,
-        district: district,
-        city: city
-    };
-
-    $.ajax({
-        type: "GET",
-        url: "/api/map/search",
-        data: requestData,
-        success: function (response) {
-            if (Array.isArray(response)) {
-                response.forEach(house => {
-                    const marker = L.marker([house.latitude, house.longitude]).addTo(map);
-                    const fullAddress = `${house.full_Address} ${house.street} ${house.ward} ${house.district} ${house.city}`;
-                    marker.bindPopup('Địa chỉ thực: ' + fullAddress).openPopup();
-                    markers.addLayer(marker);
-                });
-                map.addLayer(markers);
-            }
-        },
-        error: function (error) {
-            console.error('Error fetching real estate data:', error);
-        }
-    });
-}
-
-const map = L.map('map').setView([10.776889, 106.700806], 10);
-L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-    attribution: '© <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-}).addTo(map);
-
-const markers = L.markerClusterGroup();
-
 $(document).ready(function () {
-    // Event listener for ward selection change
-    // $('#ward').change(function () {
-    //     const ward = this.value;
-    //     $('#ward_name').val(ward);
-
-    //     const district = $('#district').val();
-    //     const city = $('#city').val();
-
-    //     // Send request if all fields are selected
-    //     if (ward && district && city) {
-    //         sendRequest(ward, district, city);
-    //     }
-    // });
-
-    // // Event listener for district selection change
-    // $('#district').change(function () {
-    //     const district = this.value;
-    //     $('#district_name').val(district);
-
-    //     const city = $('#city').val();
-    //     sendRequest(null, district, city);
-    // });
-
-    // // Event listener for city selection change
-    // $('#city').change(function () {
-    //     const city = this.value;
-    //     $('#city_name').val(city);
-    //     sendRequest(null, null, city);
-    // });
     document.getElementById('ward').addEventListener('change', function () {
         let ward = this.options[this.selectedIndex].text;
         document.getElementById('ward_name').value = ward;
@@ -94,3 +29,43 @@ $(document).ready(function () {
     });
 
 });
+
+function sendRequest(ward = null, district = null, city = null) {
+    const requestData = {
+        ward: ward,
+        district: district,
+        city: city
+    };
+
+    $.ajax({
+        type: "GET",
+        url: "/api/map/search",
+        data: requestData,
+        success: function (response) {
+            if (Array.isArray(response)) {
+                markers.clearLayers();
+                response.forEach(house => {
+                    const marker = L.marker([house.latitude, house.longitude]).addTo(map);
+                    const fullAddress = `${house.full_address} ${house.street} ${house.ward} ${house.district} ${house.city}`;
+                    marker.bindPopup('Địa chỉ thực: ' + fullAddress).openPopup();
+                    markers.addLayer(marker);
+                });
+                map.addLayer(markers);
+            }
+        },
+        error: function (error) {
+            console.error('Error fetching real estate data:', error);
+        }
+    });
+}
+
+const map = L.map('map').setView([20.8506, 106.6822], 10);
+
+
+// Here Maps tile layer
+L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+    attribution: '© OpenStreetMap contributors'
+}).addTo(map);
+
+
+const markers = L.markerClusterGroup();

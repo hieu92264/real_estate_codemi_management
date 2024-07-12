@@ -184,72 +184,50 @@
                 <fieldset class="mb-3">
                     <legend>Địa Chỉ</legend>
                     <div class="form-group">
-                        <label for="city">Thành Phố</label>
-                        <div class="custom-select-wrapper">
-                            <select class="form-control" id="city" name="city_id" title="Chọn Tỉnh Thành">
-                                <option value="0">Tỉnh Thành</option>
-                            </select>
+                        <label for="full_address">Địa chỉ cụ thể</label>
+                        <div class="input-group">
+                            <input type="text" name="full_address" id="searchInput" class="form-control"
+                                placeholder="Enter your address">
+                            <input type="hidden" id="lat" name="latitude">
+                            <input type="hidden" id="long" name="longitude">
                         </div>
-                        <input type="hidden" name="city" id="city_name">
+                        <div id="placeList" class="list-group mt-2"></div>
+                        @error('full_address')
+                            <div class="alert alert-danger mt-2">{{ $message }}</div>
+                        @enderror
+                    </div>
+
+                    <div class="form-group">
+                        <label for="city">Thành Phố</label>
+                        <input type="text" name="city" id="city_name" class="form-control">
                         @error('city')
-                            <div class="alert alert-danger">{{ $message }}</div>
+                            <div class="alert alert-danger mt-2">{{ $message }}</div>
                         @enderror
                     </div>
 
                     <div class="form-group">
                         <label for="district">Quận/Huyện</label>
-                        <div class="custom-select-wrapper">
-                            <select class="form-control" id="district" name="district_id" title="Chọn Quận Huyện">
-                                <option value="0">Quận Huyện</option>
-                            </select>
-                        </div>
-                        <input type="hidden" name="district" id="district_name">
+                        <input type="text" name="district" id="district_name" class="form-control">
                         @error('district')
-                            <div class="alert alert-danger">{{ $message }}</div>
+                            <div class="alert alert-danger mt-2">{{ $message }}</div>
                         @enderror
                     </div>
 
                     <div class="form-group">
                         <label for="ward">Phường/Xã</label>
-                        <div class="custom-select-wrapper">
-                            <select class="form-control" id="ward" name="ward_id" title="Chọn Phường Xã">
-                                <option value="0">Phường Xã</option>
-                            </select>
-                        </div>
-                        <input type="hidden" name="ward" id="ward_name">
+                        <input type="text" name="ward" id="ward_name" class="form-control">
                         @error('ward')
-                            <div class="alert alert-danger">{{ $message }}</div>
-                        @enderror
-                    </div>
-                    <div class="form-group">
-                        <label for="street">Đường</label>
-                        <input type="text" name="street" class="form-control" id="street">
-                        @error('street')
-                            <div class="alert alert-danger">{{ $message }}</div>
+                            <div class="alert alert-danger mt-2">{{ $message }}</div>
                         @enderror
                     </div>
 
                     <div class="form-group">
-                        <label for="full_address">Địa chỉ cụ thể</label>
-                        {{-- <input type="text" name="full_address" class="form-control" id="full_address">
-                         --}}
-                        <div style="display: flex; flex-direction: column;">
-                            <div style="display: flex;">
-                                <div style="flex: 1;">
-                                    <input class="form-control" type="text" name="full_address" id="searchInput"
-                                        style="width: 100%;" placeholder="Enter your address">
-                                </div>
-                                <input type="hidden" id="lat" name="latitude">
-                                <input type="hidden" id="long" name="longitude">
-                            </div>
-                            <div id="placeList"></div>
-                        </div>
-                        @error('full_address')
-                            <div class="alert alert-danger">{{ $message }}</div>
+                        <label for="street">Đường</label>
+                        <input type="text" name="street" id="street_name" class="form-control">
+                        @error('street')
+                            <div class="alert alert-danger mt-2">{{ $message }}</div>
                         @enderror
                     </div>
-                    {{-- <input type="hidden" name="latitude" id="lat">
-                    <input type="hidden" name="longitude" id="long"> --}}
                 </fieldset>
 
                 {{-- Hình ảnh --}}
@@ -272,7 +250,7 @@
     </div>
 
     <script src="{{ asset('admin/js/api_viet_nam.js') }}"></script>
+    <script src="{{ asset('admin/js/formatPrice.js') }}"></script>
     {{-- get lat long --}}
     <script src="{{ asset('admin/js/get_lat_long_new.js') }}"></script>
-    <script src="{{ asset('admin/js/formatPrice.js') }}"></script>
 @endsection
