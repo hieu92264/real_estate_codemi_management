@@ -8471,7 +8471,9 @@ fieldset:disabled .btn {
 }
 
 .rounded-circle {
-    border-radius: 50% !important
+    border-radius: 50% !important;
+    border: var(--primary) solid 1px;
+    border-radius: 5px
 }
 
 .rounded-pill {

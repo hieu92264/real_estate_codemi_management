@@ -228,7 +228,8 @@
                     <div class="form-group">
                         <legend>Một số hình ảnh nhà</legend>
                         <label for="images">Hình Ảnh</label>
-                        <input type="file" name="images[]" class="form-control" id="images" multiple>
+                        <input type="file" name="images[]" class="form-control" style="cursor: pointer"
+                            id="images" multiple>
                     </div>
                     <br>
                     <div class="d-flex justify-content-center">

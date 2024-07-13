@@ -235,7 +235,8 @@
                     <legend>Một số hình ảnh nhà</legend>
                     <div class="form-group">
                         <label for="images">Hình Ảnh</label>
-                        <input type="file" name="images[]" class="form-control" id="images" multiple>
+                        <input type="file" name="images[]" class="form-control" style="cursor: pointer"
+                            id="images" multiple>
                         @error('images')
                             <div class="alert alert-danger">{{ $message }}</div>
                         @enderror

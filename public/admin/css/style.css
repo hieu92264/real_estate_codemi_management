@@ -86,7 +86,7 @@
     z-index: 999;
 }
 
-img {
+.img-logo {
     height: 60px;
     width: 240px;
     border: var(--primary) solid 1px;
@@ -353,6 +353,10 @@ h1 {
 }
 
 .property-item img {
+    height: 60px;
+    width: 240px;
+    border: var(--primary) solid 1px;
+    border-radius: 5px;
     transition: .5s;
     object-fit: cover;
     flex: 1;
