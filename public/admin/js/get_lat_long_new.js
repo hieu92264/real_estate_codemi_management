@@ -74,8 +74,8 @@ function renderList() {
         listItemContent.classList.add("list-item");
 
         listItemContent.innerHTML = `
-            <div class="list-item" onclick='handleSelectPosition(${JSON.stringify(item)})'>
-                <img src="../img/iconmap.png" alt="Icon">
+            <div class="list-item" style="cursor: pointer" onclick='handleSelectPosition(${JSON.stringify(item)})'>
+                <img src="/admin/img/iconmap.png" style="height: 30px; width: 30px" alt="Icon">
                 <span>${item.address.label}</span>
             </div>
             <hr>

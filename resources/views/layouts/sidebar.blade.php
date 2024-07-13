@@ -1,7 +1,7 @@
 <div class="sidebar pe-4 pb-3">
     <nav class="navbar bg-light navbar-light">
         <a href="{{ route('home') }}" class="navbar-brand mx-1 mb-3 d-inline-block">
-            <h2 class="text-primary"><img src="{{ asset('admin/img/codemi-viet-nam.jpg') }}"></h2>
+            <h2 class="text-primary"><img class="img-logo" src="{{ asset('admin/img/codemi-viet-nam.jpg') }}"></h2>
         </a>
         <div class="d-flex align-items-center ms-4 mb-4">
             <div class="position-relative">
