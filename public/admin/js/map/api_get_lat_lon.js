@@ -52,7 +52,8 @@ function sendRequest(ward = null, district = null, city = null) {
                         return;
                     }
                     const marker = L.marker([house.latitude, house.longitude]);
-                    const fullAddress = `${house.full_address}, ${house.street}, ${house.ward}, ${house.district}, ${house.city}`;
+                    const fullAddress = `${house.full_address}`;
+                    console.log(fullAddress);
                     marker.bindPopup('Địa chỉ thực: ' + fullAddress);
                     markers.addLayer(marker);
                 });
