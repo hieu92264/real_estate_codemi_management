@@ -39,7 +39,7 @@ function handleSearch() {
     fetchWithRetry(`https://discover.search.hereapi.com/v1/discover?${queryString}`, requestOptions)
         .then((data) => {
             listPlace = data.items;
-            cache[searchText] = listPlace;  // Cache the results
+            cache[searchText] = listPlace; 
             renderList();
         })
         .catch((err) => console.log("err: ", err));
