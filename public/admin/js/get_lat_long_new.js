@@ -80,6 +80,7 @@ function renderList() {
             </div>
             <hr>
         `;
+        
         listItem.appendChild(listItemContent);
         listElement.appendChild(listItem);
     });

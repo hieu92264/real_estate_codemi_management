@@ -26,10 +26,10 @@ Route::middleware('guest')->group(function () {
 
 Route::get("/logout", [AuthController::class, "logout"])->name("logout");
 
-Route::get("/trang-chu", [DashboardController::class, 'index'])->name('home');
 
 //auth
-Route::middleware('auth')->group(function () {
+Route::middleware('checkSession')->group(function () {
+    Route::get("/trang-chu", [DashboardController::class, 'index'])->name('home');
     Route::get('/dashboard', [Controller::class, 'showFormHome'])->name('showFormDashboard');
     Route::resource('/roles', RoleController::class);
     Route::resource('/users', UserController::class);
@@ -42,8 +42,8 @@ Route::middleware('auth')->group(function () {
     Route::get('/doi-mat-khau', [AuthController::class, 'changePassword'])->name('change.password');
     Route::post('/doi-mat-khau', [AuthController::class, 'savePassword']);
     Route::get('/thong-ke-theo-gia', [PriceReportController::class, 'index'])->name('priceReport');
+    Route::get('/load-map', function () {
+        return view('map.map');
+    })->name('map');
 });
 // end auth
-Route::get('/load-map', function () {
-    return view('map.map');
-})->name('map');
