@@ -7,7 +7,7 @@
         </div>
     @endif
 
-    @if (Auth::user()->hasPermission('them tai khoan'))
+    @if (Auth::user()->hasPermission('them tai khoan') ?? '')
         <div class="d-flex justify-content-end my-2 mr-3">
             <a href="{{ route('users.create') }}" class="btn btn-success mb-3" style="margin-right:20px; margin-top:20px">
                 Thêm tài khoản</a>
@@ -31,7 +31,7 @@
                     <th scope="col">Tên</th>
                     <th scope="col">Email</th>
                     <th scope="col">Chức vụ</th>
-                    @if (Auth::user()->hasPermission('Sửa tài khoản') || Auth::user()->hasPermission('Xóa tài khoản'))
+                    @if (Auth::user()->hasPermission('Sửa tài khoản') ?? ('' || Auth::user()->hasPermission('Xóa tài khoản') ?? ''))
                         <th scope="col">Hành động</th>
                     @endif
                 </tr>
@@ -48,10 +48,10 @@
                             @endforeach
                         </td>
                         <td class="action-buttons">
-                            @if (Auth::user()->hasPermission('Sửa tài khoản'))
+                            @if (Auth::user()->hasPermission('Sửa tài khoản') ?? '')
                                 <a href="{{ route('users.edit', $user->id) }}" class="btn btn-primary btn-sm">Sửa</a>
                             @endif
-                            @if (Auth::user()->hasPermission('Xóa tài khoản') && $user->id !== Auth::user()->id)
+                            @if (Auth::user()->hasPermission('Xóa tài khoản') ?? '' && $user->id !== Auth::user()->id)
                                 <form action="{{ route('users.destroy', $user->id) }}" method="POST"
                                     onsubmit="return confirm('Bạn có muốn xóa chức vụ này không');">
                                     @csrf

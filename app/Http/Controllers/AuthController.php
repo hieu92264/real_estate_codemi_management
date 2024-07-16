@@ -10,6 +10,7 @@ use Illuminate\Support\Facades\Mail;
 
 class AuthController extends Controller
 {
+
     public function showFormLogin()
     {
         return view("auth.login");
